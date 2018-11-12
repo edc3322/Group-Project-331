@@ -6,10 +6,6 @@
 
 package project331;
 
-/**
- *
- * @author edc33
- */
 public class vendor 
 {
     int vID;
