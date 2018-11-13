@@ -12,7 +12,7 @@ public class vendor
     String businessName, address, city, state;
     long phoneNumber;
     
-    vendor(String businessName, String address, String city, String state, long phoneNumber)
+    Vendor(String businessName, String address, String city, String state, long phoneNumber)
     {
         this.vID = vID;
         this.businessName = businessName;
