@@ -22,6 +22,7 @@ public Contractor()
 }
     public Contractor (String fName, String lName)
     {
-        super (fName); 
+        super (fName);
+        super (lName);
     }
 }
