@@ -20,9 +20,15 @@ public Contractor()
    this.contractorNumber = 0; 
    
 }
-    public Contractor (String fName, String lName)
+    public Contractor (String firstName, String lastName, String city, String state, int zip, String contractorName, long contractorNumber, String contractorAddress)
     {
-        super (fName);
-        super (lName);
+        super (firstName);
+        super (lastName);
+        super (city);
+        super (state);
+        super(zip);
+        this.contractorName = contractorName;
+        this.contractorNumber = contractorNumber;
+        this.contractorAddress = contractorAddress; 
     }
 }
