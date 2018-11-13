@@ -31,4 +31,16 @@ public Contractor()
         this.contractorNumber = contractorNumber;
         this.contractorAddress = contractorAddress; 
     }
+    
+    public void setContractorName (String contractorName) //setting the contractor company name
+    {
+    this.contractorName = contractorName; 
+    }
+    
+    public void setContractorNumber (long contractorNumber) //setting contractor company number
+    {
+    this.contractorNumber = contractorNumber; 
+    }
+    
+    
 }
