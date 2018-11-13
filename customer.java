@@ -10,18 +10,23 @@ package project331;
  *
  * @author edc33
  */
-public class customer 
+public class Customer 
 {
-    int cID = 1000;
+    int cId = 1000;
     int zip;
     long phoneNumber;
     String firstName, lastName, city, state;
     
-    customer () //0 args constructor
+    public Customer () //0 args constructor
     {
-        
+        zip =0; 
+        phoneNumer =0;
+        firstName ="";
+        lastName ="";
+        city ="";
+        state =""; 
     }
-    customer(String firstName, String lastName, String city, String state, int zip, long phoneNumber)
+    public Customer(String firstName, String lastName, String city, String state, int zip, long phoneNumber)
     {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -69,9 +74,9 @@ public class customer
         return  returnString;
     }
     
-    public void setID(int value) //sets the value of the cID, to be used only when creating new customer objects
+    public void setId(int value) //sets the value of the cID, to be used only when creating new customer objects
     {
-        this.cID += value;
+        this.cId += value;
     }
     
     
