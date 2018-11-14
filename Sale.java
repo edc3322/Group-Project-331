@@ -6,6 +6,12 @@
 package Project331;
 
 
-public class Sale {
+public class Sale 
+{
+    public int saleID = 3000;
+    private double sellPrice;
+    public int quantity;
+    private double totSalePrice;
+    
     
 }
