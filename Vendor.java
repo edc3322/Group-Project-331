@@ -8,18 +8,18 @@ package project331;
 
 public class Vendor 
 {
-    int vID;
+    int vID = 5000;
     String businessName, address, city, state;
     long phoneNumber;
     
     Vendor(String businessName, String address, String city, String state, long phoneNumber)
     {
-        this.vID = vID;
         this.businessName = businessName;
         this.address = address;
         this.city = city;
         this.state = state;
         this.phoneNumber = phoneNumber;
+        this.vID++;
     }
     
     public void setBusinessName(String newName)
@@ -43,11 +43,16 @@ public class Vendor
         this.phoneNumber = newNumber;
     }
     
+    public int getVID()
+    {
+        return this.vID;
+    }
+    
     @Override
     public String toString()
     {
-        String returnString = String.format("%-16s" + " %-16s" + " %-16s" + " %-12s" + " %-9d",
-                this.businessName, this.address, this.city, this.state, this.phoneNumber);
+        String returnString = String.format("%-12d" + "%-16s" + " %-16s" + " %-16s" + " %-12s" + " %-9d",
+                this.vID, this.businessName, this.address, this.city, this.state, this.phoneNumber);
         return  returnString;
     }
 }
