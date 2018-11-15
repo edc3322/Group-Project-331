@@ -8,6 +8,7 @@ package Project331;
 
 public class Contractor extends Customer 
 {
+    private int contractorID = 2000;
     public String contractorName; 
     public long contractorNumber; 
     public String contractorAddress; 
@@ -21,6 +22,7 @@ public Contractor (String firstName, String lastName, String city, String street
         this.contractorName = contractorName;
         this.contractorNumber = contractorNumber;
         this.contractorAddress = contractorAddress; 
+        this.contractorID++;
     }
     
     //setting the contractor company name
