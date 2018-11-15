@@ -14,12 +14,19 @@ public class Main {
         int choice=0;
         int choice2=0;
         int choice3=0;
+        
         int customerCount = 0;
         int vendorCount = 0;
+        int saleCount = 0;
+        int itemCount = 0;
+        
         int customerSelect = 0;
         int vendorSelect = 0;
+        
         Customer[] customer = new Customer[4];
         Vendor[] vendor = new Vendor[3];
+        Sale[] sale = new Sale[3];
+        Item[] item = new Item[10];
         //menu
         do{  
     
@@ -62,12 +69,14 @@ public class Main {
             
             else if(choice2 == 3)//create inventory item
             {
-                Item.addItem("Lamp", 3, "White side lamp", 10, 49.99);
+                itemCount++;
+                item[itemCount] = addItem();
             }
             
             else if(choice2 == 4)//create sale
             {
-            
+                saleCount++;
+                sale[saleCount] = addSale();
             }
         }
         
@@ -100,7 +109,9 @@ public class Main {
         
         else if(choice == 6)//print receipt
         {
-            Sale.printReceipt();
+            System.out.println("Enter the Sale ID: ");
+            int IDChoice = in.nextInt();
+            sale[IDChoice].printReceipt();
         }
 
       } while (choice != 7);//end loop
@@ -362,6 +373,21 @@ public static void editVendor(Vendor v1)
                 }
             }
         }
+    }
+ public static Item addItem()
+    {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter the Item Name: ");
+        String itemName = scan.nextLine();
+        System.out.println("Enter the item weight: ");
+        double itemWeight = scan.nextDouble();
+        System.out.println("Enter the item description: ");
+        String itemDescription = scan.nextLine();
+        System.out.println("Enter the purchase price: ");
+        double pPrice = scan.nextDouble();
+        
+        Item returnItem = new Item(itemName, itemWeight, itemDescription, pPrice);
+        return returnItem;
     }
 }
 
