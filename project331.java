@@ -236,6 +236,31 @@ public static void editCustomer(Customer c1)
         }
     }
     
+//method for adding a sale    
+public static Sale addSale()
+{
+    Scanner scan = new Scanner(System.in);
+    System.out.println("Item ID: ");
+    int itemID = scan.nextInt();
+
+    System.out.println("Item Name: ");
+    String itemName = scan.nextLine();
+
+    System.out.println("Selling Price: ");
+    double sellingPrice = scan.nextDouble();
+
+    System.out.println("Quantity: ");
+    int quantity = scan.nextInt();
+
+    System.out.println("Customer name: ");
+    String customer = scan.nextLine();
+
+    System.out.println("Date of Sale: ");
+    String date - scan.nextLine();
+
+    Sale newS = new Sale(itemID, itemName, sellingPrice, quantity, customer, date);
+    return newS;
+}    
         
 //method for adding a vendor
 public static Vendor addVendor()
