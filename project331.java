@@ -146,6 +146,9 @@ public static void reportMenuOptions()
         System.out.println("Last Name:");
         String last = scan.nextLine();
         
+        System.out.println("Street: ");
+        String street = scan.nextLine(); 
+        
         System.out.println("City:");
         String city = scan.nextLine();
         
@@ -200,6 +203,11 @@ public static void editCustomer(Customer c1)
                 }
                 case 3:
                 {
+                   System.out.println("Enter the street: ");
+                    scan.nextLine();
+                    scanString = scan.nextLine();
+                    c1.setStreet(scanString); 
+                    
                     System.out.println("Enter the new City:"); // resets city value
                     scan.nextLine(); // to accept the <enter> from the previous scan
                     scanString = scan.nextLine();
@@ -271,6 +279,9 @@ public static Vendor addVendor()
         
         System.out.println("Address Line:");
         String aLine = scan.nextLine();
+        
+        System.out.println("Street: ");
+        String street = scan.nextLine(); 
         
         System.out.println("City:");
         String city = scan.nextLine();
