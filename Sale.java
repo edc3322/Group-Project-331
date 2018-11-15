@@ -6,19 +6,22 @@
 
 package Project331;
 
-
 public class Sale {
-   private int saleID = 3000;
-   Item itemID;
-   Item itemName;
-   private double sellingPrice;
-   public int quantity;
-   public String customer;
-   private String date;
+    int saleID = 3000;
+    Item newItem;
+    double sellingPrice;
+    int quantity;
+    String customer;
+    String date;
     
-    public Sale(Item itemName, double sellingPrice, int quantity, String customer, String date)
+    public Sale(Item newItem)
     {
-        this.itemName = itemName;
+        this.newItem = newItem;
+    }
+    
+    public Sale(Item newItem, double sellingPrice, int quantity, String customer, String date)
+    {
+        this.newItem = newItem;
         this.sellingPrice = sellingPrice;
         this.quantity = quantity;
         this.customer = customer;
@@ -26,12 +29,13 @@ public class Sale {
         this.saleID++;
     }
     
-    
     public void printReceipt()
     {
-        String saleReceipt = "Item Sold: " + itemID.itemName + ", Selling Price: $" + String.valueOf(itemID.sellPrice) + ", Quantity: " + String.valueOf(quantity) + ", Sale Total: $" + String.valueOf(quantity * itemID.sellPrice);
+        String saleReceipt = "Item Sold: " + newItem.getID() + ", Selling Price: $" + String.valueOf(this.sellingPrice) 
+                + ", Quantity: " + String.valueOf(quantity) + ", Sale Total: $" + String.valueOf(quantity * this.sellingPrice);
         System.out.println(saleReceipt);
+    }
+
     
-    
-    
+
 }
