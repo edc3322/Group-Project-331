@@ -16,7 +16,7 @@ public class Sale {
    public String customer;
    private String date;
     
-    public Sale(Item itemID, Item itemName, double sellingPrice, int quantity, String customer, String date)
+    public Sale(Item itemName, double sellingPrice, int quantity, String customer, String date)
     {
         this.itemID = itemID;
         this.itemName = itemName;
