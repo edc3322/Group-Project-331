@@ -1,18 +1,18 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ CIS 331 Section 2 
+ Group Project Part 1.
+ Authors: Zach Beatty, Eric Carter, Mercy Clemente, & Troy Goddard
  */
 
 package project331;
 
 public class Vendor 
 {
-    int vID = 5000;
-    String businessName, address, city, state;
-    long phoneNumber;
+   private int vID = 5000;
+   public String businessName, address, city, state;
+   public long phoneNumber;
     
-    Vendor(String businessName, String address, String city, String state, long phoneNumber)
+public Vendor(String businessName, String address, String city, String state, long phoneNumber)
     {
         this.businessName = businessName;
         this.address = address;
