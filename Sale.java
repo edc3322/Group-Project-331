@@ -7,12 +7,12 @@
 package Project331;
 
 public class Sale {
-    int saleID = 3000;
+    private int saleID = 3000;
     Item newItem;
-    double sellingPrice;
-    int quantity;
-    String customer;
-    String date;
+    public double sellingPrice;
+    public int quantity;
+    public String customer;
+    public String date;
     
     public Sale(Item newItem)
     {
@@ -28,11 +28,16 @@ public class Sale {
         this.date = date;
         this.saleID++;
     }
+ public int getId()
+ {
+  return this.saleID++; 
+ }
     
     public void printReceipt()
     {
-        String saleReceipt = "Item Sold: " + newItem.getID() + ", Selling Price: $" + String.valueOf(this.sellingPrice) 
-                + ", Quantity: " + String.valueOf(quantity) + ", Sale Total: $" + String.valueOf(quantity * this.sellingPrice);
+        String saleReceipt = "Item Sold: " + newItem.getItemID() + ", " + 
+         Selling Price: $" + String.valueOf(this.sellingPrice) + ", Quantity: " 
+         + String.valueOf(quantity) + ", Sale Total: $" + String.valueOf(quantity * this.sellingPrice);
         System.out.println(saleReceipt);
     }
 
