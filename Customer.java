@@ -63,6 +63,28 @@ public class Customer
         return this.cID;
     }
     
+    public long getValidPhone (Scanner in)
+    {
+        long phoneNumber = 0; 
+        while (true) 
+        {
+            try 
+            {
+                System.out.print("Enter a 10 digit phone number: ");
+                phoneNumber = in.nextInt(); 
+                if (phoneNumber>0 && Long.toString(phoneNumber).length() ==10)
+                    break; 
+            } catch (InputMismatchException e)
+            {in.nextLine();
+              System.out.println("Invalid input: Use digits 0 - 9"); 
+             continue; 
+            } 
+            System.out.println("Invalid input: Not 10 digits long");
+        }
+        return phoneNumber;
+    }
+                
+    
     @Override
     public String toString()
     {
