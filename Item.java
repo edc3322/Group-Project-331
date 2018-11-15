@@ -22,7 +22,7 @@ public Item(String itemName, double weight, String description, double
 	this. description = description;
 	this.purchasePrice = purchasePrice;
 	this.sellPrice = sellPrice;
-	itemID++;
+	this.itemID++;
 }
 public boolean setpurchasePrice(double purchasePrice)
 {
