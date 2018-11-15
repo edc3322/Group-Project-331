@@ -23,7 +23,7 @@ public Item(String itemName, double weight, String description, double
 	this.itemID++;
 }
 	
-public int getID()
+public int getItemID()
 {
     return this.itemID;
 }
@@ -48,7 +48,7 @@ public double getpurchasePrice()
 public String toString()
 {
     String returnString = String.format("%-12d" + " %-16s" + " %-16f" + " %-20s" + " %-12f" + " %-12f",
-                this.itemID, this.itemName, this.weight, this.description, this.purchasePrice, this.sellPrice);
+    this.itemID, this.itemName, this.weight, this.description, this.purchasePrice, this.sellPrice);
     return returnString;
 }
 	
