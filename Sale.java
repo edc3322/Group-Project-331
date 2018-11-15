@@ -9,7 +9,7 @@ public class Sale {
     String customer;
     String date;
     
-    public Sale(Item itemSold, double sellingPrice, int quantity, String customer, String date)
+    public Sale(Item itemName, double sellingPrice, int quantity, String customer, String date)
     {
         this.itemSold = itemSold;
         this.sellingPrice = sellingPrice;
