@@ -7,7 +7,7 @@ package Project331;
 
 public class Item 
 {
-public int itemID = 4000;
+private int itemID = 4000;
 public String itemName;
 public double weight;
 public String description;
