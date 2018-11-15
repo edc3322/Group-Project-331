@@ -6,7 +6,7 @@
 
 package project331;
 
-public class vendor 
+public class Vendor 
 {
     int vID;
     String businessName, address, city, state;
