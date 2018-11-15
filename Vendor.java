@@ -30,6 +30,10 @@ public Vendor(String businessName, String address, String city, String state, lo
     {
         this.address = newAddress;
     }
+   public void setStreet (String newStreet)
+    {
+        this.street = newStreet; 
+    }
     public void setCity(String newCity)
     {
         this.city = newCity;
@@ -51,8 +55,8 @@ public Vendor(String businessName, String address, String city, String state, lo
     @Override
     public String toString()
     {
-        String returnString = String.format("%-12d" + "%-16s" + " %-16s" + " %-16s" + " %-12s" + " %-9d",
-                this.vID, this.businessName, this.address, this.city, this.state, this.phoneNumber);
+        String returnString = String.format("%-12d" + "%-16s" + " %-16s" + " %-16s" + " %-16s" + " %-12s" + " %-9d",
+                this.vID, this.businessName, this.address, this.street, this.city, this.state, this.phoneNumber);
         return  returnString;
     }
 }
