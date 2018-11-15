@@ -11,7 +11,7 @@ public class Sale {
     
     public Sale(Item itemName, double sellingPrice, int quantity, String customer, String date)
     {
-        this.itemSold = itemSold;
+        this.itemName = itemName;
         this.sellingPrice = sellingPrice;
         this.quantity = quantity;
         this.customer = customer;
