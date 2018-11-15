@@ -225,16 +225,20 @@ public static void editCustomer(Customer c1)
                     scanString = scan.nextLine();
                     c1.setStreet(scanString); 
                     
-                    System.out.println("Enter the new City:"); // resets city value
-                    scan.nextLine(); // to accept the <enter> from the previous scan
+                    // resets city value
+                    System.out.println("Enter the new City:"); 
+                    // to accept the <enter> from the previous scan
+                    scan.nextLine(); 
                     scanString = scan.nextLine();
                     c1.setCity(scanString);    
                 
-                    System.out.println("Enter the new State:"); // resets state value
+                    // resets state value
+                    System.out.println("Enter the new State:"); 
                     scanString = scan.nextLine();
                     c1.setState(scanString);
-                
-                    System.out.println("Enter the new Zip Code:"); // resets zip value
+                    
+                    //resets zip value 
+                    System.out.println("Enter the new Zip Code:"); 
                     scanInt = scan.nextInt();
                     c1.setZip(scanInt);
                     break;
@@ -292,11 +296,8 @@ public static Vendor addVendor()
     {
         Scanner scan = new Scanner(System.in);
         System.out.println("Business Name:");
-        String bName = scan.nextLine();
-        
-        System.out.println("Address Line:");
-        String aLine = scan.nextLine();
-        
+        String businessName = scan.nextLine();
+
         System.out.println("Street: ");
         String street = scan.nextLine(); 
         
@@ -307,9 +308,9 @@ public static Vendor addVendor()
         String state = scan.nextLine();
         
         System.out.println("Phone Number:");
-        long number = scan.nextLong();
+        long phoneNumber = scan.nextLong();
         
-        Vendor v = new Vendor(bName, aLine, city, state, number);
+        Vendor v = new Vendor(businessName, street, city, state, phoneNumber);
         return v;
     }
 
@@ -390,12 +391,3 @@ public static void editVendor(Vendor v1)
         return returnItem;
     }
 }
-
-    
-
-
-
-    
-
-
-
