@@ -264,7 +264,7 @@ public static Sale addSale()
     String customer = scan.nextLine();
 
     System.out.println("Date of Sale: ");
-    String date - scan.nextLine();
+    String date = scan.nextLine();
 
     Sale newS = new Sale(itemID, itemName, sellingPrice, quantity, customer, date);
     return newS;
