@@ -17,15 +17,6 @@ public class Customer
     long phoneNumber;
     String firstName, lastName, city, state;
     
-    public Customer () //0 args constructor
-    {
-        zip =0; 
-        phoneNumer =0;
-        firstName ="";
-        lastName ="";
-        city ="";
-        state =""; 
-    }
     public Customer(String firstName, String lastName, String city, String state, int zip, long phoneNumber)
     {
         this.firstName = firstName;
@@ -34,6 +25,7 @@ public class Customer
         this.state = state;
         this.zip = zip;
         this.phoneNumber = phoneNumber;
+        this.cID++;
     }
     
     public void setFirstName(String newName) // setter for firstName for editing customers
@@ -66,17 +58,17 @@ public class Customer
         this.phoneNumber = newNumber;
     }
     
+    public int getId()
+    {
+        return this.cID;
+    }
+    
     @Override
     public String toString()
     {
-        String returnString = String.format("%-16s" + " %-16s" + " %-16s" + " %-12s" + " %-10d" + " %-9d",
-                this.firstName, this.lastName, this.city, this.state, this.zip, this.phoneNumber);
+        String returnString = String.format("%-12d" + " %-16s" + " %-16s" + " %-16s" + " %-12s" + " %-10d" + " %-9d",
+                this.cID, this.firstName, this.lastName, this.city, this.state, this.zip, this.phoneNumber);
         return  returnString;
-    }
-    
-    public void setId(int value) //sets the value of the cID, to be used only when creating new customer objects
-    {
-        this.cId += value;
     }
     
 }
