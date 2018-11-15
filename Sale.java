@@ -9,14 +9,16 @@ package Project331;
 
 public class Sale {
    private int saleID = 3000;
+   Item itemID;
    Item itemName;
    private double sellingPrice;
    public int quantity;
    public String customer;
    private String date;
     
-    public Sale(Item itemName, double sellingPrice, int quantity, String customer, String date)
+    public Sale(Item itemID, Item itemName, double sellingPrice, int quantity, String customer, String date)
     {
+        this.itemID = itemID;
         this.itemName = itemName;
         this.sellingPrice = sellingPrice;
         this.quantity = quantity;
