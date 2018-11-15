@@ -12,18 +12,22 @@ public String itemName;
 public double weight;
 public String description;
 private double purchasePrice;
-public double sellPrice;
 
 public Item(String itemName, double weight, String description, double 
-    purchasePrice, double sellPrice)
+    purchasePrice)
 {
 	this.itemName = itemName;
 	this.weight = weight;
 	this. description = description;
 	this.purchasePrice = purchasePrice;
-	this.sellPrice = sellPrice;
 	this.itemID++;
 }
+	
+public int getID()
+{
+    return this.itemID;
+}
+	
 public boolean setpurchasePrice(double purchasePrice)
 {
     if (purchasePrice > 0)
@@ -39,13 +43,6 @@ public double getpurchasePrice()
     return purchasePrice;
 }
 
-public static void addItem (String itemName, double weight, String description,
-        double purchasePrice, double sellingPrice)
-{
-    System.out.println("Enter Item Name: \nEnter Item Weight: \nEnter "
-    + "Description of Item: \nEnter Purchase Price of Item: $ \nEnter Selling"
-    + " Price of Item: $");
-}
 
 	@Override
 public String toString()
