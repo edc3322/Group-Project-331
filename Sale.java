@@ -3,7 +3,7 @@ package Project331;
 
 public class Sale {
     int saleID = 3000;
-    Item itemSold;
+    Item itemName;
     double sellingPrice;
     int quantity;
     String customer;
@@ -21,7 +21,7 @@ public class Sale {
     
     public void printReceipt()
     {
-        String saleReceipt = "Item Sold: " + itemID.itemSold + ", Selling Price: $" + String.valueOf(itemID.sellPrice()) + ", Quantity: " + String.valueOf(quantity) + ", Sale Total: $" + String.valueOf(quantity * itemID.sellPrice());
+        String saleReceipt = "Item Sold: " + itemID.itemName + ", Selling Price: $" + String.valueOf(itemID.sellPrice()) + ", Quantity: " + String.valueOf(quantity) + ", Sale Total: $" + String.valueOf(quantity * itemID.sellPrice());
         System.out.println(saleReceipt);
     
     
