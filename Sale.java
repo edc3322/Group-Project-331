@@ -2,12 +2,12 @@ package Project331;
 
 
 public class Sale {
-    int saleID = 3000;
+    private int saleID = 3000;
     Item itemName;
-    double sellingPrice;
-    int quantity;
-    String customer;
-    String date;
+   private double sellingPrice;
+   public int quantity;
+   public String customer;
+   private String date;
     
     public Sale(Item itemName, double sellingPrice, int quantity, String customer, String date)
     {
