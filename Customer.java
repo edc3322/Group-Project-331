@@ -15,20 +15,23 @@ public class Customer
     int cId = 1000;
     int zip;
     long phoneNumber;
-    String firstName, lastName, city, state;
+    String firstName, lastName, city, state, street;
     
-    public Customer(String firstName, String lastName, String city, String state, int zip, long phoneNumber)
+public Customer(String firstName, String lastName, String city, String state, 
+         String street, int zip, long phoneNumber)
     {
         this.firstName = firstName;
         this.lastName = lastName;
         this.city = city;
         this.state = state;
+        this.street = street; 
         this.zip = zip;
         this.phoneNumber = phoneNumber;
-        this.cID++;
+        this.cId++;
     }
     
-    public void setFirstName(String newName) // setter for firstName for editing customers
+    // setter for firstName for editing customerss
+    public void setFirstName(String newName) 
     {
         this.firstName = newName;
     }
@@ -48,6 +51,10 @@ public class Customer
         this.state = newState;
     }
     
+    public void setStreet (String newStreet)
+    {
+        this.street=newStreet; 
+    }
     public void setZip(int newZip)
     {
         this.zip = newZip;
@@ -60,17 +67,16 @@ public class Customer
     
     public int getId()
     {
-        return this.cID;
+        return this.cId;
     }
-    
-
                 
     
     @Override
     public String toString()
     {
-        String returnString = String.format("%-12d" + " %-16s" + " %-16s" + " %-16s" + " %-12s" + " %-10d" + " %-9d",
-                this.cID, this.firstName, this.lastName, this.city, this.state, this.zip, this.phoneNumber);
+      String returnString = String.format("%-12d" + " %-16s" + " %-16s" + " %-16s" 
+      + " %-16s" + " %-12s" + " %-10d" + " %-9d", this.cId, this.firstName, 
+      this.lastName, this.city, this.street, this.state, this.zip, this.phoneNumber);
         return  returnString;
     }
     
