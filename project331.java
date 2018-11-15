@@ -56,8 +56,7 @@ public class Main {
             
             else if(choice2 == 3)//create inventory item
             {
-                Item.addItem(Item.itemName, Item.weight, Item.description, 
-                        Item.purchasePrice, Item.sellingPrice);
+                Item.addItem("Lamp", 3, "White side lamp", 10, 49.99);
             }
             
             else if(choice2 == 4)//create sale
@@ -161,7 +160,8 @@ public static void reportMenuOptions()
         System.out.println("Phone Number:");
         long phone = scan.nextLong();
         
-        Customer newC = new Customer(first, last, city, state, zip, phone);
+        Customer newC = new Customer("Tom", "Jones", "12 Devon Lane", 
+        "Harrisonburg", "Va", 22801, 5408589999L);
         return newC;
     }
     
