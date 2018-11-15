@@ -1,3 +1,9 @@
+/*
+ CIS 331 Section 2 
+ Group Project Part 1.
+ Authors: Zach Beatty, Eric Carter, Mercy Clemente, & Troy Goddard
+ */
+
 package project331;
 import java.util.*;
 public class Main {
