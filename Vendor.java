@@ -9,13 +9,14 @@ package project331;
 public class Vendor 
 {
    private int vID = 5000;
-   public String businessName, address, city, state;
+   public String businessName, address, street, city, state;
    public long phoneNumber;
     
-public Vendor(String businessName, String address, String city, String state, long phoneNumber)
+public Vendor(String businessName, String address, String street, String city, String state, long phoneNumber)
     {
         this.businessName = businessName;
         this.address = address;
+        this.street = street; 
         this.city = city;
         this.state = state;
         this.phoneNumber = phoneNumber;
