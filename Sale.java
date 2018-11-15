@@ -14,14 +14,14 @@ public class Sale {
     String customer;
     String date;
     
-    public Sale(Item itemSold, double sellingPrice, int quantity, String customer, String date,)
+    public Sale(Item itemSold, double sellingPrice, int quantity, String customer, String date)
     {
         this.itemSold = itemSold;
         this.sellingPrice = sellingPrice;
         this.quantity = quantity;
         this.customer = customer;
         this.date = date;
-        saleID++;
+        this.saleID++;
     }
     
     public void printReceipt()
