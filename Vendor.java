@@ -8,17 +8,19 @@ package project331;
 
 public class Vendor 
 {
-   private int vID = 5000;
-   public String businessName, address, street, city, state;
+private int vID = 5000;
+   public String businessName,  street, city, state;
    public long phoneNumber;
+   public int zip; 
     
-public Vendor(String businessName, String address, String street, String city, String state, long phoneNumber)
+public Vendor(String businessName, String street, String city, String state,
+        int zip, long phoneNumber)
     {
         this.businessName = businessName;
-        this.address = address;
         this.street = street; 
         this.city = city;
         this.state = state;
+        this.zip = zip; 
         this.phoneNumber = phoneNumber;
         this.vID++;
     }
@@ -27,13 +29,9 @@ public Vendor(String businessName, String address, String street, String city, S
     {
         this.businessName = newName;
     }
-    public void setAddress(String newAddress)
+    public void setStreet(String newStreet)
     {
-        this.address = newAddress;
-    }
-   public void setStreet (String newStreet)
-    {
-        this.street = newStreet; 
+        this.street = newStreet;
     }
     public void setCity(String newCity)
     {
@@ -42,6 +40,10 @@ public Vendor(String businessName, String address, String street, String city, S
     public void setState(String newState)
     {
         this.state = newState;
+    }
+    public void setZip (int zip)
+    {
+        this.zip=zip; 
     }
     public void setPhoneNumber(long newNumber)
     {
@@ -56,8 +58,9 @@ public Vendor(String businessName, String address, String street, String city, S
     @Override
     public String toString()
     {
-        String returnString = String.format("%-12d" + "%-16s" + " %-16s" + " %-16s" + " %-16s" + " %-12s" + " %-9d",
-                this.vID, this.businessName, this.address, this.street, this.city, this.state, this.phoneNumber);
+      String returnString = String.format("%-12d" + "%-16s"  +" %-16s" + " %-12s"
+     + " %-10d" + " %-9d",this.vID, this.businessName, this.city, this.state, 
+     this.zip, this.phoneNumber);
         return  returnString;
     }
 }
