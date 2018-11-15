@@ -19,9 +19,10 @@ public class Sale {
         this.saleID++;
     }
     
+    
     public void printReceipt()
     {
-        String saleReceipt = "Item Sold: " + itemID.itemName + ", Selling Price: $" + String.valueOf(itemID.sellPrice()) + ", Quantity: " + String.valueOf(quantity) + ", Sale Total: $" + String.valueOf(quantity * itemID.sellPrice());
+        String saleReceipt = "Item Sold: " + itemID.itemName + ", Selling Price: $" + String.valueOf(itemID.sellPrice) + ", Quantity: " + String.valueOf(quantity) + ", Sale Total: $" + String.valueOf(quantity * itemID.sellPrice);
         System.out.println(saleReceipt);
     
     
