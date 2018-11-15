@@ -8,8 +8,8 @@ package Project331;
 
 
 public class Sale {
-    private int saleID = 3000;
-    Item itemName;
+   private int saleID = 3000;
+   Item itemName;
    private double sellingPrice;
    public int quantity;
    public String customer;
