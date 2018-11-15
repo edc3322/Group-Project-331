@@ -11,15 +11,9 @@ public class Contractor extends Customer
     public String contractorName; 
     public long contractorNumber; 
     public String contractorAddress; 
+    public int contractorID = 2000;
     
-public Contractor()
-{
-   super();
-   this.contractorName="";
-   this.contractorAddress="";
-   this.contractorNumber = 0; 
-   
-}
+
     public Contractor (String firstName, String lastName, String city, String state, int zip, String contractorName, long contractorNumber, String contractorAddress)
     {
         super (firstName);
@@ -30,6 +24,7 @@ public Contractor()
         this.contractorName = contractorName;
         this.contractorNumber = contractorNumber;
         this.contractorAddress = contractorAddress; 
+        this.contractorID++;
     }
     
     public void setContractorName (String contractorName) //setting the contractor company name
