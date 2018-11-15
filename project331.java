@@ -1,6 +1,6 @@
 package project331;
 import java.util.*;
-public class main {
+public class Main {
 
     public static void main(String[] args) {
         
@@ -17,7 +17,7 @@ public class main {
         if (choice == 1)//id report
         {
            reportMenuOptions(); 
-choice2 = in.nextInt();  
+           choice2 = in.nextInt();  
         }
         
         else if(choice == 2)//item purchase history
@@ -38,17 +38,17 @@ choice2 = in.nextInt();
             //create new sub menu
             if(choice2 == 1)//create customer
             {
-                
+                addCustomer();
             }
             
             else if(choice2 == 2)//create vendor
             {
-            
+                addVendor();
             }
             
             else if(choice2 == 3)//create inventory item
             {
-            
+                Item.addItem();
             }
             
             else if(choice2 == 4)//create sale
@@ -75,7 +75,7 @@ choice2 = in.nextInt();
             
             else if(choice3 == 3)//edit existing vendor
             {
-            
+                
             }
             
         }
@@ -88,10 +88,7 @@ choice2 = in.nextInt();
       } while (choice != 7);//end loop
         
     }
-    
-}
-
-//Method for main menu 
+    //Method for main menu 
 public static void mainMenu()
  {
      Scanner in = new Scanner (System.in);
@@ -105,8 +102,8 @@ public static void mainMenu()
 public static void createMenu()
 {
     System.out.println("Menu Options to Create \n============================="
-    + "\n1. Create New Customer:\n2. Create New Vendor:\n3. Create New Vendor:"
-    + "\n4.Create New Sale: \n Enter Your Choice: #"); 
+    + "\n1. Create New Customer:\n2. Create New Vendor:\n3. Create New Item:"
+    + "\n4. Create New Sale: \n Enter Your Choice: #"); 
  }
  
 //Method for Edit menu Options 
@@ -114,7 +111,7 @@ public static void editMenu ()
 {
     System.out.println("Edit Menu Options \n==================================="
      + "\n1. Edit Existing Customer:\n2. Edit Existing Inventory Item: \n3. "
-     + "Edit Existing Vendor: \n Enter Your Choice:");
+     + "Edit Existing Vendor: \n Enter Your Choice: #");
 }
 
 //method for report options 
@@ -127,7 +124,7 @@ public static void reportMenuOptions()
 }
 
 //method for creating a customer
-    public static customer addCustomer()
+    public static Customer addCustomer()
     {
         Scanner scan = new Scanner(System.in);
         System.out.println("First Name:");
@@ -148,12 +145,12 @@ public static void reportMenuOptions()
         System.out.println("Phone Number:");
         long phone = scan.nextLong();
         
-        customer newC = new customer(first, last, city, state, zip, phone);
+        Customer newC = new Customer(first, last, city, state, zip, phone);
         return newC;
     }
     
 //method for editing a customer
-public static void editCustomer(customer c1)
+public static void editCustomer(Customer c1)
     {
         boolean run = true;
         while(run)
@@ -224,9 +221,11 @@ public static void editCustomer(customer c1)
                 }
             }
         }
+    }
+    
         
 //method for adding a vendor
-public static vendor addVendor()
+public static Vendor addVendor()
     {
         Scanner scan = new Scanner(System.in);
         System.out.println("Business Name:");
@@ -244,12 +243,12 @@ public static vendor addVendor()
         System.out.println("Phone Number:");
         long number = scan.nextLong();
         
-        vendor v = new vendor(bName, aLine, city, state, number);
+        Vendor v = new Vendor(bName, aLine, city, state, number);
         return v;
     }
 
 //method for editing a vendor
-public static void editVendor(vendor v1)
+public static void editVendor(Vendor v1)
     {
         Scanner scan = new Scanner(System.in);
         boolean run = true;
@@ -309,3 +308,9 @@ public static void editVendor(vendor v1)
             }
         }
     }
+}
+
+    
+
+
+
