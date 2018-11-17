@@ -307,10 +307,14 @@ public static Vendor addVendor()
         System.out.println("State:");
         String state = scan.nextLine();
         
+        System.out.println("Enter Zip: ");
+        int zip = scan.nextInt(); 
+        
         System.out.println("Phone Number:");
         long phoneNumber = scan.nextLong();
         
-        Vendor v = new Vendor(businessName, street, city, state, phoneNumber);
+        Vendor v = new Vendor(businessName, street, city, state, zip, 
+                phoneNumber);
         return v;
     }
 
@@ -342,8 +346,8 @@ public static void editVendor(Vendor v1)
                 {
                     System.out.println("Enter the new street address:");
                     scan.nextLine();
-                    String newAddress = scan.nextLine();
-                    v1.setAddress(newAddress);
+                    String newStreet = scan.nextLine();
+                    v1.setStreet(newStreet);
                     
                     System.out.println("Enter the new city");
                     //scan.nextLine();
@@ -386,11 +390,11 @@ public static void editVendor(Vendor v1)
         String itemDescription = scan.nextLine();
         System.out.println("Enter the purchase price: ");
         double pPrice = scan.nextDouble();
-        System.out.println("Enter the selling price: ");
+        System.out.println("Enter the Selling price: ");
         double sellingPrice = scan.nextDouble(); 
         
-        Item returnItem = new Item(itemName, itemWeight, itemDescription, pPrice,
-                                  sellingPrice);
+        Item returnItem = new Item(itemName, itemWeight, itemDescription,pPrice,
+        sellingPrice);
         return returnItem;
     }
 }
