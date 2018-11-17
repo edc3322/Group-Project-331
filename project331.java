@@ -386,8 +386,11 @@ public static void editVendor(Vendor v1)
         String itemDescription = scan.nextLine();
         System.out.println("Enter the purchase price: ");
         double pPrice = scan.nextDouble();
+        System.out.println("Enter the selling price: ");
+        double sellingPrice = scan.nextDouble(); 
         
-        Item returnItem = new Item(itemName, itemWeight, itemDescription, pPrice);
+        Item returnItem = new Item(itemName, itemWeight, itemDescription, pPrice,
+                                  sellingPrice);
         return returnItem;
     }
 }
