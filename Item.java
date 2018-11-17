@@ -12,14 +12,16 @@ public String itemName;
 public double weight;
 public String description;
 private double purchasePrice;
+public double sellingPrice; 
 
 public Item(String itemName, double weight, String description, double 
-    purchasePrice)
+    purchasePrice, sellingPrice)
 {
 	this.itemName = itemName;
 	this.weight = weight;
 	this. description = description;
 	this.purchasePrice = purchasePrice;
+	this.sellingPrice = sellingPrice;
 	this.itemID++;
 }
 	
