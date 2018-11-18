@@ -484,7 +484,9 @@ public static void editVendor(Vendor v1)
             {
                  System.out.println(itemArray[i]);
             }
-    System.out.println("Enter the ID to View the Item's Purchase History: ");
+    System.out.print("Enter the ID to View the Item's Purchase History: #");
     historyID = in.nextInt(); 
+    System.out.println("");
+  
  }
 }
