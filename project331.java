@@ -22,6 +22,7 @@ public class Main {
         
         int customerSelect = 0;
         int vendorSelect = 0;
+       int inventorySelect = 0;
         
         Customer[] customerArray = new Customer[10];
         Vendor[] vendorArray = new Vendor[10];
