@@ -12,10 +12,10 @@ package project331;
  */
 public class Customer 
 {
-    int cId;
-    int zip;
-    long phoneNumber;
-    String firstName, lastName, city, state, street;
+  private int cId;
+  public int zip;
+  public long phoneNumber;
+  public String firstName, lastName, city, state, street;
     
 public Customer(int cId, String firstName, String lastName, String city, String state, 
          String street, int zip, long phoneNumber)
