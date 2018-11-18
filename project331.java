@@ -38,6 +38,22 @@ public class Main {
                 case 1:
                     reportMenuOptions();
                     choice2 = in.nextInt();
+         switch (choice2)
+           {
+                case 1: // customer purchase history
+                   break;
+                case 2: // report for items
+                   break;
+                case 3: // report for quantities
+                    break;
+                case 4: // report for total purchase cost
+                    break;
+                case 5: // report for purchase dates
+                    break;
+                case 6: // report of customers
+                    customerReport(customer);
+                    break;
+           }
                     break;
             //item purchase history
                 case 2:
@@ -488,4 +504,12 @@ public static void editVendor(Vendor v1)
             + "-------------------------------------------\n");
   
  }
+ public static void customerReport(Customer[] c)
+    {
+        System.out.println("Customer Report");
+        for(int i = 0; i < c.length; i++)
+        {
+            System.out.println(c[i].toString());
+        }
+    }
 }
