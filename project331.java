@@ -33,52 +33,52 @@ public class Main {
         mainMenu(); 
         choice = in.nextInt();
         
-        if (choice == 1)//id report
-        {
-           reportMenuOptions(); 
-           choice2 = in.nextInt();  
+       switch (choice) {
+            //id report
+                case 1:
+                    reportMenuOptions();
+                    choice2 = in.nextInt();
+                    break;
+            //item purchase history
+                case 2:
+                    itemPurchaseHistory(itemArray);
+                    break;
+            //current inventory levels
+                case 3:
+                    printCurrInventory(itemArray);
+                    break;
+            //create new menu
+                case 4:
+                    createMenu();
+                    choice2 = in.nextInt();
+            
+         //create new sub menu
+            switch (choice2) {
+            //create customer
+                case 1:
+                    customerCount++;
+                    customerArray[customerCount] = addCustomer();
+                    break;
+            //create vendor
+                case 2:
+                    vendorCount++;
+                    vendorArray[vendorCount] = addVendor();
+                    break;
+            //create inventory item
+                case 3:
+                    itemCount++;
+                    itemArray[itemCount] = addItem();
+                    break;
+            //create sale
+                case 4:
+                    saleCount++;
+                    saleArray[saleCount] = addSale();
+                    break;
+                default:
+                    break;
+            }
         }
         
-        else if(choice == 2)//item purchase history
-        {
-            itemPurchaseHistory(itemArray); 
-        }
-
-        else if(choice == 3)//current inventory levels
-        {
-            printCurrInventory(itemArray); 
-        }
-        
-        else if(choice == 4)//create new menu
-        {
-            createMenu();
-            choice2 = in.nextInt();
-            
-            //create new sub menu
-            if(choice2 == 1)//create customer
-            {
-                customerCount++;
-                customerArray[customerCount] = addCustomer();
-            }
-            
-            else if(choice2 == 2)//create vendor
-            {
-                vendorCount++;
-                vendorArray[vendorCount] = addVendor();
-            }
-            
-            else if(choice2 == 3)//create inventory item
-            {
-                itemCount++;
-                itemArray[itemCount] = addItem();
-            }
-            
-            else if(choice2 == 4)//create sale
-            {
-                saleCount++;
-                saleArray[saleCount] = addSale();
-            }
-        }
         
          else if(choice == 5)//edit main menu
         {
