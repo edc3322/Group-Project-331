@@ -4,7 +4,8 @@
  Authors: Zach Beatty, Eric Carter, Mercy Clemente, & Troy Goddard
  */
 
-package project331;
+package GroupProject331;
+
 import java.util.*;
 public class Main {
   public static int cID = 1000; // ID for the customer objects begins at 1000
@@ -30,9 +31,49 @@ public class Main {
         int inventorySelect = 0;
         
         Customer[] customerArray = new Customer[5];
-        Vendor[] vendorArray = new Vendor[10];
-        Sale[] saleArray = new Sale[10];
+        Vendor[] vendorArray = new Vendor[3];
+        Sale[] saleArray = new Sale[5];
         Item[] itemArray = new Item[10];
+        
+        //Prepopulating Item 
+        Item lamp = new Item(itemID, "Lamp", 1.5, "Gold lamp", 9.99, 20.99);
+        Item table = new Item(itemID, "Table", 15, "Side table", 13.50, 30);
+        Item sofa = new Item(itemID, "Sofa", 100, "Grey sofa", 200, 599.00);
+        Item chair = new Item(itemID, "Chair", 45, "Set of 4 chairs", 80, 300);
+        Item desk = new Item (itemID, "Desk", 25, "Black desk", 35.50, 89.90);
+        Item deskLight = new Item(itemID, "Desk Light", 3, "Gold desk lamp", 
+                4.50, 15.00);
+        Item diningTable = new Item(itemID, "Dining Table", 55, "Round Dining "
+             + "Table", 90, 150.00);
+        Item basket = new Item(itemID, "Basket", 1, "Round basket", 10, 22);
+        Item bookshelf = new Item (itemID, "Bookshelf", 35, "Black Bookshelf", 
+        55.50, 110);
+        Item candle = new Item(itemID, "2 Candles", 3.5, "Set of 2 candles", 7, 
+        40);
+        
+        //Prepopulating Customer
+        Customer cust1 = new Customer(cID, "Tom", "Jones", "Harrisonburg", "VA",
+        "800 S. Main St.", 22807, 5408994545L);  
+        Customer cust2 = new Customer (cID, "Evan", "Thompson", "Fairfax", "VA",
+        "1932 Prince William", 22726, 7056785968L);
+        Customer cust3 = new Customer (cID, "Jim", "Smith", "Arlington", "VA",
+        "775 Edward St", 07675, 2015647857L); 
+        Customer cust4 = new Customer(cID, "Kate", "Andrews","Springfield","VA",
+        "1032 Rustic St", 22676, 2745638976L);
+        Customer cust5 = new Customer(cID, "Rob", "Sousa", "Fairfax", "VA",
+        "45 Market Blvd", 89867, 3345789084L); 
+        
+        //prepopulating Vendor
+        Vendor ven1 = new Vendor(vID, "Wayfair", "11 Jones St.", "McLean", "VA",
+        22893, 7578994544L); 
+        Vendor ven2 = new Vendor(vID, "West Elm", "45 Washington St", "Georges",
+        "MD", 44876, 9397578844L);
+        Vendor ven3 = new Vendor(vID, "Restoration", "44 Oakland Ave", "Bergen", 
+        "NJ", 20154, 3013738999L);
+        
+       //prepopulating Sale
+       Sale sal1 = new Sale ("Lamp", 20.99, 3, )
+        
         //menu
         do{  
     
@@ -166,7 +207,7 @@ public static void mainMenu()
  {
      System.out.print("\tMain Menu Options \n==============================="
      + " \n1. Customer Purchase History: \n2. Item Purchase History: \n3. "
-     + "Current Inventory Level: \n4. Create... \n5. Edit...\n6. Print Receipt: "
+     + "Current Inventory Level: \n4. Create... \n5. Edit...\n6. Print Receipt:"
      + "\n7. Exit \nEnter Your Choice: #");     
  }
  
@@ -647,7 +688,7 @@ public static void editVendor(Vendor v1)
  {
          System.out.println("\tPlease Enter a Vendor Number to Edit \n---------"
         + "------------------------------------------");
-         for(int i=0; i<vendorArray.length; i++)
+          for(int i=0; i<vendorArray.length; i++)
          {
           System.out.println(vendorArray[i]);
          }
@@ -659,7 +700,7 @@ public static void editVendor(Vendor v1)
  {
       System.out.println("\tPlease Enter an Item Number to Edit \n---------"
         + "------------------------------------------");
-         for(int i=0; i<itemArray.length;i++)
+          for(int i=0; i<itemArray.length;i++)
          {
             System.out.println(itemArray[i]);
          }
