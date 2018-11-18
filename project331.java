@@ -80,31 +80,33 @@ public class Main {
             }
         }
         
-        else if(choice == 5)//edit main menu
+         else if(choice == 5)//edit main menu
         {
            editMenu(); 
             choice3 = in.nextInt();
             
             //edit sub menu
-            if(choice3 == 1)//edit existing customer
-            {
-                System.out.println("Please select customer to edit");
-                customerSelect = in.nextInt();
-                editCustomer(customerArray[customerSelect]);
-            }
-            
-            else if(choice3 == 2)//edit existing inventory item
-            {
-                System.out.println("Please select inventory item to edit");
-                inventorySelect = in.nextInt();
-                editInventory(itemArray[inventorySelect]);
-            }
-            
-            else if(choice3 == 3)//edit existing vendor
-            {
-                System.out.println("Please select vendor to edit");
-                vendorSelect = in.nextInt();
-                editVendor(vendorArray[vendorSelect]);
+            switch (choice3) {
+            //edit existing customer
+                case 1:
+                    System.out.println("Please select customer to edit");
+                    customerSelect = in.nextInt();
+                    editCustomer(customerArray[customerSelect]);
+                    break;
+            //edit existing inventory item
+                case 2:
+                    System.out.println("Enter the Item Number to Edit: ");
+                    inventorySelect = in.nextInt();
+                    editInventory(itemArray[inventorySelect]);
+                    break;
+            //edit existing vendor
+                case 3:
+                    System.out.println("Please select vendor to edit");
+                    vendorSelect = in.nextInt();
+                    editVendor(vendorArray[vendorSelect]);
+                    break;
+                default:
+                    break;
             }
             
         }
