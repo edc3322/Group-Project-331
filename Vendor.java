@@ -8,13 +8,13 @@ package project331;
 
 public class Vendor 
 {
-private int vID = 5000;
+   private int vID;
    public String businessName,  street, city, state;
    public long phoneNumber;
    public int zip; 
     
-public Vendor(String businessName, String street, String city, String state,
-        int zip, long phoneNumber)
+public Vendor(int vID, String businessName, String street, String city, 
+        String state, int zip, long phoneNumber)
     {
         this.businessName = businessName;
         this.street = street; 
@@ -22,7 +22,7 @@ public Vendor(String businessName, String street, String city, String state,
         this.state = state;
         this.zip = zip; 
         this.phoneNumber = phoneNumber;
-        this.vID++;
+        this.vID=vID;
     }
     
     public void setBusinessName(String newName)
@@ -49,7 +49,10 @@ public Vendor(String businessName, String street, String city, String state,
     {
         this.phoneNumber = newNumber;
     }
-    
+    public void setVID(int vID)
+    {
+        this.vID=vID;
+    }
     public int getVID()
     {
         return this.vID;
