@@ -46,12 +46,7 @@ public class Main {
 
         else if(choice == 3)//current inventory levels
         {
-            System.out.println("Current Items in Inventory\n===================="
-                + "========= \n"); 
-            for (int i=0; i<itemArray.length; i++)
-            {
-                 System.out.println(itemArray[i]);
-            }
+            printCurrInventory(itemArray); 
         }
         
         else if(choice == 4)//create new menu
@@ -378,6 +373,20 @@ public static void editVendor(Vendor v1)
             }
         }
     }
+  
+ //method to print current inventory levels
+    public static void printCurrInventory(Item [] itemArray)
+    {
+        System.out.println("\n============ Current Items in Inventory ========="
+          + "===\n---------------------------------------------------- "
+          + "\nItem Name: \t Item ID: \tQuantity:"); 
+            for (int i=0; i<itemArray.length; i++)
+            {
+                 System.out.println(itemArray[i]);
+            }
+            System.out.println("");
+    }
+ //method to create an item
  public static Item addItem()
     {
         Scanner scan = new Scanner(System.in);
