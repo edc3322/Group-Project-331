@@ -8,6 +8,12 @@ package project331;
 import java.util.*;
 public class Main {
 
+    public static int cID = 1000; // ID for the customer objects begins at 1000
+    public static int rID = 2000; // ID for the contractor objects begins at 2000
+    public static int saleID = 3000; // ID for the sale objects begins at 3000
+    public static int itemID = 4000; // ID for the item objects begins at 4000
+    public static int vID = 5000; // ID for the vendor objects begins at 5000
+ 
       public static void main(String[] args) {
         
         Scanner in = new Scanner(System.in);
@@ -15,7 +21,7 @@ public class Main {
         int choice2=0;
         int choice3=0;
         
-        int customerCount = 0;
+        int customerCount = 4; // ready for the 5th customer object
         int vendorCount = 0;
         int saleCount = 0;
         int itemCount = 0;
@@ -52,7 +58,7 @@ public class Main {
                 case 5: // report for purchase dates
                     break;
                 case 6: // report of customers
-                    customerReport(customer);
+                    customerReport(customerArray);
                     break;
            }
                     break;
@@ -73,23 +79,27 @@ public class Main {
             switch (choice2) {
             //create customer
                 case 1:
-                    customerCount++;
+                    customerArray = Arrays.copyOf(customerArray, customerArray.length + 1); // resizes the customerArray
                     customerArray[customerCount] = addCustomer();
+                    customerCount++;
                     break;
             //create vendor
                 case 2:
-                    vendorCount++;
+                    vendorArray = Arrays.copyOf(vendorArray, vendorArray.length + 1);
                     vendorArray[vendorCount] = addVendor();
+                    vendorCount++;
                     break;
             //create inventory item
                 case 3:
-                    itemCount++;
+                    itemArray = Arrays.copyOf(itemArray, itemArray.length + 1);
                     itemArray[itemCount] = addItem();
+                    itemCount++;
                     break;
             //create sale
                 case 4:
-                    saleCount++;
+                    saleArray = Arrays.copyOf(saleArray, saleArray.length + 1);
                     saleArray[saleCount] = addSale();
+                    saleCount++;
                     break;
                 default:
                     break;
