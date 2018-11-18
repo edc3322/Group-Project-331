@@ -395,28 +395,46 @@ public static void editCustomer(Customer c1)
 //method for adding a sale    
 public static Sale addSale()
 {
-    Scanner scan = new Scanner(System.in);
-    System.out.println("Item ID: ");
-    int itemID = scan.nextInt();
-
+      Scanner scan = new Scanner(System.in);
+    
     System.out.println("Item Name: ");
     String itemName = scan.nextLine();
+    if(itemName.length()==0)
+    {
+        System.out.println("Enter a valid Item Name:");
+        itemName=scan.nextLine();
+    }
 
     System.out.println("Selling Price: ");
     double sellingPrice = scan.nextDouble();
+    if(sellingPrice==0)
+    {
+        System.out.println("Enter a valid selling price:");
+        sellingPrice=scan.nextDouble();
+    }
 
     System.out.println("Quantity: ");
     int quantity = scan.nextInt();
+    if(quantity==0)
+    {
+        System.out.println("Enter a valid Quantity:");
+        quantity=scan.nextInt();
+    }
 
     System.out.println("Customer name: ");
     String customer = scan.nextLine();
+    if(customer.length()==0)
+    {
+        System.out.println("Enter a valid Customer Name:");
+        customer=scan.nextLine();
+    }
 
     System.out.println("Date of Sale: ");
     String date = scan.nextLine();
 
-    Sale newS = new Sale(itemID, itemName, sellingPrice, quantity, customer, date);
+    Sale newS = new Sale();
     return newS;
-}    
+}  
         
 //method for adding a vendor
 public static Vendor addVendor()
