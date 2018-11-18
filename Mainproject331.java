@@ -63,6 +63,13 @@ public class Main {
         Customer cust5 = new Customer(cID, "Rob", "Sousa", "Fairfax", "VA",
         "45 Market Blvd", 89867, 3345789084L); 
         
+       //prepopulating Sale
+       Sale sal1 = new Sale (lamp, 20.99, 3, "Tom Jones", "10/11/2018");
+       Sale sal2 = new Sale (chair, 300.00, 1, cust3, "8/23/2017");
+       Sale sal3 = new Sale (bookshelf, 110, 2, cust4, "11/1/2018");
+       Sale sal4 = new Sale(sofa, 599, 2, cust3, "9/30/2018");
+       Sale sal5 = new Sale(desk, 89.90, 1, cust5, "9/1/2018"); 
+           
         //prepopulating Vendor
         Vendor ven1 = new Vendor(vID, "Wayfair", "11 Jones St.", "McLean", "VA",
         22893, 7578994544L); 
@@ -70,9 +77,6 @@ public class Main {
         "MD", 44876, 9397578844L);
         Vendor ven3 = new Vendor(vID, "Restoration", "44 Oakland Ave", "Bergen", 
         "NJ", 20154, 3013738999L);
-        
-       //prepopulating Sale
-       Sale sal1 = new Sale ("Lamp", 20.99, 3, )
         
         //menu
         do{  
@@ -491,7 +495,7 @@ public static Sale addSale()
     System.out.println("Date of Sale: ");
     String date = scan.nextLine();
 
-    Sale newS = new Sale();
+    Sale newS = new Sale(Item itemName, sellingPrice, quantity, customer, date);
     return newS;
 }    
         
