@@ -147,7 +147,7 @@ public class Main {
                     break;
             //edit existing inventory item
                 case 2:
-                    System.out.println("Enter the Item Number to Edit: ");
+                    itemList(itemArray);      
                     inventorySelect = in.nextInt();
                     editInventory(itemArray[inventorySelect]);
                     mainMenu(); 
@@ -155,7 +155,7 @@ public class Main {
                     break;
             //edit existing vendor
                 case 3:
-                    System.out.println("Please select vendor to edit");
+                    vendorList(vendorArray);
                     vendorSelect = in.nextInt();
                     editVendor(vendorArray[vendorSelect]);
                     mainMenu(); 
@@ -650,11 +650,33 @@ public static void editVendor(Vendor v1)
 //Method to print out the list of customers 
  public static void customerListToEdit(Customer[] customerArray)
     {
-        System.out.println("\tPlease Select a Customer to Edit \n--------------"
-                + "-----------------------------------");
-        for(int i = 0; i < customerArray.length; i++)
-        {
-            System.out.println(customerArray[i].toString());
-        }
+         System.out.println("\tPlease Enter a Customer Number to Edit \n--------"
+        + "------------------------------------------");
+        for (Customer customerArray1 : customerArray) {
+          System.out.println(customerArray1.toString());
+      }
     }
+ 
+//Method to print out the full list of vendors to then edit
+ public static void vendorList (Vendor [] vendorArray)
+ {
+         System.out.println("\tPlease Enter a Vendor Number to Edit \n---------"
+        + "------------------------------------------");
+         for(Vendor vendorArray1: vendorArray)
+         {
+             System.out.println(vendorArray1.toString());
+         }
+ }
+ 
+  //Method to print out items in inventory
+ public static void itemList (Item [] itemArray)
+ {
+      System.out.println("\tPlease Enter an Item Number to Edit \n---------"
+        + "------------------------------------------");
+         for(Item itemArray1: itemArray)
+         {
+             System.out.println(itemArray1.toString());
+         }
+ }
+ 
 }
