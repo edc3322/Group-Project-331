@@ -187,32 +187,66 @@ public static void reportMenuOptions()
 //method for creating a customer
     public static Customer addCustomer()
     {
-        Scanner scan = new Scanner(System.in);
+         Scanner scan = new Scanner(System.in);
         System.out.print("First Name: ");
-        String first = scan.nextLine();
-
+        String firstName = scan.nextLine();
+        if (firstName.length()==0)
+        {
+            System.out.println("Please Enter a valid input");
+            System.out.print("First Name: ");
+            firstName = scan.nextLine();
+        }
+        
         System.out.print("Last Name: ");
-        String last = scan.nextLine();
-        
+         String lastName = scan.nextLine();
+        if (lastName.length()==0)
+        {
+            System.out.println("Please Enter a valid input");
+            System.out.print("Last Name: ");
+            lastName = scan.nextLine();
+        }
         System.out.print("Street: ");
-        String street = scan.nextLine(); 
-        
+         String street = scan.nextLine(); 
+        if (street.length()==0)
+        {
+            System.out.println("Please Enter a valid input");
+            System.out.print("Street: ");
+            street = scan.nextLine();
+        }
         System.out.print("City: ");
-        String city = scan.nextLine();
+         String city = scan.nextLine();
+        if (city.length() ==0)
+        {
+            System.out.println("Please Enter a valid input");
+            System.out.print("City: ");
+            city = scan.nextLine();
+        }
         
         System.out.print("State: ");
-        String state = scan.nextLine();
-        
+         String state = scan.nextLine();
+        if (state.length()==0)
+        {
+            System.out.println("Please Enter a valid input");
+            System.out.print("State: ");
+            state = scan.nextLine();
+        }
         System.out.print("Zip Code: ");
-        int zip = scan.nextInt();
-        
+         int zip = scan.nextInt();
+      
         System.out.print("Phone Number: #");
-        long phone = scan.nextLong();
-        
-        Customer newC = new Customer(cID, first, last, street, 
-        city, state, zip, phone);
+        long phoneNumber = scan.nextLong();
+        if (String.valueOf(phoneNumber).length() <10 || String.valueOf(phoneNumber)
+                .length()>10)
+        {
+            System.out.println("Enter a valid phone number. 10 numbers long");
+            System.out.println("Phone Number: ");
+            phoneNumber = scan.nextLong(); 
+        }
+        Customer newC = new Customer(cID, firstName, lastName, city, state, 
+                street, zip, phoneNumber);
         return newC;
     }
+    
     
 //method for editing a customer
 public static void editCustomer(Customer c1)
