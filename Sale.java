@@ -7,8 +7,7 @@
 package Project331;
 
 public class Sale {
-  
-   private  int saleID = 3000;
+   private  int saleID;
    Item  itemName;
    public double sellingPrice;
    public int quantity;
@@ -26,12 +25,17 @@ public class Sale {
         this.quantity =0;
         this.customer = "";
         this.date = "";
-        this.saleID++;
+        this.saleID=saleID;
     }
     
+    //setting sale Id
+    public void setSaleID(int saleID)
+    {
+        this.saleID=saleID;
+    }
     public int getSaleID()
     {
-        return this.saleID++; 
+        return this.saleID; 
     }
     public void setItemName(Item itemName)
     {
