@@ -23,9 +23,9 @@ public class Main {
         int customerSelect = 0;
         int vendorSelect = 0;
         
-        Customer[] customerArray = new Customer[4];
-        Vendor[] vendorArray = new Vendor[3];
-        Sale[] saleArray = new Sale[25];
+        Customer[] customerArray = new Customer[10];
+        Vendor[] vendorArray = new Vendor[10];
+        Sale[] saleArray = new Sale[10];
         Item[] itemArray = new Item[10];
         //menu
         do{  
