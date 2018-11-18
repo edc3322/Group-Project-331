@@ -21,7 +21,7 @@ public class Main {
         int choice2=0;
         int choice3=0;
         
-        int customerCount = 4; // ready for the 5th customer object
+        int customerCount = 5; // ready for the 6th customer object
         int vendorCount = 0;
         int saleCount = 0;
         int itemCount = 0;
