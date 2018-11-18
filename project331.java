@@ -484,7 +484,6 @@ public static void editVendor(Vendor v1)
     historyID=in.nextInt(); 
     System.out.println("\tPurchase History for Item #" + historyID + "\n-----"
             + "-------------------------------------------\n");
-    
   
  }
 }
