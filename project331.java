@@ -475,15 +475,9 @@ public static void editVendor(Vendor v1)
   //Method for item purchase history
  public static void itemPurchaseHistory(Item [] itemArray)
  {
-  Scanner in = new Scanner (System.in); 
-   int historyID=0; 
-     System.out.println("\n============ Current Items in Inventory ========="
-          + "===\n---------------------------------------------------- "
-          + "\nItem Name: \t Item ID: \tQuantity:"); 
-            for (int i=0; i<itemArray.length; i++)
-            {
-                 System.out.println(itemArray[i]);
-            }
+    Scanner in = new Scanner (System.in); 
+    int historyID=0; 
+    printCurrInventory(itemArray); 
     System.out.print("Enter the ID to View the Item's Purchase History: #");
     historyID=in.nextInt(); 
     System.out.println("\tPurchase History for Item #" + historyID + "\n-----"
