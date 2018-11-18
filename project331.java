@@ -95,7 +95,9 @@ public class Main {
             
             else if(choice3 == 2)//edit existing inventory item
             {
-            
+                System.out.println("Please select inventory item to edit");
+                inventorySelect = in.nextInt();
+                editInventory(itemArray[inventorySelect]);
             }
             
             else if(choice3 == 3)//edit existing vendor
@@ -260,6 +262,66 @@ public static void editCustomer(Customer c1)
             }
         }
     }
+ 
+ //method to edit inventory item
+ public static void editInventory(Item i1)
+ {
+     Scanner scan = new Scanner(System.in);
+        boolean run = true;
+        while (run)
+        {
+          System.out.println("Select From the Following:\n---------------------"
+          + "------\n1.Edit the Name:\n2.Edit the Weight:\n3.Edit the Descripti"
+          + "on:\n4.Edit the Purchase Price:\n5.Edit the Selling Price:\nEnter "
+          + "Your Choice: ");
+     
+            int menu = scan.nextInt();
+            switch(menu)
+            {
+                case 1:
+                {
+                    System.out.print("Enter the new name:");
+                    String newName = scan.nextLine();
+                    i1.getItemName();
+                    break;
+                }
+                case 2:
+                {
+                    System.out.print("Enter the new weight:");
+                    double newWeight = scan.nextDouble();
+                    i1.setWeight(newWeight);
+                }
+                case 3:
+                {
+                    System.out.print("Enter the new Description:");
+                    String newDescription = scan.nextLine();
+                    i1.setDescription(newDescription);
+                    }
+                case 4: 
+                {
+                    System.out.print("Enter the new purchase price: $");
+                    double newPPrice = scan.nextDouble();
+                   i1.setpurchasePrice(newPPrice);
+                }
+                case 5:
+                {
+                    System.out.print("Enter the new selling price: $");
+                    double newSPrice = scan.nextDouble();
+                    i1.setSellingPrice(newSPrice);
+                }
+                case 6:
+                {
+                    run = false;
+                    break;
+                }
+                default:
+                {
+                    run = false;
+                    break;
+                }
+            }
+        }       
+ }
     
 //method for adding a sale    
 public static Sale addSale()
