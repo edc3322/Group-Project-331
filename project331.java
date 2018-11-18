@@ -8,7 +8,7 @@ package project331;
 import java.util.*;
 public class Main {
 
-    public static void main(String[] args) {
+        public static void main(String[] args) {
         
         Scanner in = new Scanner(System.in);
         int choice=0;
@@ -23,10 +23,10 @@ public class Main {
         int customerSelect = 0;
         int vendorSelect = 0;
         
-        Customer[] customer = new Customer[4];
-        Vendor[] vendor = new Vendor[3];
-        Sale[] sale = new Sale[3];
-        Item[] item = new Item[10];
+        Customer[] customerArray = new Customer[4];
+        Vendor[] vendorArray = new Vendor[3];
+        Sale[] saleArray = new Sale[25];
+        Item[] itemArray = new Item[10];
         //menu
         do{  
     
@@ -58,25 +58,25 @@ public class Main {
             if(choice2 == 1)//create customer
             {
                 customerCount++;
-                customer[customerCount] = addCustomer();
+                customerArray[customerCount] = addCustomer();
             }
             
             else if(choice2 == 2)//create vendor
             {
                 vendorCount++;
-                vendor[vendorCount] = addVendor();
+                vendorArray[vendorCount] = addVendor();
             }
             
             else if(choice2 == 3)//create inventory item
             {
                 itemCount++;
-                item[itemCount] = addItem();
+                itemArray[itemCount] = addItem();
             }
             
             else if(choice2 == 4)//create sale
             {
                 saleCount++;
-                sale[saleCount] = addSale();
+                saleArray[saleCount] = addSale();
             }
         }
         
@@ -90,7 +90,7 @@ public class Main {
             {
                 System.out.println("Please select customer to edit");
                 customerSelect = in.nextInt();
-                editCustomer(customer[customerSelect]);
+                editCustomer(customerArray[customerSelect]);
             }
             
             else if(choice3 == 2)//edit existing inventory item
@@ -102,7 +102,7 @@ public class Main {
             {
                 System.out.println("Please select vendor to edit");
                 vendorSelect = in.nextInt();
-                editVendor(vendor[vendorSelect]);
+                editVendor(vendorArray[vendorSelect]);
             }
             
         }
@@ -111,7 +111,7 @@ public class Main {
         {
             System.out.println("Enter the Sale ID: ");
             int IDChoice = in.nextInt();
-            sale[IDChoice].printReceipt();
+            saleArray[IDChoice].printReceipt();
         }
 
       } while (choice != 7);//end loop
@@ -120,61 +120,60 @@ public class Main {
     //Method for main menu 
 public static void mainMenu()
  {
-     Scanner in = new Scanner (System.in);
-     System.out.println("Main Menu Options \n==============================="
+     System.out.print("Main Menu Options \n==============================="
      + " \n1. ID Report: \n2. Item Purchase History: \n3. Current Inventory "
-     + "Level: \n4. Create a New... \n5. Edit a... \n6. Print Receipt: \n7. Exit"
-     + "\n Enter Your Choice: #");     
+     + "Level: \n4. Create... \n5. Edit... \n6. Print Receipt: \n7. Exit"
+     + "\nEnter Your Choice: #");     
  }
  
 //Method for creating menu options 
 public static void createMenu()
 {
-    System.out.println("Menu Options to Create \n============================="
+    System.out.print("Menu Options to Create \n============================="
     + "\n1. Create New Customer:\n2. Create New Vendor:\n3. Create New Item:"
-    + "\n4. Create New Sale: \n Enter Your Choice: #"); 
+    + "\n4. Create New Sale: \nEnter Your Choice: #"); 
  }
  
 //Method for Edit menu Options 
 public static void editMenu ()
 {
-    System.out.println("Edit Menu Options \n==================================="
+    System.out.print("Edit Menu Options \n==================================="
      + "\n1. Edit Existing Customer:\n2. Edit Existing Inventory Item: \n3. "
-     + "Edit Existing Vendor: \n Enter Your Choice: #");
+     + "Edit Existing Vendor: \nEnter Your Choice: #");
 }
 
 //method for report options 
 public static void reportMenuOptions()
 {
-    System.out.println("Report Menu Options \n================================="
-    + "\n1.Report for Customer Purchase History: \n2.Report for Items:"
-    + "\n3.Report for Quantities: \n4. Report for Total Purchase Cost:"
-    + "\n5. Report for Purchase Dates:");
+    System.out.print("Report Menu Options \n================================="
+    + "\n1. Report for Customer Purchase History: \n2. Report for Items:"
+    + "\n3. Report for Quantities: \n4. Report for Total Purchase Cost:"
+    + "\n5. Report for Purchase Dates: \nEnter Your Choice: #");
 }
 
 //method for creating a customer
     public static Customer addCustomer()
     {
         Scanner scan = new Scanner(System.in);
-        System.out.println("First Name:");
+        System.out.print("First Name: ");
         String first = scan.nextLine();
 
-        System.out.println("Last Name:");
+        System.out.print("Last Name: ");
         String last = scan.nextLine();
         
-        System.out.println("Street: ");
+        System.out.print("Street: ");
         String street = scan.nextLine(); 
         
-        System.out.println("City:");
+        System.out.print("City: ");
         String city = scan.nextLine();
         
-        System.out.println("State:");
+        System.out.print("State: ");
         String state = scan.nextLine();
         
-        System.out.println("Zip Code:");
+        System.out.print("Zip Code: ");
         int zip = scan.nextInt();
         
-        System.out.println("Phone Number:");
+        System.out.print("Phone Number: #");
         long phone = scan.nextLong();
         
         Customer newC = new Customer("Tom", "Jones", "12 Devon Lane", 
@@ -189,12 +188,9 @@ public static void editCustomer(Customer c1)
         while(run)
         {
             Scanner scan = new Scanner(System.in);
-            System.out.println("Please select from the following: ");
-            System.out.println("1: First Name");
-            System.out.println("2: Last Name");
-            System.out.println("3: Location");
-            System.out.println("4: Phone Number");
-            System.out.println("5: Exit");
+            System.out.println("Please select from the following: \n==========="
+              + "============= \n1. First Name: \n2. Last Name: \n3. Location: "
+              + "\n4. Phone Number: \n5. Exit \n Enter Your Choice: #");
         
             int menu = scan.nextInt();
             String scanString = "";
@@ -204,7 +200,7 @@ public static void editCustomer(Customer c1)
             {
                 case 1:
                 {
-                    System.out.println("Enter the new First Name:");
+                    System.out.print("Enter the new First Name:");
                     scan.nextLine();
                     scanString = scan.nextLine();
                     c1.setFirstName(scanString);
@@ -212,7 +208,7 @@ public static void editCustomer(Customer c1)
                 }
                 case 2:
                 {
-                    System.out.println("Enter the new Last Name:");
+                    System.out.print("Enter the new Last Name:");
                     scan.nextLine();
                     scanString = scan.nextLine();
                     c1.setLastName(scanString);
@@ -220,25 +216,25 @@ public static void editCustomer(Customer c1)
                 }
                 case 3:
                 {
-                   System.out.println("Enter the street: ");
+                   System.out.print("Enter the street: ");
                     scan.nextLine();
                     scanString = scan.nextLine();
                     c1.setStreet(scanString); 
                     
                     // resets city value
-                    System.out.println("Enter the new City:"); 
+                    System.out.print("Enter the new City:"); 
                     // to accept the <enter> from the previous scan
                     scan.nextLine(); 
                     scanString = scan.nextLine();
                     c1.setCity(scanString);    
                 
                     // resets state value
-                    System.out.println("Enter the new State:"); 
+                    System.out.print("Enter the new State:"); 
                     scanString = scan.nextLine();
                     c1.setState(scanString);
                     
                     //resets zip value 
-                    System.out.println("Enter the new Zip Code:"); 
+                    System.out.print("Enter the new Zip Code:"); 
                     scanInt = scan.nextInt();
                     c1.setZip(scanInt);
                     break;
@@ -246,7 +242,7 @@ public static void editCustomer(Customer c1)
 
                 case 4:
                 {
-                    System.out.println("Enter the new Phone Number:");
+                    System.out.print("Enter the new Phone Number:");
                     scanLong = scan.nextLong();
                     c1.setPhoneNumber(scanInt);
                     break;
@@ -295,22 +291,22 @@ public static Sale addSale()
 public static Vendor addVendor()
     {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Business Name:");
+        System.out.print("Business Name: ");
         String businessName = scan.nextLine();
 
-        System.out.println("Street: ");
+        System.out.print("Street: ");
         String street = scan.nextLine(); 
         
-        System.out.println("City:");
+        System.out.print("City: ");
         String city = scan.nextLine();
         
-        System.out.println("State:");
+        System.out.print("State: ");
         String state = scan.nextLine();
         
-        System.out.println("Enter Zip: ");
+        System.out.print("Enter Zip: ");
         int zip = scan.nextInt(); 
         
-        System.out.println("Phone Number:");
+        System.out.print("Phone Number: ");
         long phoneNumber = scan.nextLong();
         
         Vendor v = new Vendor(businessName, street, city, state, zip, 
@@ -325,18 +321,16 @@ public static void editVendor(Vendor v1)
         boolean run = true;
         while (run)
         {
-            System.out.println("Please select from the following:");
-            System.out.println("1: Business Name");
-            System.out.println("2: Business Address");
-            System.out.println("3: Phone Number");
-            System.out.println("4: Exit");
+            System.out.println("Please select from the following: \n==========="
+             + "============\n1. Business Name: \n2. Business Address: "
+             + "3. Phone Number: \n4. Exit: \nEnter Your Choice: #");
             
             int menu = scan.nextInt();
             switch(menu)
             {
                 case 1:
                 {
-                    System.out.println("Enter the new name:");
+                    System.out.print("Enter the new name:");
                     scan.nextLine();
                     String newName = scan.nextLine();
                     v1.setBusinessName(newName);
@@ -344,24 +338,24 @@ public static void editVendor(Vendor v1)
                 }
                 case 2:
                 {
-                    System.out.println("Enter the new street address:");
+                    System.out.print("Enter the new street address:");
                     scan.nextLine();
                     String newStreet = scan.nextLine();
                     v1.setStreet(newStreet);
                     
-                    System.out.println("Enter the new city");
+                    System.out.print("Enter the new city");
                     //scan.nextLine();
                     String newCity = scan.nextLine();
                     v1.setCity(newCity);
                     
-                    System.out.println("Enter the new state");
+                    System.out.print("Enter the new state");
                     //scan.nextLine();
                     String newState = scan.nextLine();
                     v1.setState(newState);
                 }
                 case 3:
                 {
-                    System.out.println("Enter the new phone number:");
+                    System.out.print("Enter the new phone number:");
                     scan.nextLine();
                     long newPhone = scan.nextLong();
                     v1.setPhoneNumber(newPhone);
@@ -382,15 +376,15 @@ public static void editVendor(Vendor v1)
  public static Item addItem()
     {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Enter the Item Name: ");
+        System.out.print("Enter the Item Name: ");
         String itemName = scan.nextLine();
-        System.out.println("Enter the item weight: ");
+        System.out.print("Enter the item weight: ");
         double itemWeight = scan.nextDouble();
-        System.out.println("Enter the item description: ");
+        System.out.print("Enter the item description: ");
         String itemDescription = scan.nextLine();
-        System.out.println("Enter the purchase price: ");
+        System.out.print("Enter the purchase price: ");
         double pPrice = scan.nextDouble();
-        System.out.println("Enter the Selling price: ");
+        System.out.print("Enter the Selling price: ");
         double sellingPrice = scan.nextDouble(); 
         
         Item returnItem = new Item(itemName, itemWeight, itemDescription,pPrice,
