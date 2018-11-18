@@ -556,20 +556,45 @@ public static void editVendor(Vendor v1)
  //method to create an item
  public static Item addItem()
     {
-        Scanner scan = new Scanner(System.in);
+           Scanner scan = new Scanner(System.in);
         System.out.print("Enter the Item Name: ");
         String itemName = scan.nextLine();
+        if(itemName.length()==0)
+        {
+            System.out.println("Enter a valid Item Name:");
+            itemName=scan.nextLine();
+        }
         System.out.print("Enter the item weight: ");
         double itemWeight = scan.nextDouble();
+        if(itemWeight==0.0)
+        {
+            System.out.println("Enter a valid weight:");
+            itemWeight=scan.nextDouble();
+        }
         System.out.print("Enter the item description: ");
         String itemDescription = scan.nextLine();
+        if(itemDescription.length()==0)
+        {
+            System.out.println("Enter a Valid Description:");
+            itemDescription=scan.nextLine();
+        }
         System.out.print("Enter the purchase price: ");
         double pPrice = scan.nextDouble();
+        if(pPrice ==0.0)
+        {
+            System.out.println("Enter a valid purchase price: $");
+            pPrice =scan.nextDouble(); 
+        }
         System.out.print("Enter the Selling price: ");
         double sellingPrice = scan.nextDouble(); 
+        if (sellingPrice ==0.0)
+        {
+            System.out.println("Enter a valid Selling Price: $");
+            sellingPrice = scan.nextDouble();
+        }
         
-        Item returnItem = new Item(itemName, itemWeight, itemDescription,pPrice,
-        sellingPrice);
+        Item returnItem = new Item(itemID, itemName, itemWeight,itemDescription,
+                pPrice, sellingPrice);
         return returnItem;
     }
  
