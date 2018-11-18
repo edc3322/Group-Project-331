@@ -50,7 +50,7 @@ public double getpurchasePrice()
 public String toString()
 {
     String returnString = String.format("%-12d" + " %-16s" + " %-16f" + " %-20s" + " %-12f" + " %-12f",
-    this.itemID, this.itemName, this.weight, this.description, this.purchasePrice, this.sellPrice);
+    this.itemID, this.itemName, this.weight, this.description, this.purchasePrice, this.sellingPrice);
     return returnString;
 }
 	
