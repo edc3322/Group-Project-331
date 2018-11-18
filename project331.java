@@ -647,10 +647,11 @@ public static void editVendor(Vendor v1)
  {
          System.out.println("\tPlease Enter a Vendor Number to Edit \n---------"
         + "------------------------------------------");
-         for(Vendor vendorArray1: vendorArray)
+         for(int i=0; i<vendorArray.length; i++)
          {
-             System.out.println(vendorArray1.toString());
+          System.out.println(vendorArray[i]);
          }
+        System.out.println("");
  }
  
  //Method to print out items in inventory
@@ -658,10 +659,11 @@ public static void editVendor(Vendor v1)
  {
       System.out.println("\tPlease Enter an Item Number to Edit \n---------"
         + "------------------------------------------");
-         for(Item itemArray1: itemArray)
+         for(int i=0; i<itemArray.length;i++)
          {
-             System.out.println(itemArray1.toString());
+            System.out.println(itemArray[i]);
          }
+         System.out.println("");
  }
  
 }
