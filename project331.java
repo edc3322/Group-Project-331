@@ -421,26 +421,44 @@ public static Sale addSale()
 //method for adding a vendor
 public static Vendor addVendor()
     {
-        Scanner scan = new Scanner(System.in);
+          Scanner scan = new Scanner(System.in);
         System.out.print("Business Name: ");
         String businessName = scan.nextLine();
-
+        if(businessName.length()==0)
+        {
+            System.out.println("Enter a valid Business Name:");
+            businessName=scan.nextLine(); 
+        }
         System.out.print("Street: ");
         String street = scan.nextLine(); 
-        
+        if(street.length() ==0)
+        {
+            System.out.println("Enter a Valid Street: ");
+            street =scan.nextLine();
+        }
         System.out.print("City: ");
         String city = scan.nextLine();
-        
+        if(city.length()==0)
+        {
+            System.out.println("Enter a valid City: ");
+            city = scan.nextLine();
+        }
         System.out.print("State: ");
         String state = scan.nextLine();
         
         System.out.print("Enter Zip: ");
         int zip = scan.nextInt(); 
-        
+    
         System.out.print("Phone Number: ");
         long phoneNumber = scan.nextLong();
-        
-        Vendor v = new Vendor(businessName, street, city, state, zip, 
+        if (String.valueOf(phoneNumber).length() <10 || String.valueOf(phoneNumber)
+                .length()>10)
+        {
+            System.out.println("Enter a valid phone number. 10 numbers long");
+            System.out.println("Phone Number: ");
+            phoneNumber = scan.nextLong(); 
+        }
+        Vendor v = new Vendor(vID, businessName, street, city, state, zip, 
                 phoneNumber);
         return v;
     }
