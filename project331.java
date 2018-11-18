@@ -41,7 +41,7 @@ public class Main {
         
         else if(choice == 2)//item purchase history
         {
-            
+            itemPurchaseHistory(itemArray); 
         }
 
         else if(choice == 3)//current inventory levels
@@ -471,4 +471,18 @@ public static void editVendor(Vendor v1)
         sellingPrice);
         return returnItem;
     }
+ 
+  //Method for item purchase history
+ public static void itemPurchaseHistory(Item [] itemArray)
+ {
+    System.out.println("\n============ Current Items in Inventory ========="
+          + "===\n---------------------------------------------------- "
+          + "\nItem Name: \t Item ID: \tQuantity:"); 
+            for (int i=0; i<itemArray.length; i++)
+            {
+                 System.out.println(itemArray[i]);
+            }
+    System.out.println("Enter the ID to View the Item's Purchase History: ");
+    
+ }
 }
