@@ -209,8 +209,8 @@ public static void reportMenuOptions()
         System.out.print("Phone Number: #");
         long phone = scan.nextLong();
         
-        Customer newC = new Customer("Tom", "Jones", "12 Devon Lane", 
-        "Harrisonburg", "Va", 22801, 5408589999L);
+        Customer newC = new Customer(cID, first, last, street, 
+        city, state, zip, phone);
         return newC;
     }
     
