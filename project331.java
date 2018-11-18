@@ -141,6 +141,10 @@ public class Main {
             //edit existing customer
                 case 1:
                     System.out.println("Please select customer to edit");
+                     for(int i = 0; i < customerArray.length; i++)
+                        {
+                            System.out.println(customerArray[i].toString());
+                        }
                     customerSelect = in.nextInt();
                     editCustomer(customerArray[customerSelect]);
                     mainMenu(); 
