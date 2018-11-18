@@ -67,10 +67,9 @@ public class Main {
                    mainMenu(); 
                     choice =in.nextInt();
                     break;
-                case 6: // report of customers
-                    customerReport(customerArray);
-                    mainMenu(); 
-                     choice =in.nextInt();
+               default:
+                  mainMenu(); 
+                    choice =in.nextInt();
                     break;
            }
                     break;
@@ -140,11 +139,7 @@ public class Main {
             switch (choice3) {
             //edit existing customer
                 case 1:
-                    System.out.println("Please select customer to edit");
-                     for(int i = 0; i < customerArray.length; i++)
-                        {
-                            System.out.println(customerArray[i].toString());
-                        }
+                    customerListToEdit(customerArray);
                     customerSelect = in.nextInt();
                     editCustomer(customerArray[customerSelect]);
                     mainMenu(); 
@@ -652,12 +647,14 @@ public static void editVendor(Vendor v1)
             + "-------------------------------------------\n");
   
  }
- public static void customerReport(Customer[] c)
+//Method to print out the list of customers 
+ public static void customerListToEdit(Customer[] customerArray)
     {
-        System.out.println("Customer Report");
-        for(int i = 0; i < c.length; i++)
+        System.out.println("\tPlease Select a Customer to Edit \n--------------"
+                + "-----------------------------------");
+        for(int i = 0; i < customerArray.length; i++)
         {
-            System.out.println(c[i].toString());
+            System.out.println(customerArray[i].toString());
         }
     }
 }
