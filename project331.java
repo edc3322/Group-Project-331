@@ -43,36 +43,9 @@ public class Main {
        switch (choice) {
             //id report
                 case 1:
-                    reportMenuOptions();
-                    choice2 = in.nextInt();
-         switch (choice2)
-           {
-                case 1: // customer purchase history
-                  mainMenu(); 
-                    choice =in.nextInt();
-                   break;
-                case 2: // report for items
-                  mainMenu(); 
-                    choice =in.nextInt();
-                   break;
-                case 3: // report for quantities
-                  mainMenu(); 
-                    choice =in.nextInt();
-                    break;
-                case 4: // report for total purchase cost
-                  mainMenu(); 
-                    choice =in.nextInt();
-                    break;
-                case 5: // report for purchase dates
-                   mainMenu(); 
-                    choice =in.nextInt();
-                    break;
-               default:
-                  mainMenu(); 
-                    choice =in.nextInt();
-                    break;
-           }
-                    break;
+                    customerPurchaseHistory(customerArray, itemArray, saleArray);
+                    choice2 = in.nextInt(); 
+                 break;
             //item purchase history
                 case 2:
                     itemPurchaseHistory(itemArray);
@@ -187,13 +160,13 @@ public class Main {
  
     }
 
-    //Method for main menu 
+//Method for main menu 
 public static void mainMenu()
  {
      System.out.print("\tMain Menu Options \n==============================="
-     + " \n1. ID Report: \n2. Item Purchase History: \n3. Current Inventory "
-     + "Level: \n4. Create... \n5. Edit... \n6. Print Receipt: \n7. Exit"
-     + "\nEnter Your Choice: #");     
+     + " \n1. Customer Purchase History: \n2. Item Purchase History: \n3. "
+     + "Current Inventory Level: \n4. Create... \n5. Edit...\n6. Print Receipt: "
+     + "\n7. Exit \nEnter Your Choice: #");     
  }
  
 //Method for creating menu options 
@@ -212,15 +185,13 @@ public static void editMenu ()
      + "Edit Existing Vendor: \nEnter Your Choice: #");
 }
 
-//method for report options 
-public static void reportMenuOptions()
+ //Method for Customer purchase history
+public static void customerPurchaseHistory(Customer []customerArray, Item []
+        itemArray, Sale [] saleArray)
 {
-    System.out.print("\tReport Menu Options \n================================="
-    + "\n1. Report for Customer Purchase History: \n2. Report for Items:"
-    + "\n3. Report for Quantities: \n4. Report for Total Purchase Cost:"
-    + "\n5. Report for Purchase Dates: \nEnter Your Choice: #");
+    
 }
-
+ 
 //method for creating a customer
     public static Customer addCustomer()
     {
