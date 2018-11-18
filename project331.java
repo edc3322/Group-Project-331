@@ -7,12 +7,11 @@
 package project331;
 import java.util.*;
 public class Main {
-
-    public static int cID = 1000; // ID for the customer objects begins at 1000
-    public static int rID = 2000; // ID for the contractor objects begins at 2000
-    public static int saleID = 3000; // ID for the sale objects begins at 3000
-    public static int itemID = 4000; // ID for the item objects begins at 4000
-    public static int vID = 5000; // ID for the vendor objects begins at 5000
+  public static int cID = 1000; // ID for the customer objects begins at 1000
+  public static int rID = 2000; // ID for the contractor objects begins at 2000
+  public static int saleID = 3000; // ID for the sale objects begins at 3000
+  public static int itemID = 4000; // ID for the item objects begins at 4000
+  public static int vID = 5000; // ID for the vendor objects begins at 5000
  
       public static void main(String[] args) {
         
@@ -28,9 +27,9 @@ public class Main {
         
         int customerSelect = 0;
         int vendorSelect = 0;
-       int inventorySelect = 0;
+        int inventorySelect = 0;
         
-        Customer[] customerArray = new Customer[10];
+        Customer[] customerArray = new Customer[5];
         Vendor[] vendorArray = new Vendor[10];
         Sale[] saleArray = new Sale[10];
         Item[] itemArray = new Item[10];
@@ -43,9 +42,10 @@ public class Main {
        switch (choice) {
             //id report
                 case 1:
+                    
                     customerPurchaseHistory(customerArray, itemArray, saleArray);
-                    choice2 = in.nextInt(); 
-                 break;
+                    choice2 = in.nextInt();
+                break;
             //item purchase history
                 case 2:
                     itemPurchaseHistory(itemArray);
@@ -62,12 +62,12 @@ public class Main {
                 case 4:
                     createMenu();
                     choice2 = in.nextInt();
-            
          //create new sub menu
             switch (choice2) {
             //create customer
                 case 1:
-                    customerArray = Arrays.copyOf(customerArray, customerArray.length + 1); // resizes the customerArray
+                    customerArray = Arrays.copyOf(customerArray, 
+                    customerArray.length + 1); // resizes the customerArray
                     customerArray[customerCount] = addCustomer();
                     customerCount++;
                     mainMenu(); 
@@ -75,7 +75,8 @@ public class Main {
                     break;
             //create vendor
                 case 2:
-                    vendorArray = Arrays.copyOf(vendorArray, vendorArray.length + 1);
+                    vendorArray = Arrays.copyOf(vendorArray, 
+                            vendorArray.length + 1);
                     vendorArray[vendorCount] = addVendor();
                     vendorCount++;
                     mainMenu(); 
@@ -98,10 +99,11 @@ public class Main {
                     choice =in.nextInt();
                     break;
                 default:
-                  mainMenu(); 
+                    mainMenu(); 
                     choice =in.nextInt();
                     break;
             }
+            
          //edit main menu
                 case 5: 
         {
@@ -112,7 +114,7 @@ public class Main {
             switch (choice3) {
             //edit existing customer
                 case 1:
-                    customerListToEdit(customerArray);
+                    customerList(customerArray);
                     customerSelect = in.nextInt();
                     editCustomer(customerArray[customerSelect]);
                     mainMenu(); 
@@ -120,7 +122,7 @@ public class Main {
                     break;
             //edit existing inventory item
                 case 2:
-                    itemList(itemArray);      
+                    itemList(itemArray);
                     inventorySelect = in.nextInt();
                     editInventory(itemArray[inventorySelect]);
                     mainMenu(); 
@@ -128,21 +130,20 @@ public class Main {
                     break;
             //edit existing vendor
                 case 3:
-                    vendorList(vendorArray);
+                    vendorList(vendorArray); 
                     vendorSelect = in.nextInt();
                     editVendor(vendorArray[vendorSelect]);
                     mainMenu(); 
                     choice =in.nextInt();
                     break;
                 default:
-                   mainMenu(); 
+                    mainMenu(); 
                     choice =in.nextInt();
                     break;
             }
-            
         }
-        
-         case 6: //print receipt
+        //print receipt
+         case 6: 
         {
             System.out.println("Enter the Sale ID: ");
             int IDChoice = in.nextInt();
@@ -152,8 +153,8 @@ public class Main {
             break;
          }
             default:
-            mainMenu(); 
-             choice =in.nextInt();
+                mainMenu(); 
+                    choice =in.nextInt();
             break;
          } 
         }  while (choice != 7);//end loop
@@ -180,22 +181,32 @@ public static void createMenu()
 //Method for Edit menu Options 
 public static void editMenu ()
 {
-     System.out.print("\tEdit Menu Options \n==================================="
+    System.out.print("\tEdit Menu Options \n==================================="
      + "\n1. Edit Existing Customer:\n2. Edit Existing Inventory Item: \n3. "
      + "Edit Existing Vendor: \nEnter Your Choice: #");
 }
 
- //Method for Customer purchase history
+//Method for Customer purchase history
 public static void customerPurchaseHistory(Customer []customerArray, Item []
         itemArray, Sale [] saleArray)
 {
-    
+    customerList(customerArray);
+    Scanner in = new Scanner (System.in);
+    int selection = in.nextInt();
+    System.out.println("\n------------------ Purchase History for Customer #" + 
+      selection + " -----------------\n----------------------------------------"
+      + "--------------------------------\nItem Name: \tItem ID: \tQuantity: \t"
+      + "Total Cost: \tDate: "); 
+            for (int i=0; i<itemArray.length; i++)
+            {
+                 System.out.printf("%12s#%5d#%5d#$%10.2f%12s", itemArray[i]);
+            }
+            System.out.println(""); 
 }
- 
 //method for creating a customer
     public static Customer addCustomer()
-    {
-         Scanner scan = new Scanner(System.in);
+    { 
+        Scanner scan = new Scanner(System.in);
         System.out.print("First Name: ");
         String firstName = scan.nextLine();
         if (firstName.length()==0)
@@ -254,7 +265,6 @@ public static void customerPurchaseHistory(Customer []customerArray, Item []
                 street, zip, phoneNumber);
         return newC;
     }
-    
     
 //method for editing a customer
 public static void editCustomer(Customer c1)
@@ -403,7 +413,7 @@ public static void editCustomer(Customer c1)
 //method for adding a sale    
 public static Sale addSale()
 {
-      Scanner scan = new Scanner(System.in);
+    Scanner scan = new Scanner(System.in);
     
     System.out.println("Item Name: ");
     String itemName = scan.nextLine();
@@ -442,12 +452,12 @@ public static Sale addSale()
 
     Sale newS = new Sale();
     return newS;
-}  
+}    
         
 //method for adding a vendor
 public static Vendor addVendor()
     {
-          Scanner scan = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
         System.out.print("Business Name: ");
         String businessName = scan.nextLine();
         if(businessName.length()==0)
@@ -564,7 +574,7 @@ public static void editVendor(Vendor v1)
  //method to create an item
  public static Item addItem()
     {
-           Scanner scan = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
         System.out.print("Enter the Item Name: ");
         String itemName = scan.nextLine();
         if(itemName.length()==0)
@@ -614,21 +624,25 @@ public static void editVendor(Vendor v1)
     printCurrInventory(itemArray); 
     System.out.print("Enter the ID to View the Item's Purchase History: #");
     historyID=in.nextInt(); 
-    System.out.println("\tPurchase History for Item #" + historyID + "\n-----"
-            + "-------------------------------------------\n");
+    System.out.println("\tPurchase History for Item #" + historyID +"\n--------"
+    + "--------------------------------------------\nItem Name: \tDate: \t "
+    + "Quantity:"
+    );
   
  }
-//Method to print out the list of customers 
- public static void customerListToEdit(Customer[] customerArray)
+ //Method to print out the full list of customers
+ public static void customerList(Customer[] customerArray)
     {
-         System.out.println("\tPlease Enter a Customer Number to Edit \n--------"
+        System.out.println("\tPlease Enter a Customer Number \n--------"
         + "------------------------------------------");
-        for (Customer customerArray1 : customerArray) {
-          System.out.println(customerArray1.toString());
-      }
+        for (int i=0; i<customerArray.length; i++)
+            {
+                 System.out.println(customerArray[i]);
+            }
+            System.out.println("");
     }
  
-//Method to print out the full list of vendors to then edit
+ //Method to print out the full list of vendors to then edit
  public static void vendorList (Vendor [] vendorArray)
  {
          System.out.println("\tPlease Enter a Vendor Number to Edit \n---------"
@@ -639,7 +653,7 @@ public static void editVendor(Vendor v1)
          }
  }
  
-  //Method to print out items in inventory
+ //Method to print out items in inventory
  public static void itemList (Item [] itemArray)
  {
       System.out.println("\tPlease Enter an Item Number to Edit \n---------"
