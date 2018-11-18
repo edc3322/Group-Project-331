@@ -122,7 +122,7 @@ public class Main {
     //Method for main menu 
 public static void mainMenu()
  {
-     System.out.print("Main Menu Options \n==============================="
+     System.out.print("\tMain Menu Options \n==============================="
      + " \n1. ID Report: \n2. Item Purchase History: \n3. Current Inventory "
      + "Level: \n4. Create... \n5. Edit... \n6. Print Receipt: \n7. Exit"
      + "\nEnter Your Choice: #");     
