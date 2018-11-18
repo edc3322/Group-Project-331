@@ -162,15 +162,15 @@ public static void mainMenu()
 //Method for creating menu options 
 public static void createMenu()
 {
-    System.out.print("Menu Options to Create \n============================="
-    + "\n1. Create New Customer:\n2. Create New Vendor:\n3. Create New Item:"
-    + "\n4. Create New Sale: \nEnter Your Choice: #"); 
+    System.out.print("\tMenu Options to Create \n============================="
+    + "=========\n1. Create New Customer:\n2. Create New Vendor:\n3. Create New"
+    + " Item: \n4. Create New Sale: \nEnter Your Choice: #"); 
  }
  
 //Method for Edit menu Options 
 public static void editMenu ()
 {
-    System.out.print("Edit Menu Options \n==================================="
+     System.out.print("\tEdit Menu Options \n==================================="
      + "\n1. Edit Existing Customer:\n2. Edit Existing Inventory Item: \n3. "
      + "Edit Existing Vendor: \nEnter Your Choice: #");
 }
@@ -178,7 +178,7 @@ public static void editMenu ()
 //method for report options 
 public static void reportMenuOptions()
 {
-    System.out.print("Report Menu Options \n================================="
+    System.out.print("\tReport Menu Options \n================================="
     + "\n1. Report for Customer Purchase History: \n2. Report for Items:"
     + "\n3. Report for Quantities: \n4. Report for Total Purchase Cost:"
     + "\n5. Report for Purchase Dates: \nEnter Your Choice: #");
