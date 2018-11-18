@@ -46,7 +46,12 @@ public class Main {
 
         else if(choice == 3)//current inventory levels
         {
-            
+            System.out.println("Current Items in Inventory\n===================="
+                + "========= \n"); 
+            for (int i=0; i<itemArray.length; i++)
+            {
+                 System.out.println(itemArray[i]);
+            }
         }
         
         else if(choice == 4)//create new menu
