@@ -290,24 +290,28 @@ public static void editCustomer(Customer c1)
                     System.out.print("Enter the new weight:");
                     double newWeight = scan.nextDouble();
                     i1.setWeight(newWeight);
+                    break;
                 }
                 case 3:
                 {
                     System.out.print("Enter the new Description:");
                     String newDescription = scan.nextLine();
                     i1.setDescription(newDescription);
+                   break;
                     }
                 case 4: 
                 {
                     System.out.print("Enter the new purchase price: $");
                     double newPPrice = scan.nextDouble();
                    i1.setpurchasePrice(newPPrice);
+                   break;
                 }
                 case 5:
                 {
                     System.out.print("Enter the new selling price: $");
                     double newSPrice = scan.nextDouble();
                     i1.setSellingPrice(newSPrice);
+                    break;
                 }
                 case 6:
                 {
