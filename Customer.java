@@ -12,12 +12,12 @@ package project331;
  */
 public class Customer 
 {
-    int cId = 1000;
+    int cId;
     int zip;
     long phoneNumber;
     String firstName, lastName, city, state, street;
     
-public Customer(String firstName, String lastName, String city, String state, 
+public Customer(int cId, String firstName, String lastName, String city, String state, 
          String street, int zip, long phoneNumber)
     {
         this.firstName = firstName;
@@ -27,7 +27,7 @@ public Customer(String firstName, String lastName, String city, String state,
         this.street = street; 
         this.zip = zip;
         this.phoneNumber = phoneNumber;
-        this.cId++;
+        this.cId = cId;
     }
     
     // setter for firstName for editing customerss
