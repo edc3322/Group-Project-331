@@ -8,7 +8,7 @@ package project331;
 import java.util.*;
 public class Main {
 
-        public static void main(String[] args) {
+      public static void main(String[] args) {
         
         Scanner in = new Scanner(System.in);
         int choice=0;
@@ -77,10 +77,8 @@ public class Main {
                 default:
                     break;
             }
-        }
-        
-        
-         else if(choice == 5)//edit main menu
+         //edit main menu
+                case 5: 
         {
            editMenu(); 
             choice3 = in.nextInt();
@@ -111,16 +109,20 @@ public class Main {
             
         }
         
-        else if(choice == 6)//print receipt
+         case 6: //print receipt
         {
             System.out.println("Enter the Sale ID: ");
             int IDChoice = in.nextInt();
             saleArray[IDChoice].printReceipt();
-        }
-
-      } while (choice != 7);//end loop
-        
+            break;
+         }
+            default:
+            break;
+         } 
+        }  while (choice != 7);//end loop
+ 
     }
+
     //Method for main menu 
 public static void mainMenu()
  {
