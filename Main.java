@@ -212,6 +212,7 @@ public class Main {
                     choice =in.nextInt();
                     break;
             }
+            break;
         }
         //print receipt
          case 6: 
