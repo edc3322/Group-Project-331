@@ -653,8 +653,10 @@ public static void editVendor(Vendor v1)
     public static void printCurrInventory(Item [] itemArray)
     {
         System.out.println("\n============ Current Items in Inventory ========="
-          + "===\n---------------------------------------------------- "
-          + "\nItem Name: \t Item ID: \tWeight:"); 
+        + "\n----------------------------------------------------------------------------------------------");
+        System.out.printf("%-12s" + " %-16s" + " %-16s" + " %-20s" 
+    + " %-12s" + " %-12s\n", "Item ID", "Item Name", "Item Weight", 
+    "Description", "Cost", "Sold For"); 
             for (int i=0; i<itemArray.length; i++)
             {
                  System.out.println(itemArray[i]);
