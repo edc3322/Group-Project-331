@@ -216,7 +216,7 @@ public class Main {
         //print receipt
          case 6: 
         {
-            System.out.println("Enter the Sale ID: ");
+            salesList(saleArray);
             int IDChoice = in.nextInt();
             saleArray[IDChoice].printReceipt();
             mainMenu(); 
@@ -772,6 +772,17 @@ public static void itemPurchaseHistory(Item[] itemArray, Sale[] saleArray)
             System.out.println(itemArray[i]);
          }
          System.out.println("");
+ }
+  
+   //method for printing sales
+ public static void salesList (Sale [] saleArray)
+ {
+     System.out.println("\tListing All Sales: # \n---------------------------");
+     for (int i=0; i<saleArray.length; i++)
+     {
+         System.out.println(saleArray[i]);
+     }
+     System.out.print("\nEnter Sales ID #");
  }
 }
 
