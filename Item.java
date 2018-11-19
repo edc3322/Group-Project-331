@@ -1,8 +1,9 @@
 /*
- CIS 331 Section 2 
- Group Project Part 1.
- Authors: Zach Beatty, Eric Carter, Mercy Clemente, & Troy Goddard
+CIS 331 Section 2 
+Group Project Part 1.
+Authors: Zach Beatty, Eric Carter, Mercy Clemente, Michael Corcoran & Troy Goddard
  */
+
 package Project331;
 
 public class Item 
