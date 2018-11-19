@@ -216,7 +216,7 @@ public class Main {
          case 6: 
         {
             System.out.println("Sale IDs range from 3000 to " + (saleID - 1));
-            System.out.println("Enter the Sale ID: ");
+            salesList(saleArray);
             int IDChoice = in.nextInt();
             if (IDChoice < saleID && IDChoice >= 3000)
             {
