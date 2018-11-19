@@ -216,11 +216,18 @@ public class Main {
         //print receipt
          case 6: 
         {
+            System.out.println("Sale IDs range from 3000 to " + (saleID - 1));
             System.out.println("Enter the Sale ID: ");
             int IDChoice = in.nextInt();
-            saleArray[IDChoice].printReceipt();
+            if (IDChoice < saleID && IDChoice >= 3000)
+            {
+                saleArray[IDChoice - 3000].printReceipt();
+            }
+            else
+                System.out.println("Invalid input");
             mainMenu(); 
                     choice =in.nextInt();
+            break;
             break;
          }
          case 7:
