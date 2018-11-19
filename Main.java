@@ -109,7 +109,7 @@ public class Main {
                 break;
             //item purchase history
                 case 2:
-                    itemPurchaseHistory(itemArray);
+                    itemPurchaseHistory(itemArray, saleArray);
                     mainMenu(); 
                     choice =in.nextInt();
                     break;
@@ -689,17 +689,32 @@ public static void editVendor(Vendor v1)
     }
  
   //Method for item purchase history
- public static void itemPurchaseHistory(Item [] itemArray)
+public static void itemPurchaseHistory(Item[] itemArray, Sale[] saleArray)
  {
+    boolean sold = false;
     Scanner in = new Scanner (System.in); 
     int historyID=0; 
     printCurrInventory(itemArray); 
     System.out.print("Enter the ID to View the Item's Purchase History: #");
     historyID=in.nextInt(); 
     System.out.println("\tPurchase History for Item #" + historyID +"\n--------"
-    + "--------------------------------------------\nItem Name: \tDate: \t "
-    + "Quantity:"
-    );
+    + "--------------------------------------------");
+    System.out.printf("%-12s" + " %-20s" + " %-12s" + " %-10s" 
+        + " %-20s" + " %-12s\n", "ID", "Item", "Sold for", "Quantity", "Customer", "Date");
+    
+    for(int i = 0; i < saleArray.length; i++)
+    {
+        if(saleArray[i].itemName.toUpperCase().equals(itemArray[historyID - 4000].itemName.toUpperCase()))
+        {
+            System.out.println(saleArray[i].toString());
+            sold = true;
+        }
+    }
+    if (!sold)
+    {
+        System.out.println("===============  NO ITEMS TO SHOW  ===============");
+    }
+  
  } 
    
    //Method for customer purchase history
