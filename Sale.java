@@ -1,3 +1,8 @@
+/*
+CIS 331 Section 2 
+Group Project Part 1.
+Authors: Zach Beatty, Eric Carter, Mercy Clemente, Michael Corcoran & Troy Goddard
+ */
 package group.project;
 
 public class Sale {
