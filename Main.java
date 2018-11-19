@@ -590,7 +590,7 @@ public static void editVendor(Vendor v1)
         {
             System.out.println("Please select from the following: \n==========="
              + "============\n1. Business Name: \n2. Business Address: "
-             + "3. Phone Number: \n4. Exit: \nEnter Your Choice: #");
+             + "\n3. Phone Number: \n4. Exit: \nEnter Your Choice: #");
             
             int menu = scan.nextInt();
             switch(menu)
