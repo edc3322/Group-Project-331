@@ -1,9 +1,11 @@
 package group.project;
+
 /*
 CIS 331 Section 2 
 Group Project Part 1.
 Authors: Zach Beatty, Eric Carter, Mercy Clemente, Michael Corcoran & Troy Goddard
  */
+
 import java.util.*;
 public class Main {
   public static int cID = 1000; // ID for the customer objects begins at 1000
