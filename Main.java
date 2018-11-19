@@ -1,6 +1,12 @@
 package group.project;
+/*
+CIS 331 Section 2 
+Group Project Part 1.
+Authors: Zach Beatty, Eric Carter, Mercy Clemente, Michael Corcoran & Troy Goddard
+ */
 import java.util.*;
 public class Main {
+
   public static int cID = 1000; // ID for the customer objects begins at 1000
   public static int rID = 2000; // ID for the contractor objects begins at 2000
   public static int saleID = 3000; // ID for the sale objects begins at 3000
@@ -74,13 +80,17 @@ public class Main {
        //prepopulating Sale
        saleArray[0] = new Sale (saleID, "lamp", 20.99, 3, "Tom Jones", "10/11/2018");
        saleID++;
-       saleArray[1] = new Sale (saleID, "chair", 300.00, 1, customerArray[3].firstName + " " + customerArray[3].lastName, "8/23/2017");
+       saleArray[1] = new Sale (saleID, "chair", 300.00, 1, customerArray[3].
+               firstName + " " + customerArray[3].lastName, "8/23/2017");
        saleID++;
-       saleArray[2] = new Sale (saleID, "bookshelf", 110, 2, customerArray[4].firstName + " " + customerArray[4].lastName, "11/1/2018");
+       saleArray[2] = new Sale (saleID, "bookshelf", 110, 2, customerArray[4].
+               firstName + " " + customerArray[4].lastName, "11/1/2018");
        saleID++;
-       saleArray[3] = new Sale(saleID, "sofa", 599, 2, customerArray[2].firstName + " " + customerArray[2].lastName, "9/30/2018");
+       saleArray[3] = new Sale(saleID, "sofa", 599, 2,customerArray[2].firstName 
+               + " " + customerArray[2].lastName, "9/30/2018");
        saleID++;
-       saleArray[4] = new Sale(saleID, "desk", 89.90, 1, customerArray[1].firstName + " " + customerArray[1].lastName, "9/1/2018"); 
+       saleArray[4] = new Sale(saleID, "desk", 89.90, 1, customerArray[1].
+               firstName + " " + customerArray[1].lastName, "9/1/2018"); 
        saleID++;
            
         //prepopulating Vendor
@@ -264,7 +274,8 @@ public static void customerPurchaseHistory(Customer[] customerArray, Item[]
       + "Total Cost: \tDate: "); 
             for (int i=0; i<itemArray.length; i++)
             {
-                if((customerArray[selection].firstName + " " + customerArray[selection].lastName).equals(saleArray[i].customer))
+                if((customerArray[selection].firstName + " " + customerArray
+                        [selection].lastName).equals(saleArray[i].customer))
                  System.out.printf(itemArray[i].toString());
             }
             System.out.println(""); 
@@ -421,8 +432,8 @@ public static void editCustomer(Customer c1)
         while (run)
         {
           System.out.println("Select From the Following:\n---------------------"
-          + "------\n1. Edit the Name:\n2. Edit the Weight:\n3. Edit the Descripti"
-          + "on:\n4. Edit the Purchase Price:\n5. Edit the Selling Price:"
+          + "------\n1. Edit the Name:\n2. Edit the Weight:\n3. Edit the Descri"
+          + "ption:\n4. Edit the Purchase Price:\n5. Edit the Selling Price:"
           + "\n6. Exit"
           + "Enter Your Choice: ");
      
@@ -699,12 +710,13 @@ public static void itemPurchaseHistory(Item[] itemArray, Sale[] saleArray)
     historyID=in.nextInt(); 
     System.out.println("\tPurchase History for Item #" + historyID +"\n--------"
     + "--------------------------------------------");
-    System.out.printf("%-12s" + " %-20s" + " %-12s" + " %-10s" 
-        + " %-20s" + " %-12s\n", "ID", "Item", "Sold for", "Quantity", "Customer", "Date");
+    System.out.printf("%-12s" + " %-20s" + " %-12s" + " %-10s" + " %-20s" + 
+          " %-12s\n", "ID", "Item", "Sold for", "Quantity", "Customer", "Date");
     
     for(int i = 0; i < saleArray.length; i++)
     {
-        if(saleArray[i].itemName.toUpperCase().equals(itemArray[historyID - 4000].itemName.toUpperCase()))
+      if(saleArray[i].itemName.toUpperCase().equals(itemArray[historyID - 4000].
+                itemName.toUpperCase()))
         {
             System.out.println(saleArray[i].toString());
             sold = true;
@@ -712,7 +724,7 @@ public static void itemPurchaseHistory(Item[] itemArray, Sale[] saleArray)
     }
     if (!sold)
     {
-        System.out.println("===============  NO ITEMS TO SHOW  ===============");
+        System.out.println("==============  NO ITEMS TO SHOW  ===============");
     }
   
  } 
@@ -720,14 +732,15 @@ public static void itemPurchaseHistory(Item[] itemArray, Sale[] saleArray)
    //Method for customer purchase history
    public static void customerPurchaseHistory(Customer[] customerArray)
    {
-     Scanner in = new scanner(System.in);
+     Scanner in = new Scanner(System.in);
      int customerHistory = 0;
      printCurrInventory(customerArray);
-     System.out.println("Enter the customer ID to view the customer's purchase history: "):
+     System.out.println("Enter the customer ID to view the customer's purchase "
+             + "history: ");
      customerHistory = in.nextInt();
-     System.out.println("\tPurchase History for Item #" + historyID +"\n--------"
-    + "--------------------------------------------\nItem Name: \tDate: \t "
-    + "Quantity:");
+     System.out.println("\tPurchase History for Item #" + customerHistory +"\n-"
+    + "-------------------------------------------------\nItem Name: \tDate: \t"
+    + " Quantity:");
   
  }
    
@@ -766,5 +779,5 @@ public static void itemPurchaseHistory(Item[] itemArray, Sale[] saleArray)
          }
          System.out.println("");
  }
- 
 }
+
