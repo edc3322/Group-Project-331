@@ -37,46 +37,69 @@ public class Main {
         
         //Prepopulating Item 
         Item lamp = new Item(itemID, "Lamp", 1.5, "Gold lamp", 9.99, 20.99);
+        itemID++;
         Item table = new Item(itemID, "Table", 15, "Side table", 13.50, 30);
+       itemID++;
         Item sofa = new Item(itemID, "Sofa", 100, "Grey sofa", 200, 599.00);
+       itemID++;
         Item chair = new Item(itemID, "Chair", 45, "Set of 4 chairs", 80, 300);
+       itemID++;
         Item desk = new Item (itemID, "Desk", 25, "Black desk", 35.50, 89.90);
+       itemID++;
         Item deskLight = new Item(itemID, "Desk Light", 3, "Gold desk lamp", 
                 4.50, 15.00);
+       itemID++;
         Item diningTable = new Item(itemID, "Dining Table", 55, "Round Dining "
              + "Table", 90, 150.00);
+       itemID++;
         Item basket = new Item(itemID, "Basket", 1, "Round basket", 10, 22);
+       itemID++;
         Item bookshelf = new Item (itemID, "Bookshelf", 35, "Black Bookshelf", 
         55.50, 110);
+       itemID++;
         Item candle = new Item(itemID, "2 Candles", 3.5, "Set of 2 candles", 7, 
         40);
+       itemID++;
         
         //Prepopulating Customer
         Customer cust1 = new Customer(cID, "Tom", "Jones", "Harrisonburg", "VA",
         "800 S. Main St.", 22807, 5408994545L);  
+       cID++;
         Customer cust2 = new Customer (cID, "Evan", "Thompson", "Fairfax", "VA",
         "1932 Prince William", 22726, 7056785968L);
+       cID++;
         Customer cust3 = new Customer (cID, "Jim", "Smith", "Arlington", "VA",
         "775 Edward St", 07675, 2015647857L); 
+       cID++;
         Customer cust4 = new Customer(cID, "Kate", "Andrews","Springfield","VA",
         "1032 Rustic St", 22676, 2745638976L);
+       cID++;
         Customer cust5 = new Customer(cID, "Rob", "Sousa", "Fairfax", "VA",
         "45 Market Blvd", 89867, 3345789084L); 
+       cID++;
         
        //prepopulating Sale
        Sale sal1 = new Sale (lamp, 20.99, 3, "Tom Jones", "10/11/2018");
+       saleID++;
        Sale sal2 = new Sale (chair, 300.00, 1, cust3, "8/23/2017");
+       saleID++;
        Sale sal3 = new Sale (bookshelf, 110, 2, cust4, "11/1/2018");
+       saleID++;
        Sale sal4 = new Sale(sofa, 599, 2, cust3, "9/30/2018");
+       saleID++;
        Sale sal5 = new Sale(desk, 89.90, 1, cust5, "9/1/2018"); 
+       saleID++;
            
         //prepopulating Vendor
         Vendor ven1 = new Vendor(vID, "Wayfair", "11 Jones St.", "McLean", "VA",
         22893, 7578994544L); 
+       vID++;
         Vendor ven2 = new Vendor(vID, "West Elm", "45 Washington St", "Georges",
         "MD", 44876, 9397578844L);
+       vID++;
         Vendor ven3 = new Vendor(vID, "Restoration", "44 Oakland Ave", "Bergen", 
         "NJ", 20154, 3013738999L);
+       vID++;
         
         //menu
         do{  
@@ -308,6 +331,7 @@ public static void customerPurchaseHistory(Customer []customerArray, Item []
         }
         Customer newC = new Customer(cID, firstName, lastName, city, state, 
                 street, zip, phoneNumber);
+     cID++;
         return newC;
     }
     
@@ -496,6 +520,7 @@ public static Sale addSale()
     String date = scan.nextLine();
 
     Sale newS = new Sale(Item itemName, sellingPrice, quantity, customer, date);
+ saleID++;
     return newS;
 }    
         
@@ -541,6 +566,7 @@ public static Vendor addVendor()
         }
         Vendor v = new Vendor(vID, businessName, street, city, state, zip, 
                 phoneNumber);
+        vID++;
         return v;
     }
 
@@ -658,6 +684,7 @@ public static void editVendor(Vendor v1)
         
         Item returnItem = new Item(itemID, itemName, itemWeight,itemDescription,
                 pPrice, sellingPrice);
+        itemID++;
         return returnItem;
     }
  
