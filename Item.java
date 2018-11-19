@@ -38,6 +38,7 @@ public void setDescription (String description)
 {
     this.description=description;
 }
+	
 
 public String getDescription()
 {
@@ -84,8 +85,8 @@ public double getWeight()
 	@Override
 public String toString()
 {
-    String returnString = String.format("%-12d" + " %-16s" + " %-16f" + " %-20s" 
-    + " %-12f" + " %-12f", this.itemID, this.itemName, this.weight, 
+    String returnString = String.format("%-12d" + " %-16s" + " %-16.2f" + " %-20s" 
+    + " %-12.2f" + " %-12.2f", this.itemID, this.itemName, this.weight, 
     this.description, this.purchasePrice, this.sellingPrice);
     return returnString;
 }
