@@ -6,7 +6,6 @@ Authors: Zach Beatty, Eric Carter, Mercy Clemente, Michael Corcoran & Troy Godda
  */
 import java.util.*;
 public class Main {
-
   public static int cID = 1000; // ID for the customer objects begins at 1000
   public static int rID = 2000; // ID for the contractor objects begins at 2000
   public static int saleID = 3000; // ID for the sale objects begins at 3000
@@ -21,9 +20,9 @@ public class Main {
         int choice3=0;
         
         int customerCount = 5; // ready for the 6th customer object
-        int vendorCount = 0;
-        int saleCount = 0;
-        int itemCount = 0;
+        int vendorCount = 3;
+        int saleCount = 5;
+        int itemCount = 10;
         
         int customerSelect = 0;
         int vendorSelect = 0;
@@ -80,17 +79,13 @@ public class Main {
        //prepopulating Sale
        saleArray[0] = new Sale (saleID, "lamp", 20.99, 3, "Tom Jones", "10/11/2018");
        saleID++;
-       saleArray[1] = new Sale (saleID, "chair", 300.00, 1, customerArray[3].
-               firstName + " " + customerArray[3].lastName, "8/23/2017");
+       saleArray[1] = new Sale (saleID, "chair", 300.00, 1, customerArray[3].firstName + " " + customerArray[3].lastName, "8/23/2017");
        saleID++;
-       saleArray[2] = new Sale (saleID, "bookshelf", 110, 2, customerArray[4].
-               firstName + " " + customerArray[4].lastName, "11/1/2018");
+       saleArray[2] = new Sale (saleID, "bookshelf", 110, 2, customerArray[4].firstName + " " + customerArray[4].lastName, "11/1/2018");
        saleID++;
-       saleArray[3] = new Sale(saleID, "sofa", 599, 2,customerArray[2].firstName 
-               + " " + customerArray[2].lastName, "9/30/2018");
+       saleArray[3] = new Sale(saleID, "sofa", 599, 2, customerArray[2].firstName + " " + customerArray[2].lastName, "9/30/2018");
        saleID++;
-       saleArray[4] = new Sale(saleID, "desk", 89.90, 1, customerArray[1].
-               firstName + " " + customerArray[1].lastName, "9/1/2018"); 
+       saleArray[4] = new Sale(saleID, "desk", 89.90, 1, customerArray[1].firstName + " " + customerArray[1].lastName, "9/1/2018"); 
        saleID++;
            
         //prepopulating Vendor
@@ -131,48 +126,52 @@ public class Main {
                     break;
             //create new menu
                 case 4:
+                {
                     createMenu();
                     choice2 = in.nextInt();
-         //create new sub menu
-            switch (choice2) {
-            //create customer
-                case 1:
-                    customerArray = Arrays.copyOf(customerArray, 
-                    customerArray.length + 1); // resizes the customerArray
-                    customerArray[customerCount] = addCustomer();
-                    customerCount++;
-                    mainMenu(); 
-                    choice =in.nextInt();
-                    break;
-            //create vendor
-                case 2:
-                    vendorArray = Arrays.copyOf(vendorArray, 
+                    //create new sub menu
+                    switch (choice2) {
+                    //create customer
+                        case 1:
+                            customerArray = Arrays.copyOf(customerArray, 
+                            customerArray.length + 1); // resizes the customerArray
+                            customerArray[customerCount] = addCustomer();
+                            customerCount++;
+                            mainMenu(); 
+                            choice =in.nextInt();
+                            break;
+                    //create vendor
+                        case 2:
+                            vendorArray = Arrays.copyOf(vendorArray, 
                             vendorArray.length + 1);
-                    vendorArray[vendorCount] = addVendor();
-                    vendorCount++;
-                    mainMenu(); 
-                    choice =in.nextInt();
+                            vendorArray[vendorCount] = addVendor();
+                            vendorCount++;
+                            mainMenu(); 
+                            choice =in.nextInt();
+                            break;
+                    //create inventory item
+                        case 3:
+                            itemArray = Arrays.copyOf(itemArray, itemArray.length + 1);
+                            itemArray[itemCount] = addItem();
+                            itemCount++;
+                            mainMenu(); 
+                            choice =in.nextInt();
+                            break;
+                    //create sale
+                        case 4:
+                            saleArray = Arrays.copyOf(saleArray, saleArray.length + 1);
+                            saleArray[saleCount] = addSale();
+                            saleCount++;
+                            mainMenu(); 
+                            choice =in.nextInt();
+                            break;
+                        default:
+                            mainMenu(); 
+                            choice =in.nextInt();
+                            break;
+                    }
                     break;
-            //create inventory item
-                case 3:
-                    itemArray = Arrays.copyOf(itemArray, itemArray.length + 1);
-                    itemArray[itemCount] = addItem();
-                    itemCount++;
-                    mainMenu(); 
-                    choice =in.nextInt();
-                    break;
-            //create sale
-                case 4:
-                    saleArray = Arrays.copyOf(saleArray, saleArray.length + 1);
-                    saleArray[saleCount] = addSale();
-                    saleCount++;
-                    mainMenu(); 
-                    choice =in.nextInt();
-                    break;
-                default:
-                    mainMenu(); 
-                    choice =in.nextInt();
-                    break;
+                
             }
             
          //edit main menu
@@ -187,7 +186,7 @@ public class Main {
                 case 1:
                     customerList(customerArray);
                     customerSelect = in.nextInt();
-                    editCustomer(customerArray[customerSelect]);
+                    editCustomer(customerArray[customerSelect - 1000]);
                     mainMenu(); 
                     choice =in.nextInt();
                     break;
@@ -203,23 +202,28 @@ public class Main {
                 case 3:
                     vendorList(vendorArray); 
                     vendorSelect = in.nextInt();
-                    editVendor(vendorArray[vendorSelect]);
+                    editVendor(vendorArray[vendorSelect - 5000]);
                     mainMenu(); 
-                    choice =in.nextInt();
+                    choice = in.nextInt();
                     break;
                 default:
                     mainMenu(); 
                     choice =in.nextInt();
                     break;
             }
-            break;
         }
         //print receipt
          case 6: 
         {
-            salesList(saleArray);
+            System.out.println("Sale IDs range from 3000 to " + (saleID - 1));
+            System.out.println("Enter the Sale ID: ");
             int IDChoice = in.nextInt();
-            saleArray[IDChoice].printReceipt();
+            if (IDChoice < saleID && IDChoice >= 3000)
+            {
+                saleArray[IDChoice - 3000].printReceipt();
+            }
+            else
+                System.out.println("Invalid input");
             mainMenu(); 
                     choice =in.nextInt();
             break;
@@ -441,8 +445,8 @@ public static void editCustomer(Customer c1)
         while (run)
         {
           System.out.println("Select From the Following:\n---------------------"
-          + "------\n1. Edit the Name:\n2. Edit the Weight:\n3. Edit the Descri"
-          + "ption:\n4. Edit the Purchase Price:\n5. Edit the Selling Price:"
+          + "------\n1. Edit the Name:\n2. Edit the Weight:\n3. Edit the Descripti"
+          + "on:\n4. Edit the Purchase Price:\n5. Edit the Selling Price:"
           + "\n6. Exit"
           + "Enter Your Choice: ");
      
@@ -504,6 +508,7 @@ public static Sale addSale()
 {
     Scanner scan = new Scanner(System.in);
     
+    
     System.out.println("Item Name: ");
     String itemName = scan.nextLine();
     if(itemName.length()==0)
@@ -538,7 +543,6 @@ public static Sale addSale()
 
     System.out.println("Date of Sale: ");
     String date = scan.nextLine();
-
     Sale newS = new Sale(saleID, itemName, sellingPrice, quantity, customer, date);
     saleID++;
     return newS;
@@ -599,7 +603,7 @@ public static void editVendor(Vendor v1)
         {
             System.out.println("Please select from the following: \n==========="
              + "============\n1. Business Name: \n2. Business Address: "
-             + "3. Phone Number: \n4. Exit: \nEnter Your Choice: #");
+             + "\n3. Phone Number: \n4. Exit: \nEnter Your Choice: #");
             
             int menu = scan.nextInt();
             switch(menu)
@@ -657,7 +661,7 @@ public static void editVendor(Vendor v1)
         + "\n----------------------------------------------------------------------------------------------");
         System.out.printf("%-12s" + " %-16s" + " %-16s" + " %-20s" 
     + " %-12s" + " %-12s\n", "Item ID", "Item Name", "Item Weight", 
-    "Description", "Cost", "Sold For"); 
+    "Description", "Cost", "Sold For");
             for (int i=0; i<itemArray.length; i++)
             {
                  System.out.println(itemArray[i]);
@@ -711,22 +715,22 @@ public static void editVendor(Vendor v1)
     }
  
   //Method for item purchase history
-public static void itemPurchaseHistory(Item[] itemArray, Sale[] saleArray)
+ public static void itemPurchaseHistory(Item[] itemArray, Sale[] saleArray)
  {
     boolean sold = false;
     Scanner in = new Scanner (System.in); 
+    int historyID=0; 
     printCurrInventory(itemArray); 
     System.out.print("Enter the ID to View the Item's Purchase History: #");
-    int historyID=in.nextInt(); 
+    historyID=in.nextInt(); 
     System.out.println("\tPurchase History for Item #" + historyID +"\n--------"
     + "--------------------------------------------");
-    System.out.printf("%-12s" + " %-20s" + " %-12s" + " %-10s" + " %-20s" + 
-          " %-12s\n", "ID", "Item", "Sold for", "Quantity", "Customer", "Date");
+    System.out.printf("%-12s" + " %-20s" + " %-12s" + " %-10s" 
+        + " %-20s" + " %-12s\n", "ID", "Item", "Sold for", "Quantity", "Customer", "Date");
     
     for(int i = 0; i < saleArray.length; i++)
     {
-      if(saleArray[i].itemName.toUpperCase().equals(itemArray[historyID - 4000].
-                itemName.toUpperCase()))
+        if(saleArray[i].itemName.toUpperCase().equals(itemArray[historyID - 4000].itemName.toUpperCase()))
         {
             System.out.println(saleArray[i].toString());
             sold = true;
@@ -734,11 +738,10 @@ public static void itemPurchaseHistory(Item[] itemArray, Sale[] saleArray)
     }
     if (!sold)
     {
-        System.out.println("==============  NO ITEMS TO SHOW  ===============");
+        System.out.println("===============  NO ITEMS TO SHOW  ===============");
     }
   
- } 
-   
+ }
  //Method to print out the full list of customers
  public static void customerList(Customer[] customerArray)
     {
@@ -746,9 +749,9 @@ public static void itemPurchaseHistory(Item[] itemArray, Sale[] saleArray)
         + "------------------------------------------");
         for (int i=0; i<customerArray.length; i++)
             {
-                 System.out.println(customerArray[i]);
+                 System.out.println(customerArray[i].toString());
             }
-            System.out.print("#");
+            System.out.println("");
     }
  
  //Method to print out the full list of vendors to then edit
@@ -774,8 +777,8 @@ public static void itemPurchaseHistory(Item[] itemArray, Sale[] saleArray)
          }
          System.out.println("");
  }
-  
-   //method for printing sales
+ 
+    //method for printing sales
  public static void salesList (Sale [] saleArray)
  {
      System.out.println("\tListing All Sales: # \n---------------------------");
@@ -786,5 +789,3 @@ public static void itemPurchaseHistory(Item[] itemArray, Sale[] saleArray)
      System.out.print("\nEnter Sales ID #");
  }
 }
-
-
