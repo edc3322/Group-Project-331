@@ -700,8 +700,22 @@ public static void editVendor(Vendor v1)
     + "--------------------------------------------\nItem Name: \tDate: \t "
     + "Quantity:"
     );
+ } 
+   
+   //Method for customer purchase history
+   public static void customerPurchaseHistory(Customer[] customerArray)
+   {
+     Scanner in = new scanner(System.in);
+     int customerHistory = 0;
+     printCurrInventory(customerArray);
+     System.out.println("Enter the customer ID to view the customer's purchase history: "):
+     customerHistory = in.nextInt();
+     System.out.println("\tPurchase History for Item #" + historyID +"\n--------"
+    + "--------------------------------------------\nItem Name: \tDate: \t "
+    + "Quantity:");
   
  }
+   
  //Method to print out the full list of customers
  public static void customerList(Customer[] customerArray)
     {
