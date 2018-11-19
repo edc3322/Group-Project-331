@@ -21,9 +21,9 @@ public class Main {
         int choice3=0;
         
         int customerCount = 5; // ready for the 6th customer object
-        int vendorCount = 3;
-        int saleCount = 5;
-        int itemCount = 10;
+        int vendorCount = 0;
+        int saleCount = 0;
+        int itemCount = 0;
         
         int customerSelect = 0;
         int vendorSelect = 0;
@@ -216,18 +216,11 @@ public class Main {
         //print receipt
          case 6: 
         {
-            System.out.println("Sale IDs range from 3000 to " + (saleID - 1));
             System.out.println("Enter the Sale ID: ");
             int IDChoice = in.nextInt();
-            if (IDChoice < saleID && IDChoice >= 3000)
-            {
-                saleArray[IDChoice - 3000].printReceipt();
-            }
-            else
-                System.out.println("Invalid input");
+            saleArray[IDChoice].printReceipt();
             mainMenu(); 
                     choice =in.nextInt();
-            break;
             break;
          }
          case 7:
@@ -597,7 +590,7 @@ public static void editVendor(Vendor v1)
         {
             System.out.println("Please select from the following: \n==========="
              + "============\n1. Business Name: \n2. Business Address: "
-             + "\n3. Phone Number: \n4. Exit: \nEnter Your Choice: #");
+             + "3. Phone Number: \n4. Exit: \nEnter Your Choice: #");
             
             int menu = scan.nextInt();
             switch(menu)
@@ -653,7 +646,7 @@ public static void editVendor(Vendor v1)
     {
         System.out.println("\n============ Current Items in Inventory ========="
           + "===\n---------------------------------------------------- "
-          + "\nItem Name: \t Item ID: \tQuantity:"); 
+          + "\nItem Name: \t Item ID: \tWeight:"); 
             for (int i=0; i<itemArray.length; i++)
             {
                  System.out.println(itemArray[i]);
@@ -711,10 +704,9 @@ public static void itemPurchaseHistory(Item[] itemArray, Sale[] saleArray)
  {
     boolean sold = false;
     Scanner in = new Scanner (System.in); 
-    int historyID=0; 
     printCurrInventory(itemArray); 
     System.out.print("Enter the ID to View the Item's Purchase History: #");
-    historyID=in.nextInt(); 
+    int historyID=in.nextInt(); 
     System.out.println("\tPurchase History for Item #" + historyID +"\n--------"
     + "--------------------------------------------");
     System.out.printf("%-12s" + " %-20s" + " %-12s" + " %-10s" + " %-20s" + 
@@ -736,21 +728,6 @@ public static void itemPurchaseHistory(Item[] itemArray, Sale[] saleArray)
   
  } 
    
-   //Method for customer purchase history
-   public static void customerPurchaseHistory(Customer[] customerArray)
-   {
-     Scanner in = new Scanner(System.in);
-     int customerHistory = 0;
-     printCurrInventory(customerArray);
-     System.out.println("Enter the customer ID to view the customer's purchase "
-             + "history: ");
-     customerHistory = in.nextInt();
-     System.out.println("\tPurchase History for Item #" + customerHistory +"\n-"
-    + "-------------------------------------------------\nItem Name: \tDate: \t"
-    + " Quantity:");
-  
- }
-   
  //Method to print out the full list of customers
  public static void customerList(Customer[] customerArray)
     {
@@ -760,7 +737,7 @@ public static void itemPurchaseHistory(Item[] itemArray, Sale[] saleArray)
             {
                  System.out.println(customerArray[i]);
             }
-            System.out.println("");
+            System.out.print("#");
     }
  
  //Method to print out the full list of vendors to then edit
@@ -787,4 +764,5 @@ public static void itemPurchaseHistory(Item[] itemArray, Sale[] saleArray)
          System.out.println("");
  }
 }
+
 
