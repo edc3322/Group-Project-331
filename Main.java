@@ -264,21 +264,29 @@ public static void editMenu ()
 public static void customerPurchaseHistory(Customer[] customerArray, Item[] 
         itemArray, Sale[] saleArray)
 {
+    boolean bought = false;
     customerList(customerArray);
     Scanner in = new Scanner (System.in);
     int selection = in.nextInt();
-    selection -= 1000;
-    System.out.println("\n------------------ Purchase History for Customer #" + 
-      selection + " -----------------\n----------------------------------------"
-      + "--------------------------------\nItem Name: \tItem ID: \tQuantity: \t"
-      + "Total Cost: \tDate: "); 
-            for (int i=0; i<itemArray.length; i++)
+
+    System.out.printf("%-12s" + " %-16s" + " %-16s" + " %-20s" 
+    + " %-12s" + " %-12s\n", "Item ID", "Item Name", "Item Weight", 
+    "Description", "Cost", "Sold For"); 
+    
+    String testName = customerArray[selection - 1000].firstName +  " " + customerArray[selection - 1000].lastName;
+            for (int i=0; i < saleArray.length; i++)
             {
-                if((customerArray[selection].firstName + " " + customerArray
-                        [selection].lastName).equals(saleArray[i].customer))
-                 System.out.printf(itemArray[i].toString());
+                if(testName.equalsIgnoreCase(saleArray[i].customer))
+                {
+                    System.out.printf(itemArray[i].toString());
+                    System.out.println();
+                    bought = true;
+                }
             }
-            System.out.println(""); 
+            if (!bought)
+            {
+                System.out.println("===============  NO ITEMS TO SHOW  ===============");
+            }
 }
 //method for creating a customer
     public static Customer addCustomer()
