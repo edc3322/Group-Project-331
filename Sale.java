@@ -90,6 +90,13 @@ public class Sale {
         System.out.println(saleReceipt);
     }
 
-    
+    @Override
+    public String toString()
+    {
+        String returnString = String.format("%-12d" + " %-20s" + " %-12.2f" + " %-10d" 
+        + " %-20s" + " %-12s", this.saleID, this.itemName, this.sellingPrice, 
+        this.quantity, this.customer, this.date);
+        return returnString;
+    }
 
 }
