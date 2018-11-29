@@ -36,29 +36,29 @@ public class Main {
         Item[] itemArray = new Item[10];
         
         //Prepopulating Item 
-        itemArray[0] = new Item(itemID, "Lamp", 1.5, "Gold lamp", 9.99, 20.99);
+        itemArray[0] = new Item(itemID, "Lamp", 1.5, "Gold lamp", 9.99, 20.99, 10);
         itemID++;
-        itemArray[1] = new Item(itemID, "Table", 15, "Side table", 13.50, 30);
+        itemArray[1] = new Item(itemID, "Table", 15, "Side table", 13.50, 30, 5);
        itemID++;
-        itemArray[2] = new Item(itemID, "Sofa", 100, "Grey sofa", 200, 599.00);
+        itemArray[2] = new Item(itemID, "Sofa", 100, "Grey sofa", 200, 599.00, 3);
        itemID++;
-        itemArray[3] = new Item(itemID, "Chair", 45, "Set of 4 chairs", 80, 300);
+        itemArray[3] = new Item(itemID, "Chair", 45, "Set of 4 chairs", 80, 300, 20);
        itemID++;
-        itemArray[4] = new Item (itemID, "Desk", 25, "Black desk", 35.50, 89.90);
+        itemArray[4] = new Item (itemID, "Desk", 25, "Black desk", 35.50, 89.90, 4);
        itemID++;
         itemArray[5] = new Item(itemID, "Desk Light", 3, "Gold desk lamp", 
-                4.50, 15.00);
+                4.50, 15.00, 6);
        itemID++;
         itemArray[6] = new Item(itemID, "Dining Table", 55, "Round Dining "
-             + "Table", 90, 150.00);
+             + "Table", 90, 150.00, 2);
        itemID++;
-        itemArray[7] = new Item(itemID, "Basket", 1, "Round basket", 10, 22);
+        itemArray[7] = new Item(itemID, "Basket", 1, "Round basket", 10, 22, 15);
        itemID++;
         itemArray[8] = new Item (itemID, "Bookshelf", 35, "Black Bookshelf", 
-        55.50, 110);
+        55.50, 110, 3);
        itemID++;
         itemArray[9] = new Item(itemID, "2 Candles", 3.5, "Set of 2 candles", 7, 
-        40);
+        40, 10);
        itemID++;
         
         //Prepopulating Customer
