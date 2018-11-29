@@ -7,6 +7,7 @@ package group.project;
 
 public class Item 
 {
+private static int itemCount = 4000;
 private int itemID;
 public String itemName;
 public double weight;
@@ -14,7 +15,7 @@ public String description;
 private double purchasePrice;
 public double sellingPrice;
 
-public Item(int itemID, String itemName, double weight, String description, 
+public Item(String itemName, double weight, String description, 
         double purchasePrice, double sellingPrice)
 {
 	this.itemName = itemName;
@@ -22,7 +23,8 @@ public Item(int itemID, String itemName, double weight, String description,
 	this.description = description;
 	this.purchasePrice = purchasePrice;
         this.sellingPrice = sellingPrice; 
-	this.itemID=itemID;
+	this.itemID=itemCount;
+	itemCount++;
 }
 //setter for item name
 public void setName (String itemName)
