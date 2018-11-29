@@ -449,7 +449,7 @@ public static void editCustomer(Customer c1)
           System.out.println("Select From the Following:\n---------------------"
           + "------\n1. Edit the Name:\n2. Edit the Weight:\n3. Edit the Descripti"
           + "on:\n4. Edit the Purchase Price:\n5. Edit the Selling Price:"
-          + "\n6. Exit"
+          + "\n6. Edit the quantity" + "\n7. Exit"
           + "Enter Your Choice: ");
      
             int menu = scan.nextInt();
@@ -492,6 +492,12 @@ public static void editCustomer(Customer c1)
                     break;
                 }
                 case 6:
+                {
+                    System.out.print("Enter the new quantity: ");
+                    double newQuantity = scan.nextDouble();
+                    i1.setQuantity(newQuantity);
+                }
+                case 7:
                 {
                     run = false;
                     break;
@@ -659,11 +665,9 @@ public static void editVendor(Vendor v1)
  //method to print current inventory levels
     public static void printCurrInventory(Item [] itemArray)
     {
-        System.out.println("\n============ Current Items in Inventory ========="
-        + "\n----------------------------------------------------------------------------------------------");
-        System.out.printf("%-12s" + " %-16s" + " %-16s" + " %-20s" 
-    + " %-12s" + " %-12s\n", "Item ID", "Item Name", "Item Weight", 
-    "Description", "Cost", "Sold For");
+        System.out.println("\n========== Current Items in Inventory ========="
+        + "\n--------------------------------------------------------------");
+        System.out.printf("%-12s" + " %-16s" + " %-16s\n", "Item ID", "Item Name", "Quantity");
             for (int i=0; i<itemArray.length; i++)
             {
                  System.out.println(itemArray[i]);
@@ -709,9 +713,16 @@ public static void editVendor(Vendor v1)
             System.out.println("Enter a valid Selling Price: $");
             sellingPrice = scan.nextDouble();
         }
+        System.out.print("Enter the item quantity: ");
+        double quantity = scan.nextDouble();
+        if (quantity == 0.0)
+        {
+            System.out.println("Enter a valid quantity: ");
+            quantity = scan.nextDouble();
+        }
         
         Item returnItem = new Item(itemID, itemName, itemWeight,itemDescription,
-                pPrice, sellingPrice);
+                pPrice, sellingPrice, quantity);
         itemID++;
         return returnItem;
     }
