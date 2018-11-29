@@ -783,7 +783,7 @@ public static void editVendor(Vendor v1)
     //method for printing sales
  public static void salesList (Sale [] saleArray)
  {
-     System.out.println("\tListing All Sales: # \n---------------------------");
+     System.out.println("\tPrinting Sales Receipts \nListing All Sales: # \n---------------------------");
      for (int i=0; i<saleArray.length; i++)
      {
          System.out.println(saleArray[i]);
