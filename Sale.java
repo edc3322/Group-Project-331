@@ -6,6 +6,7 @@ Authors: Zach Beatty, Eric Carter, Mercy Clemente, Michael Corcoran & Troy Godda
 package group.project;
 
 public class Sale {
+   private static int saleCount = 3000;
    private  int saleID;
    String  itemName;
    public double sellingPrice;
@@ -14,9 +15,10 @@ public class Sale {
    public String date;
     
    
-    public Sale (int saleID, String itemName, double sellingPrice, int quantity, String customer, String date)
+    public Sale (String itemName, double sellingPrice, int quantity, String customer, String date)
     {
-        this.saleID = saleID;
+        this.saleID = saleCount;
+        saleCount++;
         this.itemName=itemName;
         this.sellingPrice = sellingPrice;
         this.quantity = quantity;
