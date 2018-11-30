@@ -36,70 +36,42 @@ public class Main {
         Item[] itemArray = new Item[10];
         
         //Prepopulating Item 
-        itemArray[0] = new Item(itemID, "Lamp", 1.5, "Gold lamp", 9.99, 20.99, 10);
-        itemID++;
-        itemArray[1] = new Item(itemID, "Table", 15, "Side table", 13.50, 30, 5);
-       itemID++;
-        itemArray[2] = new Item(itemID, "Sofa", 100, "Grey sofa", 200, 599.00, 3);
-       itemID++;
-        itemArray[3] = new Item(itemID, "Chair", 45, "Set of 4 chairs", 80, 300, 20);
-       itemID++;
-        itemArray[4] = new Item (itemID, "Desk", 25, "Black desk", 35.50, 89.90, 4);
-       itemID++;
-        itemArray[5] = new Item(itemID, "Desk Light", 3, "Gold desk lamp", 
-                4.50, 15.00, 6);
-       itemID++;
-        itemArray[6] = new Item(itemID, "Dining Table", 55, "Round Dining "
-             + "Table", 90, 150.00, 2);
-       itemID++;
-        itemArray[7] = new Item(itemID, "Basket", 1, "Round basket", 10, 22, 15);
-       itemID++;
-        itemArray[8] = new Item (itemID, "Bookshelf", 35, "Black Bookshelf", 
-        55.50, 110, 3);
-       itemID++;
-        itemArray[9] = new Item(itemID, "2 Candles", 3.5, "Set of 2 candles", 7, 
-        40, 10);
-       itemID++;
+        itemArray[0] = new Item("Lamp", 1.5, "Gold lamp", 9.99, 20.99, 10);
+        itemArray[1] = new Item("Table", 15, "Side table", 13.50, 30, 5);
+        itemArray[2] = new Item("Sofa", 100, "Grey sofa", 200, 599.00, 3);
+        itemArray[3] = new Item("Chair", 45, "Set of 4 chairs", 80, 300, 20);
+        itemArray[4] = new Item ("Desk", 25, "Black desk", 35.50, 89.90, 4);
+        itemArray[5] = new Item("Desk Light", 3, "Gold desk lamp", 4.50, 15.00, 6);
+        itemArray[6] = new Item("Dining Table", 55, "Round Dining Table", 90, 150.00, 2);
+        itemArray[7] = new Item("Basket", 1, "Round basket", 10, 22, 15);
+        itemArray[8] = new Item("Bookshelf", 35, "Black Bookshelf", 55.50, 110, 3);
+        itemArray[9] = new Item('"2 Candles", 3.5, "Set of 2 candles", 7, 40, 10);
         
         //Prepopulating Customer
-        customerArray[0] = new Customer(cID, "Tom", "Jones", "Harrisonburg", "VA",
-        "800 S. Main St.", 22807, 5408994545L);  
-       cID++;
-        customerArray[1] = new Customer (cID, "Evan", "Thompson", "Fairfax", "VA",
+        customerArray[0] = new Customer("Tom", "Jones", "Harrisonburg", "VA", "800 S. Main St.", 22807, 5408994545L);  
+        customerArray[1] = new Customer("Evan", "Thompson", "Fairfax", "VA",
         "1932 Prince William", 22726, 7056785968L);
-       cID++;
-        customerArray[2] = new Customer (cID, "Jim", "Smith", "Arlington", "VA",
+        customerArray[2] = new Customer ("Jim", "Smith", "Arlington", "VA",
         "775 Edward St", 07675, 2015647857L); 
-       cID++;
-        customerArray[3] = new Customer(cID, "Kate", "Andrews","Springfield","VA",
+        customerArray[3] = new Customer("Kate", "Andrews","Springfield","VA",
         "1032 Rustic St", 22676, 2745638976L);
-       cID++;
-        customerArray[4] = new Customer(cID, "Rob", "Sousa", "Fairfax", "VA",
+        customerArray[4] = new Customer("Rob", "Sousa", "Fairfax", "VA",
         "45 Market Blvd", 89867, 3345789084L); 
-       cID++;
         
        //prepopulating Sale
-       saleArray[0] = new Sale (saleID, "lamp", 20.99, 3, "Tom Jones", "10/11/2018");
-       saleID++;
-       saleArray[1] = new Sale (saleID, "chair", 300.00, 1, customerArray[3].firstName + " " + customerArray[3].lastName, "8/23/2017");
-       saleID++;
-       saleArray[2] = new Sale (saleID, "bookshelf", 110, 2, customerArray[4].firstName + " " + customerArray[4].lastName, "11/1/2018");
-       saleID++;
-       saleArray[3] = new Sale(saleID, "sofa", 599, 2, customerArray[2].firstName + " " + customerArray[2].lastName, "9/30/2018");
-       saleID++;
-       saleArray[4] = new Sale(saleID, "desk", 89.90, 1, customerArray[1].firstName + " " + customerArray[1].lastName, "9/1/2018"); 
-       saleID++;
+       saleArray[0] = new Sale ("lamp", 20.99, 3, "Tom Jones", "10/11/2018");
+       saleArray[1] = new Sale ("chair", 300.00, 1, customerArray[3].firstName + " " + customerArray[3].lastName, "8/23/2017");
+       saleArray[2] = new Sale ("bookshelf", 110, 2, customerArray[4].firstName + " " + customerArray[4].lastName, "11/1/2018");
+       saleArray[3] = new Sale("sofa", 599, 2, customerArray[2].firstName + " " + customerArray[2].lastName, "9/30/2018");
+       saleArray[4] = new Sale("desk", 89.90, 1, customerArray[1].firstName + " " + customerArray[1].lastName, "9/1/2018"); 
            
         //prepopulating Vendor
-        vendorArray[0] = new Vendor(vID, "Wayfair", "11 Jones St.", "McLean", "VA",
+        vendorArray[0] = new Vendor("Wayfair", "11 Jones St.", "McLean", "VA",
         22893, 7578994544L); 
-       vID++;
-        vendorArray[1] = new Vendor(vID, "West Elm", "45 Washington St", "Georges",
+        vendorArray[1] = new Vendor("West Elm", "45 Washington St", "Georges",
         "MD", 44876, 9397578844L);
-       vID++;
-        vendorArray[2] = new Vendor(vID, "Restoration", "44 Oakland Ave", "Bergen", 
+        vendorArray[2] = new Vendor("Restoration", "44 Oakland Ave", "Bergen", 
         "NJ", 20154, 3013738999L);
-       vID++;
         
         //menu
         do{  
