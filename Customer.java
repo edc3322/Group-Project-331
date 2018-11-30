@@ -8,12 +8,13 @@ package group.project;
 
 public class Customer 
 {
+  private static int customerCount = 1000;
   private int cId;
   public int zip;
   public long phoneNumber;
   public String firstName, lastName, city, state, street;
     
-public Customer(int cId, String firstName, String lastName, String city, String state, 
+public Customer(String firstName, String lastName, String city, String state, 
          String street, int zip, long phoneNumber)
     {
         this.firstName = firstName;
@@ -23,7 +24,8 @@ public Customer(int cId, String firstName, String lastName, String city, String 
         this.street = street; 
         this.zip = zip;
         this.phoneNumber = phoneNumber;
-        this.cId = cId;
+        this.cId = customerCount;
+        customerCount++;
     }
     
     // setter for firstName for editing customerss
