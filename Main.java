@@ -31,16 +31,16 @@ public class Main {
         Item[] itemArray = new Item[10];
         
         //Prepopulating Item 
-        itemArray[0] = new Item("Lamp", 1.5, "Gold lamp", 9.99, 20.99, 10);
-        itemArray[1] = new Item("Table", 15, "Side table", 13.50, 30, 5);
-        itemArray[2] = new Item("Sofa", 100, "Grey sofa", 200, 599.00, 3);
-        itemArray[3] = new Item("Chair", 45, "Set of 4 chairs", 80, 300, 20);
-        itemArray[4] = new Item ("Desk", 25, "Black desk", 35.50, 89.90, 4);
-        itemArray[5] = new Item("Desk Light", 3, "Gold desk lamp", 4.50, 15.00, 6);
-        itemArray[6] = new Item("Dining Table", 55, "Round Dining Table", 90, 150.00, 2);
-        itemArray[7] = new Item("Basket", 1, "Round basket", 10, 22, 15);
-        itemArray[8] = new Item("Bookshelf", 35, "Black Bookshelf", 55.50, 110, 3);
-        itemArray[9] = new Item("2 Candles", 3.5, "Set of 2 candles", 7, 40, 10);
+        itemArray[0] = new Item("Lamp", 1.5, "Gold lamp", 9.99, 10);
+        itemArray[1] = new Item("Table", 15, "Side table", 13.50, 5);
+        itemArray[2] = new Item("Sofa", 100, "Grey sofa", 200, 3);
+        itemArray[3] = new Item("Chair", 45, "Set of 4 chairs", 80, 20);
+        itemArray[4] = new Item ("Desk", 25, "Black desk", 35.50, 4);
+        itemArray[5] = new Item("Desk Light", 3, "Gold desk lamp", 4.50, 6);
+        itemArray[6] = new Item("Dining Table", 55, "Round Dining Table", 90, 2);
+        itemArray[7] = new Item("Basket", 1, "Round basket", 10, 15);
+        itemArray[8] = new Item("Bookshelf", 35, "Black Bookshelf", 55.50, 3);
+        itemArray[9] = new Item("2 Candles", 3.5, "Set of 2 candles", 7, 10);
         
         //Prepopulating Customer
         customerArray[0] = new Customer("Tom", "Jones", "Harrisonburg", "VA", "800 S. Main St.", 22807, 5408994545L);  
@@ -184,10 +184,10 @@ public class Main {
         //print receipt
          case 6: 
         {
-            System.out.println("Sale IDs range from 3000 to " + (saleID - 1));
+            System.out.println("Sale IDs range from 3000 to " + (saleArray[0].getCount() - 1));
             salesList(saleArray);
             int IDChoice = in.nextInt();
-            if (IDChoice < saleID && IDChoice >= 3000)
+            if (IDChoice < saleArray[0].getCount() && IDChoice >= 3000)
             {
                 saleArray[IDChoice - 3000].printReceipt();
             }
@@ -208,7 +208,6 @@ public class Main {
         }  while (choice != 7);//end loop
  
     }
-
 //Method for main menu 
 public static void mainMenu()
  {
@@ -233,7 +232,6 @@ public static void editMenu ()
      + "\n1. Edit Existing Customer:\n2. Edit Existing Inventory Item: \n3. "
      + "Edit Existing Vendor: \nEnter Your Choice: #");
 }
-
 //Method for Customer purchase history
 public static void customerPurchaseHistory(Customer[] customerArray, Item[] 
         itemArray, Sale[] saleArray)
@@ -242,7 +240,6 @@ public static void customerPurchaseHistory(Customer[] customerArray, Item[]
     customerList(customerArray);
     Scanner in = new Scanner (System.in);
     int selection = in.nextInt();
-
     System.out.printf("%-12s" + " %-16s" + " %-16s" + " %-20s" 
     + " %-12s" + " %-12s\n", "Item ID", "Item Name", "Item Weight", 
     "Description", "Cost", "Sold For"); 
@@ -320,9 +317,8 @@ public static void customerPurchaseHistory(Customer[] customerArray, Item[]
             System.out.println("Phone Number: ");
             phoneNumber = scan.nextLong(); 
         }
-        Customer newC = new Customer(cID, firstName, lastName, city, state, 
+        Customer newC = new Customer(firstName, lastName, city, state, 
                 street, zip, phoneNumber);
-     cID++;
         return newC;
     }
     
@@ -384,7 +380,6 @@ public static void editCustomer(Customer c1)
                     c1.setZip(scanInt);
                     break;
                 }
-
                 case 4:
                 {
                     System.out.print("Enter the new Phone Number:");
@@ -415,8 +410,8 @@ public static void editCustomer(Customer c1)
         {
           System.out.println("Select From the Following:\n---------------------"
           + "------\n1. Edit the Name:\n2. Edit the Weight:\n3. Edit the Descripti"
-          + "on:\n4. Edit the Purchase Price:\n5. Edit the Selling Price:"
-          + "\n6. Edit the quantity" + "\n7. Exit"
+          + "on:\n4. Edit the Purchase Price:"
+          + "\n5. Edit the quantity" + "\n7. Exit"
           + "Enter Your Choice: ");
      
             int menu = scan.nextInt();
@@ -451,20 +446,14 @@ public static void editCustomer(Customer c1)
                    i1.setpurchasePrice(newPPrice);
                    break;
                 }
+
                 case 5:
-                {
-                    System.out.print("Enter the new selling price: $");
-                    double newSPrice = scan.nextDouble();
-                    i1.setSellingPrice(newSPrice);
-                    break;
-                }
-                case 6:
                 {
                     System.out.print("Enter the new quantity: ");
                     double newQuantity = scan.nextDouble();
                     i1.setQuantity(newQuantity);
                 }
-                case 7:
+                case 6:
                 {
                     run = false;
                     break;
@@ -491,7 +480,6 @@ public static Sale addSale()
         System.out.println("Enter a valid Item Name:");
         itemName = scan.nextLine();
     }
-
     System.out.println("Selling Price: ");
     double sellingPrice = scan.nextDouble();
     if(sellingPrice==0)
@@ -499,7 +487,6 @@ public static Sale addSale()
         System.out.println("Enter a valid selling price:");
         sellingPrice=scan.nextDouble();
     }
-
     System.out.println("Quantity: ");
     int quantity = scan.nextInt();
     if(quantity==0)
@@ -507,7 +494,6 @@ public static Sale addSale()
         System.out.println("Enter a valid Quantity:");
         quantity=scan.nextInt();
     }
-
     System.out.println("Customer name: ");
     String customer = scan.nextLine();
     if(customer.length()==0)
@@ -515,11 +501,9 @@ public static Sale addSale()
         System.out.println("Enter a valid Customer Name:");
         customer=scan.nextLine();
     }
-
     System.out.println("Date of Sale: ");
     String date = scan.nextLine();
-    Sale newS = new Sale(saleID, itemName, sellingPrice, quantity, customer, date);
-    saleID++;
+    Sale newS = new Sale(itemName, sellingPrice, quantity, customer, date);
     return newS;
 }    
         
@@ -563,12 +547,10 @@ public static Vendor addVendor()
             System.out.println("Phone Number: ");
             phoneNumber = scan.nextLong(); 
         }
-        Vendor v = new Vendor(vID, businessName, street, city, state, zip, 
+        Vendor v = new Vendor(businessName, street, city, state, zip, 
                 phoneNumber);
-        vID++;
         return v;
     }
-
 //method for editing a vendor
 public static void editVendor(Vendor v1)
     {
@@ -688,9 +670,8 @@ public static void editVendor(Vendor v1)
             quantity = scan.nextDouble();
         }
         
-        Item returnItem = new Item(itemID, itemName, itemWeight,itemDescription,
-                pPrice, sellingPrice, quantity);
-        itemID++;
+        Item returnItem = new Item(itemName, itemWeight,itemDescription,
+                pPrice, quantity);
         return returnItem;
     }
  
