@@ -79,19 +79,19 @@ public class Main {
                 case 1:
                     
                     customerPurchaseHistory(customerArray, itemArray, saleArray);
-                    choice2 = in.nextInt();
+                    //choice2 = in.nextInt();
                 break;
             //item purchase history
                 case 2:
                     itemPurchaseHistory(itemArray, saleArray);
-                    mainMenu(); 
-                    choice =in.nextInt();
+                    //mainMenu(); 
+                    //choice =in.nextInt();
                     break;
             //current inventory levels
                 case 3:
                     printCurrInventory(itemArray);
-                    mainMenu(); 
-                    choice =in.nextInt();
+                    //mainMenu(); 
+                    //choice =in.nextInt();
                     break;
             //create new menu
                 case 4:
