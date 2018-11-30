@@ -8,11 +8,6 @@ Authors: Zach Beatty, Eric Carter, Mercy Clemente, Michael Corcoran & Troy Godda
 
 import java.util.*;
 public class Main {
-  public static int cID = 1000; // ID for the customer objects begins at 1000
-  public static int rID = 2000; // ID for the contractor objects begins at 2000
-  public static int saleID = 3000; // ID for the sale objects begins at 3000
-  public static int itemID = 4000; // ID for the item objects begins at 4000
-  public static int vID = 5000; // ID for the vendor objects begins at 5000
  
       public static void main(String[] args) {
         
