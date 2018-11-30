@@ -8,11 +8,12 @@ package group.project;
 public class Vendor 
 {
    private int vID;
+   private static int vendorCount = 5000;
    public String businessName,  street, city, state;
    public long phoneNumber;
    public int zip; 
     
-public Vendor(int vID, String businessName, String street, String city, 
+public Vendor(String businessName, String street, String city, 
         String state, int zip, long phoneNumber)
     {
         this.businessName = businessName;
@@ -21,7 +22,8 @@ public Vendor(int vID, String businessName, String street, String city,
         this.state = state;
         this.zip = zip; 
         this.phoneNumber = phoneNumber;
-        this.vID=vID;
+        this.vID=vendorCount;
+        vendorCount++;
     }
     
     public void setBusinessName(String newName)
