@@ -7,13 +7,14 @@ package group.project;
 
 public class Contractor extends Customer 
 {
+    private static int contractorCount = 6000;
     private int contractorID;
     public String contractorName; 
     public long contractorNumber; 
     public String contractorAddress; 
     Customer firstName; 
     
-public Contractor (int contractorID, String firstName, String lastName, String city, String street, 
+public Contractor (String firstName, String lastName, String city, String street, 
         String state, int zip, String contractorName, long contractorNumber, 
         String contractorAddress)
     {
@@ -21,7 +22,8 @@ public Contractor (int contractorID, String firstName, String lastName, String c
         this.contractorName = contractorName;
         this.contractorNumber = contractorNumber;
         this.contractorAddress = contractorAddress; 
-        this.contractorID++;
+        this.contractorID = contractorCount;
+        contractorCount++;
     }
     
     //setting the contractor company name
