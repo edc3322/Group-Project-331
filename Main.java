@@ -40,7 +40,7 @@ public class Main {
         itemArray[6] = new Item("Dining Table", 55, "Round Dining Table", 90, 150.00, 2);
         itemArray[7] = new Item("Basket", 1, "Round basket", 10, 22, 15);
         itemArray[8] = new Item("Bookshelf", 35, "Black Bookshelf", 55.50, 110, 3);
-        itemArray[9] = new Item('"2 Candles", 3.5, "Set of 2 candles", 7, 40, 10);
+        itemArray[9] = new Item("2 Candles", 3.5, "Set of 2 candles", 7, 40, 10);
         
         //Prepopulating Customer
         customerArray[0] = new Customer("Tom", "Jones", "Harrisonburg", "VA", "800 S. Main St.", 22807, 5408994545L);  
