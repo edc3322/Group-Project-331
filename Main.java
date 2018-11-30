@@ -106,8 +106,8 @@ public class Main {
                             customerArray.length + 1); // resizes the customerArray
                             customerArray[customerCount] = addCustomer();
                             customerCount++;
-                            mainMenu(); 
-                            choice =in.nextInt();
+                            //mainMenu(); 
+                            //choice =in.nextInt();
                             break;
                     //create vendor
                         case 2:
@@ -115,28 +115,28 @@ public class Main {
                             vendorArray.length + 1);
                             vendorArray[vendorCount] = addVendor();
                             vendorCount++;
-                            mainMenu(); 
-                            choice =in.nextInt();
+                            //mainMenu(); 
+                            //choice =in.nextInt();
                             break;
                     //create inventory item
                         case 3:
                             itemArray = Arrays.copyOf(itemArray, itemArray.length + 1);
                             itemArray[itemCount] = addItem();
                             itemCount++;
-                            mainMenu(); 
-                            choice =in.nextInt();
+                            //mainMenu(); 
+                            //choice =in.nextInt();
                             break;
                     //create sale
                         case 4:
                             saleArray = Arrays.copyOf(saleArray, saleArray.length + 1);
                             saleArray[saleCount] = addSale();
                             saleCount++;
-                            mainMenu(); 
-                            choice =in.nextInt();
+                            //mainMenu(); 
+                            //choice =in.nextInt();
                             break;
                         default:
-                            mainMenu(); 
-                            choice =in.nextInt();
+                            //mainMenu(); 
+                            //choice =in.nextInt();
                             break;
                     }
                     break;
@@ -156,28 +156,28 @@ public class Main {
                     customerList(customerArray);
                     customerSelect = in.nextInt();
                     editCustomer(customerArray[customerSelect - 1000]);
-                    mainMenu(); 
-                    choice =in.nextInt();
+                    //mainMenu(); 
+                    //choice =in.nextInt();
                     break;
             //edit existing inventory item
                 case 2:
                     itemList(itemArray);
                     inventorySelect = in.nextInt();
                     editInventory(itemArray[inventorySelect - 4000]);
-                    mainMenu(); 
-                    choice = in.nextInt();
+                    //mainMenu(); 
+                    //choice = in.nextInt();
                     break;
             //edit existing vendor
                 case 3:
                     vendorList(vendorArray); 
                     vendorSelect = in.nextInt();
                     editVendor(vendorArray[vendorSelect - 5000]);
-                    mainMenu(); 
-                    choice = in.nextInt();
+                    //mainMenu(); 
+                    //choice = in.nextInt();
                     break;
                 default:
-                    mainMenu(); 
-                    choice =in.nextInt();
+                    //mainMenu(); 
+                    //choice =in.nextInt();
                     break;
             }
         }
@@ -193,16 +193,16 @@ public class Main {
             }
             else
                 System.out.println("Invalid input");
-            mainMenu(); 
-                    choice =in.nextInt();
+                //mainMenu(); 
+                    //choice =in.nextInt();
             break;
          }
          case 7:
              System.exit(0);
              break;
         default:
-                mainMenu(); 
-                    choice =in.nextInt();
+                //mainMenu(); 
+                    //choice =in.nextInt();
             break;
          } 
         }  while (choice != 7);//end loop
