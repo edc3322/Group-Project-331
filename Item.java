@@ -14,15 +14,17 @@ public double weight;
 public String description;
 private double purchasePrice;
 public double sellingPrice;
+public double quantity;
 
 public Item(String itemName, double weight, String description, 
-        double purchasePrice, double sellingPrice)
+        double purchasePrice, double sellingPrice, double quantity)
 {
 	this.itemName = itemName;
 	this.weight = weight;
 	this.description = description;
 	this.purchasePrice = purchasePrice;
-        this.sellingPrice = sellingPrice; 
+        this.sellingPrice = sellingPrice;
+	this.quantity = quantity;
 	this.itemID=itemCount;
 	itemCount++;
 }
@@ -84,12 +86,21 @@ public double getWeight()
 {
     return this.weight;
 }
+
+public double setQuantity(double quantity)
+{
+     this.quantity = quantity;
+}	
+	
+public double getQuantity()
+{
+	return this.quantity;
+}
+	
 	@Override
 public String toString()
 {
-    String returnString = String.format("%-12d" + " %-16s" + " %-16.2f" + " %-20s" 
-    + " %-12.2f" + " %-12.2f", this.itemID, this.itemName, this.weight, 
-    this.description, this.purchasePrice, this.sellingPrice);
+    String returnString = String.format("%-12d" + " %-16s" + " %-16.2f", this.itemID, this.itemName, this.quantity);
     return returnString;
 }
 	
