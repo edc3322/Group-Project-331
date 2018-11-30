@@ -13,17 +13,15 @@ public String itemName;
 public double weight;
 public String description;
 private double purchasePrice;
-public double sellingPrice;
 public double quantity;
 
 public Item(String itemName, double weight, String description, 
-        double purchasePrice, double sellingPrice, double quantity)
+        double purchasePrice,  double quantity)
 {
 	this.itemName = itemName;
 	this.weight = weight;
 	this.description = description;
 	this.purchasePrice = purchasePrice;
-        this.sellingPrice = sellingPrice;
 	this.quantity = quantity;
 	this.itemID=itemCount;
 	itemCount++;
@@ -53,15 +51,7 @@ public int getItemID()
     return this.itemID;
 }
 
-public void setSellingPrice (double sellingPrice)
-{
-    this.sellingPrice=sellingPrice;
-}
 
-public double getSellingPrice()
-{
-    return this.sellingPrice;
-}
 public boolean setpurchasePrice(double purchasePrice)
 {
     if (purchasePrice > 0)
@@ -87,7 +77,7 @@ public double getWeight()
     return this.weight;
 }
 
-public double setQuantity(double quantity)
+public void setQuantity(double quantity)
 {
      this.quantity = quantity;
 }	
