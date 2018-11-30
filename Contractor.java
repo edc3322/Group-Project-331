@@ -18,7 +18,7 @@ public Contractor (String firstName, String lastName, String city, String street
         String state, int zip, String contractorName, long contractorNumber, 
         String contractorAddress)
     {
-        super(contractorID, firstName, lastName, city, state, street, zip, contractorNumber);
+        super(firstName, lastName, city, state, street, zip, contractorNumber);
         this.contractorName = contractorName;
         this.contractorNumber = contractorNumber;
         this.contractorAddress = contractorAddress; 
