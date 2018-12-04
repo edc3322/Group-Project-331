@@ -16,7 +16,10 @@ import javafx.stage.Stage;
 
 
 public class MainApp extends Application {
-   //Declaring neccessary fields, labels, etc.
+
+    @Override
+    public void start(Stage primaryStage) {
+       //Declaring neccessary fields, labels, etc.
     TextField txtFName = new TextField();
     TextField txtLName = new TextField();
     TextField txtStreet = new TextField();
@@ -28,6 +31,8 @@ public class MainApp extends Application {
     TextField txtDescription = new TextField();
     TextField txtPurchasePrice = new TextField();
     TextField txtSellingPrice = new TextField();
+    TextField txtQuantity = new TextField();
+    TextField txtCustomerName = new TextField();
     Label lblItem = new Label("Item Name: ");
     Label lblWeight = new Label("Item Weight: ");
     Label lblDescription = new Label ("Item Description: ");
@@ -41,14 +46,22 @@ public class MainApp extends Application {
     Label lblZip = new Label ("Zip");
     Label lblPhone = new Label ("Phone Number:");
     Label lblNotes = new Label("Enter Any Necessary Notes:");
+    Label lblQuantity = new Label("Quantity:");
+    Label lblCustomerName = new Label("Customer Name:");
     TextArea taNotes = new TextArea();
     ScrollPane notesScrollPane = new ScrollPane(taNotes);
     ObservableList olState = FXCollections.observableArrayList();
-  
+    
+    Button btnCustPurchase = new Button("Go to Customer Purchase History"); 
+    Button btnItemPurch = new Button("Go to Item Purchase History");
+    Button btnCurrentInv = new Button ("Go to Current Inventory Levels");
+    Button btnCreateMenu = new Button ("Go to the 'Create' Menu");
+    Button btnEdit = new Button ("Go to  the 'Edit' Menu"); 
+    Button btnPrint = new Button("Print Receipt");
+    Button btnExit = new Button ("Exit"); 
+
     ComboBox cmboStates = new ComboBox(olState);
     
-    @Override
-    public void start(Stage primaryStage) {
     taNotes.setWrapText(true);    
 //Filling observable list 
     olState.add("AL - Alabama");
@@ -183,6 +196,31 @@ public class MainApp extends Application {
         vendorPane.setHgap(20);
         vendorPane.setVgap(20);   
         
+//Create new sale menu 
+        GridPane salePane = new GridPane();
+        salePane.setAlignment(Pos.CENTER);
+        Stage saleStage = new Stage();
+        Scene saleScene = new Scene(salePane,400,400);
+        saleStage.setTitle("Create New Sale");
+        saleStage.setScene(saleScene);
+        Button btnSaleExit = new Button ("Exit");
+        salePane.add(lblItem,0,0);
+        salePane.add(lblSellingPrice,0,1);
+        salePane.add(lblQuantity, 0,2); 
+        salePane.add(lblCustomerName,0,3);
+        salePane.add(txtItem, 1,0);
+        salePane.add(txtSellingPrice,1,1);
+        salePane.add(txtQuantity,1,2);
+        salePane.add(txtCustomerName,1,3);
+        salePane.add(btnSaleExit,1,4);
+        btnCreateSale.setOnAction(e ->{
+            saleStage.show();
+        });
+        btnSaleExit.setOnAction(e ->{
+            saleStage.close();
+        });
+        salePane.setHgap(20);
+        salePane.setVgap(20);
 //Create new item menu 
         GridPane createItemPane = new GridPane();
         createItemPane.setAlignment(Pos.CENTER);
@@ -211,6 +249,7 @@ public class MainApp extends Application {
         });
             createItemPane.setHgap(20);
             createItemPane.setVgap(20);
+            
 //Creating the new customer 
         GridPane createCustPane = new GridPane();
         createCustPane.setAlignment(Pos.CENTER);
@@ -257,15 +296,46 @@ public class MainApp extends Application {
         Scene editScene = new Scene(editPane, 400,400);
         editStage.setTitle("Edit Menu Options");
         editStage.setScene(editScene); 
+        Button btnEditExit = new Button("Exit");
+        Button btnEditCustomer = new Button("Edit Customer");
+        Button btnEditItem = new Button ("Edit Item");
+        Button btnEditSale = new Button ("Edit Sale");
+        Button btnEditVendor = new Button ("Edit Vendor"); 
+        editPane.add(btnEditCustomer,0,0);
+        editPane.add(btnEditItem, 0,1);
+        editPane.add(btnEditSale,0,2);
+        editPane.add(btnEditVendor,0,3);
+        editPane.add(btnEditExit,0,4);
+        btnEdit.setOnAction(e -> {
+          editStage.show();  
+        });
+        btnEditExit.setOnAction (e -> {
+            editStage.close();
+        }); 
+        editPane.setHgap(20);
+        editPane.setVgap(20);
         
-        
-  //Creating the pane, stage, and scene for the print receipt option
+  //Creating print receipt option
         GridPane printReceiptPane = new GridPane();
         printReceiptPane.setAlignment(Pos.CENTER);
         Stage printReceiptStage = new Stage();
-        Scene printReceiptScene = new Scene(printReceiptPane, 400,400);
+        Scene printReceiptScene = new Scene(printReceiptPane, 550,400);
         printReceiptStage.setTitle("Print Receipt");
         printReceiptStage.setScene(printReceiptScene); 
+        TextArea taReceipt = new TextArea(); 
+        taReceipt.setWrapText(true);
+        Label lblTitle = new Label ("Printing Receipt");
+        Button btnPrintExit = new Button ("Exit");
+        ScrollPane receiptScrollPane = new ScrollPane (taReceipt);
+        printReceiptPane.add(lblTitle,0,0);
+        printReceiptPane.add(receiptScrollPane,0,1);
+        printReceiptPane.add(btnPrintExit,0,2);
+        btnPrint.setOnAction(e -> {
+            printReceiptStage.show();
+        });
+        btnPrintExit.setOnAction(e ->{
+            printReceiptStage.close();
+        });
 
   //Main Menu 
         Label lblMain = new Label (" Valley Depot's Main Menu"); 
@@ -276,14 +346,6 @@ public class MainApp extends Application {
         primaryStage.setTitle("Valley Depot System");
         primaryStage.setScene(primaryScene);
         primaryStage.show();
-        Button btnCustPurchase = new Button("Go to Customer Purchase History"); 
-        Button btnItemPurch = new Button("Go to Item Purchase History");
-        Button btnCurrentInv = new Button ("Go to Current Inventory Levels");
-        Button btnCreateMenu = new Button ("Go to the 'Create' Menu");
-        Button btnEdit = new Button ("Go to  the 'Edit' Menu"); 
-        Button btnPrint = new Button("Print Receipt");
-        Button btnExit = new Button ("Exit"); 
-
         primaryPane.add(btnCustPurchase,1,1); 
         primaryPane.add(btnItemPurch,1,2);
         primaryPane.add(btnCurrentInv,1,3);
