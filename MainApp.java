@@ -19,7 +19,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-       //Declaring neccessary fields, labels, etc.
+  // Declaring neccessary fields, labels, etc.
     TextField txtFName = new TextField();
     TextField txtLName = new TextField();
     TextField txtStreet = new TextField();
@@ -59,9 +59,7 @@ public class MainApp extends Application {
     Button btnEdit = new Button ("Go to  the 'Edit' Menu"); 
     Button btnPrint = new Button("Print Receipt");
     Button btnExit = new Button ("Exit"); 
-
-    ComboBox cmboStates = new ComboBox(olState);
-    
+    ComboBox cmboStates = new ComboBox(olState);    
     taNotes.setWrapText(true);    
 //Filling observable list 
     olState.add("AL - Alabama");
@@ -115,7 +113,7 @@ public class MainApp extends Application {
     olState.add("WI - Wisconsin");
     olState.add("WY - Wyoming");
     
-        //Creating the pane stage and scene for customer purchase history 
+  //Creating the pane stage and scene for customer purchase history 
         GridPane custPurchPane = new GridPane();
         custPurchPane.setAlignment(Pos.CENTER);
         Stage custPurchStage = new Stage();
@@ -123,7 +121,7 @@ public class MainApp extends Application {
         custPurchStage.setTitle("Customer Purchase History");
         custPurchStage.setScene(custPurchScene);
         
-        //Creating the pane, stage, and scene for item purchase history
+  //Creating the pane, stage, and scene for item purchase history
         GridPane itemPurchPane = new GridPane();
         itemPurchPane.setAlignment(Pos.CENTER);
         Stage itemPurchStage = new Stage();
@@ -131,15 +129,29 @@ public class MainApp extends Application {
         itemPurchStage.setTitle("Item Purchase History");
         itemPurchStage.setScene(itemPurchScene); 
         
-        //Creating the pane, stage, and scene for the current inventory 
+  //Creating the current inventory 
         GridPane currentInvPane = new GridPane();
         currentInvPane.setAlignment(Pos.CENTER);
         Stage currentInvStage = new Stage();
         Scene currentInvScene = new Scene(currentInvPane, 400,400);
         currentInvStage.setTitle("Current Inventory Levels");
         currentInvStage.setScene(currentInvScene); 
-        
-        //Create menu 
+        TextArea taInventory = new TextArea();
+         Button btnExitInventory = new Button("Exit");
+        Label lblInventory = new Label("Current Inventory Levels:");
+        ScrollPane inventoryScrollPane = new ScrollPane(taInventory);
+        currentInvPane.add(lblInventory,0,0);
+        currentInvPane.add(inventoryScrollPane,0,1);
+        currentInvPane.add(btnExitInventory,0,2);
+        btnCurrentInv.setOnAction(e ->{
+            currentInvStage.show();
+        });
+        btnExitInventory.setOnAction(e ->{
+            currentInvStage.close();
+        });
+        currentInvPane.setVgap(20);
+        currentInvPane.setHgap(20);
+  //Create menu 
         GridPane createPane = new GridPane();
         createPane.setAlignment(Pos.CENTER);
         Stage createStage = new Stage();
