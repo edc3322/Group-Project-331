@@ -501,5 +501,520 @@ public class MainApp extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+    public static void customerPurchaseHistory(Customer[] customerArray, Item[] 
+        itemArray, Sale[] saleArray)
+{
+    boolean bought = false;
+    customerList(customerArray);
+    Scanner in = new Scanner (System.in);
+    int selection = in.nextInt();
+    System.out.printf("%-12s" + " %-16s" + " %-16s" + " %-20s" 
+    + " %-12s" + " %-12s\n", "Item ID", "Item Name", "Item Weight", 
+    "Description", "Cost", "Sold For"); 
     
+    String testName = customerArray[selection - 1000].firstName +  " " + customerArray[selection - 1000].lastName;
+            for (int i=0; i < saleArray.length; i++)
+            {
+                if(testName.equalsIgnoreCase(saleArray[i].customer))
+                {
+                    System.out.printf(itemArray[i].toString());
+                    System.out.println();
+                    bought = true;
+                }
+            }
+            if (!bought)
+            {
+                System.out.println("===============  NO ITEMS TO SHOW  ===============");
+            }
+}
+//method for creating a customer
+    public static Customer addCustomer()
+    { 
+        Scanner scan = new Scanner(System.in);
+        System.out.print("First Name: ");
+        String firstName = scan.nextLine();
+        if (firstName.length()==0)
+        {
+            System.out.println("Please Enter a valid input");
+            System.out.print("First Name: ");
+            firstName = scan.nextLine();
+        }
+        
+        System.out.print("Last Name: ");
+         String lastName = scan.nextLine();
+        if (lastName.length()==0)
+        {
+            System.out.println("Please Enter a valid input");
+            System.out.print("Last Name: ");
+            lastName = scan.nextLine();
+        }
+        System.out.print("Street: ");
+         String street = scan.nextLine(); 
+        if (street.length()==0)
+        {
+            System.out.println("Please Enter a valid input");
+            System.out.print("Street: ");
+            street = scan.nextLine();
+        }
+        System.out.print("City: ");
+         String city = scan.nextLine();
+        if (city.length() ==0)
+        {
+            System.out.println("Please Enter a valid input");
+            System.out.print("City: ");
+            city = scan.nextLine();
+        }
+        
+        System.out.print("State: ");
+         String state = scan.nextLine();
+        if (state.length()==0)
+        {
+            System.out.println("Please Enter a valid input");
+            System.out.print("State: ");
+            state = scan.nextLine();
+        }
+        System.out.print("Zip Code: ");
+         int zip = scan.nextInt();
+      
+        System.out.print("Phone Number: #");
+        long phoneNumber = scan.nextLong();
+        if (String.valueOf(phoneNumber).length() <10 || String.valueOf(phoneNumber)
+                .length()>10)
+        {
+            System.out.println("Enter a valid phone number. 10 numbers long");
+            System.out.println("Phone Number: ");
+            phoneNumber = scan.nextLong(); 
+        }
+        Customer newC = new Customer(firstName, lastName, city, state, 
+                street, zip, phoneNumber);
+        return newC;
+    }
+    
+//method for editing a customer
+public static void editCustomer(Customer c1)
+    {
+        boolean run = true;
+        while(run)
+        {
+            Scanner scan = new Scanner(System.in);
+            System.out.println("Please select from the following: \n==========="
+              + "============= \n1. First Name: \n2. Last Name: \n3. Location: "
+              + "\n4. Phone Number: \n5. Exit \n Enter Your Choice: #");
+        
+            int menu = scan.nextInt();
+            String scanString = "";
+            int scanInt = 0;
+            long scanLong = 0;
+            switch(menu)
+            {
+                case 1:
+                {
+                    System.out.print("Enter the new First Name:");
+                    scan.nextLine();
+                    scanString = scan.nextLine();
+                    c1.setFirstName(scanString);
+                    break;
+                }
+                case 2:
+                {
+                    System.out.print("Enter the new Last Name:");
+                    scan.nextLine();
+                    scanString = scan.nextLine();
+                    c1.setLastName(scanString);
+                    break;
+                }
+                case 3:
+                {
+                   System.out.print("Enter the street: ");
+                    scan.nextLine();
+                    scanString = scan.nextLine();
+                    c1.setStreet(scanString); 
+                    
+                    // resets city value
+                    System.out.print("Enter the new City:"); 
+                    // to accept the <enter> from the previous scan
+                    scan.nextLine(); 
+                    scanString = scan.nextLine();
+                    c1.setCity(scanString);    
+                
+                    // resets state value
+                    System.out.print("Enter the new State:"); 
+                    scanString = scan.nextLine();
+                    c1.setState(scanString);
+                    
+                    //resets zip value 
+                    System.out.print("Enter the new Zip Code:"); 
+                    scanInt = scan.nextInt();
+                    c1.setZip(scanInt);
+                    break;
+                }
+                case 4:
+                {
+                    System.out.print("Enter the new Phone Number:");
+                    scanLong = scan.nextLong();
+                    c1.setPhoneNumber(scanInt);
+                    break;
+                }
+                case 5:
+                {
+                    run = false;
+                    break;
+                }
+                default:
+                {
+                    run = false;
+                    break;
+                }
+            }
+        }
+    }
+ 
+ //method to edit inventory item
+ public static void editInventory(Item i1)
+ {
+     Scanner scan = new Scanner(System.in);
+        boolean run = true;
+        while (run)
+        {
+          System.out.println("Select From the Following:\n---------------------"
+          + "------\n1. Edit the Name:\n2. Edit the Weight:\n3. Edit the Descripti"
+          + "on:\n4. Edit the Purchase Price:"
+          + "\n5. Edit the quantity" + "\n7. Exit"
+          + "Enter Your Choice: ");
+     
+            int menu = scan.nextInt();
+            switch(menu)
+            {
+                case 1:
+                {
+                    System.out.print("Enter the new name:");
+                    scan.nextLine();
+                    String newName = scan.nextLine();
+                    i1.setName(newName);
+                    break;
+                }
+                case 2:
+                {
+                    System.out.print("Enter the new weight:");
+                    double newWeight = scan.nextDouble();
+                    i1.setWeight(newWeight);
+                    break;
+                }
+                case 3:
+                {
+                    System.out.print("Enter the new Description:");
+                    String newDescription = scan.nextLine();
+                    i1.setDescription(newDescription);
+                   break;
+                    }
+                case 4: 
+                {
+                    System.out.print("Enter the new purchase price: $");
+                    double newPPrice = scan.nextDouble();
+                   i1.setpurchasePrice(newPPrice);
+                   break;
+                }
+
+                case 5:
+                {
+                    System.out.print("Enter the new quantity: ");
+                    double newQuantity = scan.nextDouble();
+                    i1.setQuantity(newQuantity);
+                }
+                case 6:
+                {
+                    run = false;
+                    break;
+                }
+                default:
+                {
+                    run = false;
+                    break;
+                }
+            }
+        }       
+ }
+    
+//method for adding a sale    
+public static Sale addSale()
+{
+    Scanner scan = new Scanner(System.in);
+    
+    
+    System.out.println("Item Name: ");
+    String itemName = scan.nextLine();
+    if(itemName.length()==0)
+    {
+        System.out.println("Enter a valid Item Name:");
+        itemName = scan.nextLine();
+    }
+    System.out.println("Selling Price: ");
+    double sellingPrice = scan.nextDouble();
+    if(sellingPrice==0)
+    {
+        System.out.println("Enter a valid selling price:");
+        sellingPrice=scan.nextDouble();
+    }
+    System.out.println("Quantity: ");
+    int quantity = scan.nextInt();
+    if(quantity==0)
+    {
+        System.out.println("Enter a valid Quantity:");
+        quantity=scan.nextInt();
+    }
+    System.out.println("Customer name: ");
+    String customer = scan.nextLine();
+    if(customer.length()==0)
+    {
+        System.out.println("Enter a valid Customer Name:");
+        customer=scan.nextLine();
+    }
+    System.out.println("Date of Sale: ");
+    String date = scan.nextLine();
+    Sale newS = new Sale(itemName, sellingPrice, quantity, customer, date);
+    return newS;
+}    
+        
+//method for adding a vendor
+public static Vendor addVendor()
+    {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Business Name: ");
+        String businessName = scan.nextLine();
+        if(businessName.length()==0)
+        {
+            System.out.println("Enter a valid Business Name:");
+            businessName=scan.nextLine(); 
+        }
+        System.out.print("Street: ");
+        String street = scan.nextLine(); 
+        if(street.length() ==0)
+        {
+            System.out.println("Enter a Valid Street: ");
+            street =scan.nextLine();
+        }
+        System.out.print("City: ");
+        String city = scan.nextLine();
+        if(city.length()==0)
+        {
+            System.out.println("Enter a valid City: ");
+            city = scan.nextLine();
+        }
+        System.out.print("State: ");
+        String state = scan.nextLine();
+        
+        System.out.print("Enter Zip: ");
+        int zip = scan.nextInt(); 
+    
+        System.out.print("Phone Number: ");
+        long phoneNumber = scan.nextLong();
+        if (String.valueOf(phoneNumber).length() <10 || String.valueOf(phoneNumber)
+                .length()>10)
+        {
+            System.out.println("Enter a valid phone number. 10 numbers long");
+            System.out.println("Phone Number: ");
+            phoneNumber = scan.nextLong(); 
+        }
+        Vendor v = new Vendor(businessName, street, city, state, zip, 
+                phoneNumber);
+        return v;
+    }
+//method for editing a vendor
+public static void editVendor(Vendor v1)
+    {
+        Scanner scan = new Scanner(System.in);
+        boolean run = true;
+        while (run)
+        {
+            System.out.println("Please select from the following: \n==========="
+             + "============\n1. Business Name: \n2. Business Address: "
+             + "\n3. Phone Number: \n4. Exit: \nEnter Your Choice: #");
+            
+            int menu = scan.nextInt();
+            switch(menu)
+            {
+                case 1:
+                {
+                    System.out.print("Enter the new name:");
+                    scan.nextLine();
+                    String newName = scan.nextLine();
+                    v1.setBusinessName(newName);
+                    break;
+                }
+                case 2:
+                {
+                    System.out.print("Enter the new street address:");
+                    scan.nextLine();
+                    String newStreet = scan.nextLine();
+                    v1.setStreet(newStreet);
+                    
+                    System.out.print("Enter the new city");
+                    //scan.nextLine();
+                    String newCity = scan.nextLine();
+                    v1.setCity(newCity);
+                    
+                    System.out.print("Enter the new state");
+                    //scan.nextLine();
+                    String newState = scan.nextLine();
+                    v1.setState(newState);
+                }
+                case 3:
+                {
+                    System.out.print("Enter the new phone number:");
+                    scan.nextLine();
+                    long newPhone = scan.nextLong();
+                    v1.setPhoneNumber(newPhone);
+                }
+                case 4:
+                {
+                    run = false;
+                    break;
+                }
+                default:
+                {
+                    run = false;
+                    break;
+                }
+            }
+        }
+    }
+  
+ //method to print current inventory levels
+    public static void printCurrInventory(Item [] itemArray)
+    {
+        System.out.println("\n========== Current Items in Inventory ========="
+        + "\n--------------------------------------------------------------");
+        System.out.printf("%-12s" + " %-16s" + " %-16s\n", "Item ID", "Item Name", "Quantity");
+            for (int i=0; i<itemArray.length; i++)
+            {
+                 System.out.println(itemArray[i]);
+            }
+            System.out.println("");
+    }
+ //method to create an item
+ public static Item addItem()
+    {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Enter the Item Name: ");
+        String itemName = scan.nextLine();
+        if(itemName.length()==0)
+        {
+            System.out.println("Enter a valid Item Name:");
+            itemName=scan.nextLine();
+        }
+        System.out.print("Enter the item weight: ");
+        double itemWeight = scan.nextDouble();
+        if(itemWeight==0.0)
+        {
+            System.out.println("Enter a valid weight:");
+            itemWeight=scan.nextDouble();
+        }
+        System.out.print("Enter the item description: ");
+        String itemDescription = scan.nextLine();
+        if(itemDescription.length()==0)
+        {
+            System.out.println("Enter a Valid Description:");
+            itemDescription=scan.nextLine();
+        }
+        System.out.print("Enter the purchase price: ");
+        double pPrice = scan.nextDouble();
+        if(pPrice ==0.0)
+        {
+            System.out.println("Enter a valid purchase price: $");
+            pPrice =scan.nextDouble(); 
+        }
+        System.out.print("Enter the Selling price: ");
+        double sellingPrice = scan.nextDouble(); 
+        if (sellingPrice ==0.0)
+        {
+            System.out.println("Enter a valid Selling Price: $");
+            sellingPrice = scan.nextDouble();
+        }
+        System.out.print("Enter the item quantity: ");
+        double quantity = scan.nextDouble();
+        if (quantity == 0.0)
+        {
+            System.out.println("Enter a valid quantity: ");
+            quantity = scan.nextDouble();
+        }
+        
+        Item returnItem = new Item(itemName, itemWeight,itemDescription,
+                pPrice, quantity);
+        return returnItem;
+    }
+ 
+  //Method for item purchase history
+ public static void itemPurchaseHistory(Item[] itemArray, Sale[] saleArray)
+ {
+    boolean sold = false;
+    Scanner in = new Scanner (System.in); 
+    int historyID=0; 
+    printCurrInventory(itemArray); 
+    System.out.print("Enter the ID to View the Item's Purchase History: #");
+    historyID=in.nextInt(); 
+    System.out.println("\tPurchase History for Item #" + historyID +"\n--------"
+    + "--------------------------------------------");
+    System.out.printf("%-12s" + " %-20s" + " %-12s" + " %-10s" 
+        + " %-20s" + " %-12s\n", "ID", "Item", "Sold for", "Quantity", "Customer", "Date");
+    
+    for(int i = 0; i < saleArray.length; i++)
+    {
+        if(saleArray[i].itemName.toUpperCase().equals(itemArray[historyID - 4000].itemName.toUpperCase()))
+        {
+            System.out.println(saleArray[i].toString());
+            sold = true;
+        }
+    }
+    if (!sold)
+    {
+        System.out.println("===============  NO ITEMS TO SHOW  ===============");
+    }
+  
+ }
+ //Method to print out the full list of customers
+ public static void customerList(Customer[] customerArray)
+    {
+        System.out.println("\tPlease Enter a Customer Number \n--------"
+        + "------------------------------------------");
+        for (int i=0; i<customerArray.length; i++)
+            {
+                 System.out.println(customerArray[i].toString());
+            }
+            System.out.println("");
+    }
+ 
+ //Method to print out the full list of vendors to then edit
+ public static void vendorList (Vendor [] vendorArray)
+ {
+         System.out.println("\tPlease Enter a Vendor Number to Edit \n---------"
+        + "------------------------------------------");
+          for(int i=0; i<vendorArray.length; i++)
+         {
+          System.out.println(vendorArray[i]);
+         }
+        System.out.println("");
+ }
+ 
+ //Method to print out items in inventory
+ public static void itemList (Item [] itemArray)
+ {
+      System.out.println("\tPlease Enter an Item Number to Edit \n---------"
+        + "------------------------------------------");
+          for(int i=0; i<itemArray.length;i++)
+         {
+            System.out.println(itemArray[i]);
+         }
+         System.out.println("");
+ }
+ 
+    //method for printing sales
+ public static void salesList (Sale [] saleArray)
+ {
+     System.out.println("\tPrinting Sales Receipts \nListing All Sales: # \n---------------------------");
+     for (int i=0; i<saleArray.length; i++)
+     {
+         System.out.println(saleArray[i]);
+     }
+     System.out.print("\nEnter Sales ID #");
+ }
 }
