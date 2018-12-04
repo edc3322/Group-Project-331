@@ -133,12 +133,12 @@ public class MainApp extends Application {
     btnEditItem.setPrefSize(250,10);
     btnEditSale.setPrefSize(250,10);
     btnEditVendor.setPrefSize(250,10);
-    btnExitCust.setPrefSize(250,10);
-    btnSaveCustInfo.setPrefSize(250,10);
+    btnExitCust.setPrefSize(200,10);
+    btnSaveCustInfo.setPrefSize(200,10);
     btnItemExit.setPrefSize(200,10);
     btnSaleExit.setPrefSize(200,10);
-    btnVendorExit.setPrefSize(250,10);
-    btnExitInventory.setPrefSize(250,10);
+    btnVendorExit.setPrefSize(200,10);
+    btnExitInventory.setPrefSize(200,10);
     btnCreateCust.setPrefSize(250,10);
     btnCreateItem.setPrefSize(250,10);
     btnVendor.setPrefSize(250,10);
@@ -460,7 +460,7 @@ public class MainApp extends Application {
         primaryPane.setVgap(20);
         primaryPane.setHgap(20);
       
-        //Setting intial buttons to open the new stage's once clicked 
+        //Setting intial buttons to open the new stages once clicked 
        btnCustPurchase.setOnAction(e -> {
            custPurchStage.show();
         });
@@ -498,11 +498,6 @@ public class MainApp extends Application {
 
     } //end of start
 
-       
-        
-    
-    
-  
     public static void main(String[] args) {
         launch(args);
     }
