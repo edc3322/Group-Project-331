@@ -5,6 +5,8 @@ Authors: Zach Beatty, Eric Carter, Mercy Clemente, Michael Corcoran & Troy Godda
 */
 package GroupProject331;
 
+import java.util.Scanner;
+import java.util.Arrays;
 import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.collections.*;
@@ -23,10 +25,29 @@ public class MainApp extends Application {
     ComboBox cmboStates = new ComboBox(olState); 
     ObservableList olStates = FXCollections.observableArrayList();
     ComboBox cmboVStates = new ComboBox(olStates);
+   
+    //creating variables
+    Customer[] customerArray = new Customer[5];
+    Vendor[] vendorArray = new Vendor[3];
+    Sale[] saleArray = new Sale[5];
+    Item[] itemArray = new Item[10];
+    int customerCount = 5;
+    int vendorCount = 3;
+    int saleCount = 5;
+    int itemCount = 10;
 
    
     @Override
     public void start(Stage primaryStage) {
+    
+    //Prepopulating customers
+    customerArray[0] = new Customer("Tom", "Jones", "Harrisonburg", "VA", "800 S. Main St.", 22807, 5408994545L);  
+    customerArray[1] = new Customer("Evan", "Thompson", "Fairfax", "VA", "1932 Prince William", 22726, 7056785968L);
+    customerArray[2] = new Customer ("Jim", "Smith", "Arlington", "VA", "775 Edward St", 07675, 2015647857L); 
+    customerArray[3] = new Customer("Kate", "Andrews","Springfield","VA", "1032 Rustic St", 22676, 2745638976L);
+    customerArray[4] = new Customer("Rob", "Sousa", "Fairfax", "VA", "45 Market Blvd", 89867, 3345789084L);
+       
+       
   // Declaring neccessary fields, labels, etc.
     TextField txtFName = new TextField();
     TextField txtLName = new TextField();
@@ -581,6 +602,17 @@ public class MainApp extends Application {
         createCustPane.add(btnSaveCustInfo,0,9);
         btnExitCust.setOnAction(e ->{
             createCustStage.close();
+        });
+       btnSaveCustInfo.setOnAction(e ->{
+        
+            //resize the array
+            customerArray = Arrays.copyOf(customerArray, 
+            customerArray.length + 1); // resizes the customerArray
+            
+            customerArray[customerCount] = new Customer(txtFName.getText(), txtLName.getText(), txtCity.getText(), 
+                cmboStates.getSelectionModel().getSelectedItem().toString(), 
+                txtStreet.getText(), Integer.parseInt(txtZip.getText()), Long.parseLong(txtPhone.getText()));
+            customerCount++;
         });
     //Setting create new customer button on action 
         btnCreateCust.setOnAction(e ->{
