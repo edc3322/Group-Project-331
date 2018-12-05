@@ -48,8 +48,18 @@ public class MainApp extends Application {
     TextField txtVendorPhone = new TextField();
     TextField txtSaleItem = new TextField();
     TextField txtSalePrice = new TextField();
+    TextField txtContractorName = new TextField();
+    TextField txtContractorNumber = new TextField();
+    TextField txtContractorStreet = new TextField();
+    TextField txtContractorCity = new TextField();
+    TextField txtContractorZip = new TextField();
    
     //Setting dimensions for textfields
+    txtContractorName.setMaxWidth(200);
+    txtContractorNumber.setMaxWidth(200);
+    txtContractorStreet.setMaxWidth(200);
+    txtContractorCity.setMaxWidth(200);
+    txtContractorZip.setMaxWidth(200);
     txtFName.setMaxWidth(200);
     txtLName.setMaxWidth(200);
     txtStreet.setMaxWidth(200);
@@ -119,6 +129,7 @@ public class MainApp extends Application {
     Label lblContractorStreet = new Label ("Street:");
     Label lblContractorCity = new Label("City:");
     Label lblContractorState = new Label("Select State");
+    Label lblContractorZip = new Label("Enter Zip:");
   
 //Declaring all buttons 
     Button btnCustPurchase = new Button("View Customer Purchase History"); 
@@ -189,6 +200,60 @@ public class MainApp extends Application {
     
     cmboStates.setPrefSize(200,10);
     cmboVStates.setPrefSize(200,10);
+    
+    ObservableList olCState = FXCollections.observableArrayList();
+    ComboBox cmboCState = new ComboBox(olCState);
+    olCState.add("AL - Alabama");
+    olCState.add("AK - Alaska");
+    olCState.add("AZ - Arizona");
+    olCState.add("AR - Arkansas");
+    olCState.add("CA - California");
+    olCState.add("CO - Colorado");
+    olCState.add("CT - Connecticut");
+    olCState.add("DE - Deleware");
+    olCState.add("FL - Florida");
+    olCState.add("GA - Georgia");
+    olCState.add("HI - Hawaii");
+    olCState.add("ID - Idaho");
+    olCState.add("IL - Illinois");
+    olCState.add("IN - Indiana");
+    olCState.add("IA - Iowa");
+    olCState.add("KS - Kansas");
+    olCState.add("KY - Kentucky");
+    olCState.add("LA - Louisiana");
+    olCState.add("ME - Maine");
+    olCState.add("MD - Maryland");
+    olCState.add("MA - Massachusetts");
+    olCState.add("MI - Michigan");
+    olCState.add("MN - Minnesota");
+    olCState.add("MS - Mississippi");
+    olCState.add("MO - Missouri");
+    olCState.add("MT - Montana");
+    olCState.add("NE - Nebraska");
+    olCState.add("NV - Nevada");
+    olCState.add("NH - New Hampshire");
+    olCState.add("NJ - New Jersey");
+    olCState.add("NM - New Mexico");
+    olCState.add("NY - New York");
+    olCState.add("NC - North Carolina");
+    olCState.add("ND - North Dakota");
+    olCState.add("OH - Ohio");
+    olCState.add("OK - Oklahoma");
+    olCState.add("OR - Oregon");
+    olCState.add("PA - Pennsylvania");
+    olCState.add("RI - Rhode Island");
+    olCState.add("SC - South Carolina");
+    olCState.add("SD - South Dakota");
+    olCState.add("TN - Tennessee");
+    olCState.add("TX - Texas");
+    olCState.add("UT - Utah");
+    olCState.add("VT - Vermont");
+    olCState.add("VA - Virginia");
+    olCState.add("WA - Washington");
+    olCState.add("WV - West Virginia");
+    olCState.add("WI - Wisconsin");
+    olCState.add("WY - Wyoming");
+    cmboCState.setPrefSize(200,10);
   
 //Filling observable list 
     olState.add("AL - Alabama");
@@ -457,7 +522,36 @@ public class MainApp extends Application {
         });
             createItemPane.setHgap(20);
             createItemPane.setVgap(20);
-            
+ 
+     //Create Contractor
+     GridPane contractorPane = new GridPane();
+     contractorPane.setAlignment(Pos.CENTER);
+     Stage contractorStage = new Stage();
+     Scene contractorScene = new Scene(contractorPane,660,600);
+     contractorStage.setTitle("Create Contractor");
+     contractorStage.setScene(contractorScene);
+     contractorPane.add(lblContractorName,0,0);
+     contractorPane.add(lblContractorNumber,0,1);
+     contractorPane.add(lblContractorStreet,0,2);
+     contractorPane.add(lblContractorCity,0,3);
+     contractorPane.add(lblContractorZip,0,4);
+     contractorPane.add(lblContractorState,0,5);
+     contractorPane.add(txtContractorName,1,0);
+     contractorPane.add(txtContractorNumber,1,1);
+     contractorPane.add(txtContractorStreet,1,2);
+     contractorPane.add(txtContractorCity,1,3);
+     contractorPane.add(txtContractorZip,1,4);
+     contractorPane.add(cmboCState,1,5);
+     contractorPane.add(btnExitContractor,1,6);
+     contractorPane.add(btnSaveContractor,0,6);
+     btnCreateContractor.setOnAction(e->{
+         contractorStage.show();
+     });
+     btnExitContractor.setOnAction( e -> {
+         contractorStage.close();
+     });
+     contractorPane.setVgap(20);
+     contractorPane.setHgap(20);
 //Creating the new customer 
         GridPane createCustPane = new GridPane();
         createCustPane.setAlignment(Pos.CENTER);
