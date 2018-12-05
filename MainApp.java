@@ -41,11 +41,11 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
     
     //Prepopulating customers
-    customerArray[0] = new Customer("Tom", "Jones", "Harrisonburg", "VA", "800 S. Main St.", 22807, 5408994545L);  
-    customerArray[1] = new Customer("Evan", "Thompson", "Fairfax", "VA", "1932 Prince William", 22726, 7056785968L);
-    customerArray[2] = new Customer ("Jim", "Smith", "Arlington", "VA", "775 Edward St", 07675, 2015647857L); 
-    customerArray[3] = new Customer("Kate", "Andrews","Springfield","VA", "1032 Rustic St", 22676, 2745638976L);
-    customerArray[4] = new Customer("Rob", "Sousa", "Fairfax", "VA", "45 Market Blvd", 89867, 3345789084L);
+    customerArray[0] = new Customer("Tom", "Jones", "Harrisonburg", "VA", "800 S. Main St.", 22807, 5408994545L,"");  
+    customerArray[1] = new Customer("Evan", "Thompson", "Fairfax", "VA", "1932 Prince William", 22726, 7056785968L,"");
+    customerArray[2] = new Customer ("Jim", "Smith", "Arlington", "VA", "775 Edward St", 07675, 2015647857L,""); 
+    customerArray[3] = new Customer("Kate", "Andrews","Springfield","VA", "1032 Rustic St", 22676, 2745638976L,"");
+    customerArray[4] = new Customer("Rob", "Sousa", "Fairfax", "VA", "45 Market Blvd", 89867, 3345789084L,"");
        
        
   // Declaring neccessary fields, labels, etc.
@@ -74,6 +74,7 @@ public class MainApp extends Application {
     TextField txtContractorStreet = new TextField();
     TextField txtContractorCity = new TextField();
     TextField txtContractorZip = new TextField();
+    TextField txtSaleDate = new TextField();
    
     //Setting dimensions for textfields
     txtContractorName.setMaxWidth(200);
@@ -92,6 +93,7 @@ public class MainApp extends Application {
     txtDescription.setMaxWidth(200);
     txtPurchasePrice.setMaxWidth(200);
     txtSellingPrice.setMaxWidth(200);
+    txtSaleDate.setMaxWidth(200);
     txtQuantity.setMaxWidth(100);
     txtCustomerName.setMaxWidth(200);
     txtVendorName.setMaxWidth(200);
@@ -151,13 +153,14 @@ public class MainApp extends Application {
     Label lblContractorCity = new Label("City:");
     Label lblContractorState = new Label("Select State");
     Label lblContractorZip = new Label("Enter Zip:");
+    Label lblSaleDate = new Label("Date of the Sale (MM/DD/YYYY)");
   
 //Declaring all buttons 
     Button btnCustPurchase = new Button("View Customer Purchase History"); 
     Button btnItemPurch = new Button("View Item Purchase History");
     Button btnCurrentInv = new Button ("View Current Inventory Levels");
-    Button btnCreateMenu = new Button ("Go to the 'Create' Menu");
-    Button btnEdit = new Button ("Go to  the 'Edit' Menu"); 
+    Button btnCreateMenu = new Button ("Create a New ...");
+    Button btnEdit = new Button ("Edit an Existing ..."); 
     Button btnPrint = new Button("Print Receipt");
     Button btnExit = new Button ("Exit"); 
     Button btnCustPurchExit = new Button("Exit");
@@ -166,7 +169,8 @@ public class MainApp extends Application {
     Button btnEditCustomer = new Button("Edit Customer");
     Button btnEditItem = new Button ("Edit Item");
     Button btnEditSale = new Button ("Edit Sale");
-    Button btnEditVendor = new Button ("Edit Vendor"); 
+    Button btnEditVendor = new Button ("Edit Vendor");
+    Button btnEditContractor = new Button ("Edit Contractor");
     Button btnExitCust = new Button("Exit");
     Button btnSaveCustInfo = new Button("Save");
     Button btnItemExit = new Button ("Exit"); 
@@ -472,22 +476,32 @@ public class MainApp extends Application {
         vendorPane.add(lblVendorCity,0,3);
         vendorPane.add(lblVendorState,0,4);
         vendorPane.add(lblVendorZip,0,5);
+        vendorPane.add(lblVendorPhone,0,6);
         vendorPane.add(txtVendorName,1,1);
         vendorPane.add(txtVendorStreet,1,2);
         vendorPane.add(txtVendorCity,1,3);
         vendorPane.add(cmboVStates,1,4);
         vendorPane.add(txtVendorZip,1,5);
-        vendorPane.add(btnVendorSave,1,7);
-        vendorPane.add(btnVendorExit, 0, 7);
+        vendorPane.add(txtVendorPhone,1,6);
+        vendorPane.add(btnVendorSave,1,8);
+        vendorPane.add(btnVendorExit, 0, 8);
         btnVendor.setOnAction(e ->{
             vendorStage.show();
         }); 
          btnVendorExit.setOnAction(e ->{
             vendorStage.close();
         });
+         
          btnVendorSave.setOnAction(e ->{
+            vendorArray = Arrays.copyOf(vendorArray, 
+            vendorArray.length + 1); // resizes vendorArray
              
+            vendorArray[vendorCount] = new Vendor(txtVendorName.getText(), txtVendorStreet.getText(),
+                txtVendorCity.getText(), cmboVStates.getSelectionModel().getSelectedItem().toString(), 
+                Integer.parseInt(txtVendorZip.getText()), Long.parseLong(txtVendorPhone.getText()));
+            vendorCount++;
          });
+         
         vendorPane.setHgap(20);
         vendorPane.setVgap(20);   
         
@@ -498,15 +512,31 @@ public class MainApp extends Application {
         Scene saleScene = new Scene(salePane,500,400);
         saleStage.setTitle("Create New Sale");
         saleStage.setScene(saleScene);
+        Button btnSaveSale = new Button("Save");
         salePane.add(lblSaleItem,0,0);
         salePane.add(lblSalePrice,0,1);
         salePane.add(lblQuantity, 0,2); 
         salePane.add(lblCustomerName,0,3);
+        salePane.add(lblSaleDate,0,4);
         salePane.add(txtSaleItem, 1,0);
         salePane.add(txtSalePrice,1,1);
         salePane.add(txtQuantity,1,2);
         salePane.add(txtCustomerName,1,3);
-        salePane.add(btnSaleExit,1,4);
+        salePane.add(txtSaleDate,1,4);
+        salePane.add(btnSaleExit,1,5);
+        salePane.add(btnSaveSale,0,5);
+        
+        
+        btnSaveSale.setOnAction(e ->{
+            //resize the array
+            saleArray = Arrays.copyOf(saleArray, 
+            saleArray.length + 1); // resizes saleArray
+            
+            saleArray[saleCount] =  new Sale(txtSaleItem.getText(), Double.parseDouble(txtSalePrice.getText()), Integer.parseInt(txtQuantity.getText()), 
+                    txtCustomerName.getText(), txtSaleDate.getText());
+            saleCount++;
+        });
+        
         btnCreateSale.setOnAction(e ->{
             saleStage.show();
         });
@@ -526,15 +556,23 @@ public class MainApp extends Application {
         createItemPane.add(lblItem, 0,0);
         createItemPane.add(lblWeight,0,1);
         createItemPane.add(lblDescription,0,2);
-        createItemPane.add(lblPurchasePrice,0,3);
-        createItemPane.add(lblSellingPrice,0,4);
+        createItemPane.add(lblQuantity, 0,4);
+        createItemPane.add(lblSellingPrice,0,3);
         createItemPane.add(txtItem, 1,0);
         createItemPane.add(txtWeight,1,1);
         createItemPane.add(txtDescription,1,2);
-        createItemPane.add(txtPurchasePrice,1,3);
+        
         createItemPane.add(btnSaveInventory,0,5);
-        createItemPane.add(txtSellingPrice,1,4);
+        createItemPane.add(txtSellingPrice,1,3);
+        createItemPane.add(txtQuantity, 1, 4);
  //Setting button on action 
+        btnSaveInventory.setOnAction(e ->{
+            itemArray = Arrays.copyOf(itemArray, 
+            itemArray.length + 1); // resizes itemArray
+            itemArray[itemCount] = new Item(txtItem.getText(), Double.parseDouble(txtWeight.getText()), txtDescription.getText(),
+            Double.parseDouble(txtSellingPrice.getText()), Double.parseDouble(txtQuantity.getText()));
+            itemCount++;
+        });
         btnCreateItem.setOnAction(e ->{
             createItemStage.show();
         }); 
@@ -610,8 +648,8 @@ public class MainApp extends Application {
             customerArray.length + 1); // resizes the customerArray
             
             customerArray[customerCount] = new Customer(txtFName.getText(), txtLName.getText(), txtCity.getText(), 
-                cmboStates.getSelectionModel().getSelectedItem().toString(), 
-                txtStreet.getText(), Integer.parseInt(txtZip.getText()), Long.parseLong(txtPhone.getText()));
+                cmboStates.getSelectionModel().getSelectedItem().toString(), txtStreet.getText(), 
+                Integer.parseInt(txtZip.getText()), Long.parseLong(txtPhone.getText()), txtDescription.getText());
             customerCount++;
         });
     //Setting create new customer button on action 
@@ -632,7 +670,8 @@ public class MainApp extends Application {
         editPane.add(btnEditItem, 0,1);
         editPane.add(btnEditSale,0,2);
         editPane.add(btnEditVendor,0,3);
-        editPane.add(btnEditExit,0,4);
+        editPane.add(btnEditContractor, 0, 4);
+        editPane.add(btnEditExit,0,5);
         btnEdit.setOnAction(e -> {
           editStage.show();  
         });
@@ -641,6 +680,78 @@ public class MainApp extends Application {
         }); 
         editPane.setHgap(20);
         editPane.setVgap(20);
+        
+    //Editing a Customer
+        GridPane editCustomer = new GridPane();
+        editCustomer.setAlignment(Pos.CENTER);
+        Stage editCustomerStage = new Stage();
+        Scene editCustomerScene = new Scene(editCustomer, 660, 600);
+        editCustomerStage.setTitle("Edit a Customer");
+        editCustomerStage.setScene(editCustomerScene);
+        editCustomer.add(lblFName, 0, 0);
+        editCustomer.add(lblLName,0,2);
+        editCustomer.add(lblStreet,0,3);
+        editCustomer.add(lblCity,0,4);
+        editCustomer.add(lblZip,0,5);
+        editCustomer.add(lblState,0,6);
+        editCustomer.add(lblPhone,0,7);
+        editCustomer.add(lblNotes,0,8);
+        editCustomer.add(txtFName, 1,1);
+        editCustomer.add(txtLName, 1,2);
+        editCustomer.add(txtStreet, 1,3);
+        editCustomer.add(txtCity, 1,4);
+        editCustomer.add(txtZip,1,5);
+        editCustomer.add(cmboStates,1,6);
+        editCustomer.add(txtPhone,1,7);
+        editCustomer.add(notesScrollPane,1,8);
+        
+        btnEditCustomer.setOnAction(e -> {
+          editCustomerStage.show();  
+        });
+        
+        editCustomer.setHgap(20);
+        editCustomer.setVgap(20);
+        
+        
+    //Editing an Item
+        GridPane editItem = new GridPane();
+        editItem.setAlignment(Pos.CENTER);
+        Stage editItemStage = new Stage();
+        Scene editItemScene = new Scene(editItem, 500, 400);
+        editItemStage.setTitle("Edit an Item");
+        editItemStage.setScene(editItemScene);
+        
+        
+        
+    //Editing a Sale
+        GridPane editSale = new GridPane();
+        editSale.setAlignment(Pos.CENTER);
+        Stage editSaleStage = new Stage();
+        Scene editSaleScene = new Scene(editSale, 500, 400);
+        editSaleStage.setTitle("Edit a Sale");
+        editSaleStage.setScene(editSaleScene);
+        
+        
+        
+    //Editing a Vendor
+        GridPane editVendor = new GridPane();
+        editVendor.setAlignment(Pos.CENTER);
+        Stage editVendorStage = new Stage();
+        Scene editVendorScene = new Scene(editVendor,660,600);
+        editVendorStage.setTitle("Edit a Vendor");
+        editVendorStage.setScene(editVendorScene);
+        
+        
+        
+    //Editing a Contractor
+        GridPane editContractor = new GridPane();
+        editContractor.setAlignment(Pos.CENTER);
+        Stage editContractorStage = new Stage();
+        Scene editContractorScene = new Scene(editContractor,660,600);
+        editContractorStage.setTitle("Edit a Contractor");
+        editContractorStage.setScene(editContractorScene);
+        
+        
         
   //Creating print receipt option
         GridPane printReceiptPane = new GridPane();
