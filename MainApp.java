@@ -13,11 +13,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import java.util.Scanner;
 
 
 public class MainApp extends Application {
+   TextArea taNotes = new TextArea();
+   ScrollPane notesScrollPane = new ScrollPane(taNotes);
+   
+    ObservableList olState = FXCollections.observableArrayList();
+    ComboBox cmboStates = new ComboBox(olState); 
+    ObservableList olStates = FXCollections.observableArrayList();
+    ComboBox cmboVStates = new ComboBox(olStates);
 
+   
     @Override
     public void start(Stage primaryStage) {
   // Declaring neccessary fields, labels, etc.
@@ -34,6 +41,14 @@ public class MainApp extends Application {
     TextField txtSellingPrice = new TextField();
     TextField txtQuantity = new TextField();
     TextField txtCustomerName = new TextField();
+    TextField txtVendorName = new TextField();
+    TextField txtVendorStreet = new TextField();
+    TextField txtVendorCity = new TextField();
+    TextField txtVendorZip = new TextField();
+    TextField txtVendorPhone = new TextField();
+    TextField txtSaleItem = new TextField();
+    TextField txtSalePrice = new TextField();
+   
     //Setting dimensions for textfields
     txtFName.setMaxWidth(200);
     txtLName.setMaxWidth(200);
@@ -48,14 +63,18 @@ public class MainApp extends Application {
     txtSellingPrice.setMaxWidth(200);
     txtQuantity.setMaxWidth(100);
     txtCustomerName.setMaxWidth(200);
-    
+    txtVendorName.setMaxWidth(200);
+    txtVendorStreet.setMaxWidth(200);
+    txtVendorCity.setMaxWidth(200);
+    txtVendorZip.setMaxWidth(200);
+    txtVendorPhone.setMaxWidth(200);
+    txtSaleItem.setMaxWidth(200);
+    txtSalePrice.setMaxWidth(200);
    TextArea taReceipt = new TextArea(); 
    TextArea taInventory = new TextArea();
    TextArea taCustPurchHistory = new TextArea();
-   TextArea taNotes = new TextArea();
    TextArea taItemHistory = new TextArea();
    ScrollPane itemHistoryScrollPane = new ScrollPane(taItemHistory);
-   ScrollPane notesScrollPane = new ScrollPane(taNotes);
    ScrollPane receiptScrollPane = new ScrollPane (taReceipt);
    ScrollPane inventoryScrollPane = new ScrollPane(taInventory);
    ScrollPane custPurchHistoryPane = new ScrollPane(taCustPurchHistory);
@@ -64,7 +83,7 @@ public class MainApp extends Application {
    inventoryScrollPane.setPrefSize(400,250);
    receiptScrollPane.setPrefSize(400,250);
    itemHistoryScrollPane.setPrefSize(400,250);
-   
+
    taReceipt.setPrefSize(400,250);
    taInventory.setPrefSize(400,250);
    taCustPurchHistory.setPrefSize(400,250);
@@ -87,8 +106,19 @@ public class MainApp extends Application {
     Label lblQuantity = new Label("Quantity:");
     Label lblCustomerName = new Label("Customer Name:");
     Label lblItemHistory = new Label("Viewing Item Purchase History");
-
-    ObservableList olState = FXCollections.observableArrayList();
+    Label lblVendorName = new Label("Enter Vendor's Name:");
+    Label lblVendorStreet = new Label ("Enter Vendor Street:");
+    Label lblVendorCity = new Label("Enter City:");
+    Label lblVendorZip = new Label("Enter Zip:");
+    Label lblVendorPhone = new Label("Enter Phone:");
+    Label lblVendorState = new Label("Select State:"); 
+    Label lblSaleItem = new Label("Name of Item:");
+    Label lblSalePrice = new Label("Selling Price:");
+    Label lblContractorName = new Label("Contractor Name:");
+    Label lblContractorNumber = new Label ("Contractor Phone:");
+    Label lblContractorStreet = new Label ("Street:");
+    Label lblContractorCity = new Label("City:");
+    Label lblContractorState = new Label("Select State");
   
 //Declaring all buttons 
     Button btnCustPurchase = new Button("View Customer Purchase History"); 
@@ -117,8 +147,16 @@ public class MainApp extends Application {
     Button btnCreateSale = new Button ("Create New Sale");
     Button btnExitCreate = new Button ("Exit");
     Button btnItemHistoryExit = new Button("Exit");
+    Button btnSaveInventory = new Button("Save");
+    Button btnVendorSave = new Button ("Save");
+    Button btnCreateContractor = new Button("Create Contractor");
+    Button btnSaveContractor = new Button("Save");
+    Button btnExitContractor = new Button("Exit");
     
     //Setting button dimensions 
+    btnSaveContractor.setPrefSize(200,10);
+    btnExitContractor.setPrefSize(200,10);
+    btnCreateContractor.setPrefSize(250,10);
     btnCustPurchase.setPrefSize(250, 10);
     btnItemHistoryExit.setPrefSize(100,10);
     btnItemPurch.setPrefSize(250,10);
@@ -145,10 +183,13 @@ public class MainApp extends Application {
     btnVendor.setPrefSize(250,10);
     btnCreateSale.setPrefSize(250,10);
     btnExitCreate.setPrefSize(250,10);
+    btnSaveInventory.setPrefSize(200,10);
+    btnVendorSave.setPrefSize(200,10);
+    taNotes.setWrapText(true); 
     
-    ComboBox cmboStates = new ComboBox(olState); 
     cmboStates.setPrefSize(200,10);
-    taNotes.setWrapText(true);    
+    cmboVStates.setPrefSize(200,10);
+  
 //Filling observable list 
     olState.add("AL - Alabama");
     olState.add("AK - Alaska");
@@ -200,7 +241,59 @@ public class MainApp extends Application {
     olState.add("WV - West Virginia");
     olState.add("WI - Wisconsin");
     olState.add("WY - Wyoming");
-    
+        cmboStates.setPrefSize(200,10);
+  
+//Filling observable list 
+    olStates.add("AL - Alabama");
+    olStates.add("AK - Alaska");
+    olStates.add("AZ - Arizona");
+    olStates.add("AR - Arkansas");
+    olStates.add("CA - California");
+    olStates.add("CO - Colorado");
+    olStates.add("CT - Connecticut");
+    olStates.add("DE - Deleware");
+    olStates.add("FL - Florida");
+    olStates.add("GA - Georgia");
+    olStates.add("HI - Hawaii");
+    olStates.add("ID - Idaho");
+    olStates.add("IL - Illinois");
+    olStates.add("IN - Indiana");
+    olStates.add("IA - Iowa");
+    olStates.add("KS - Kansas");
+    olStates.add("KY - Kentucky");
+    olStates.add("LA - Louisiana");
+    olStates.add("ME - Maine");
+    olStates.add("MD - Maryland");
+    olStates.add("MA - Massachusetts");
+    olStates.add("MI - Michigan");
+    olStates.add("MN - Minnesota");
+    olStates.add("MS - Mississippi");
+    olStates.add("MO - Missouri");
+    olStates.add("MT - Montana");
+    olStates.add("NE - Nebraska");
+    olStates.add("NV - Nevada");
+    olStates.add("NH - New Hampshire");
+    olStates.add("NJ - New Jersey");
+    olStates.add("NM - New Mexico");
+    olStates.add("NY - New York");
+    olStates.add("NC - North Carolina");
+    olStates.add("ND - North Dakota");
+    olStates.add("OH - Ohio");
+    olStates.add("OK - Oklahoma");
+    olStates.add("OR - Oregon");
+    olStates.add("PA - Pennsylvania");
+    olStates.add("RI - Rhode Island");
+    olStates.add("SC - South Carolina");
+    olStates.add("SD - South Dakota");
+    olStates.add("TN - Tennessee");
+    olStates.add("TX - Texas");
+    olStates.add("UT - Utah");
+    olStates.add("VT - Vermont");
+    olStates.add("VA - Virginia");
+    olStates.add("WA - Washington");
+    olStates.add("WV - West Virginia");
+    olStates.add("WI - Wisconsin");
+    olStates.add("WY - Wyoming");
   //Creating the pane stage and scene for customer purchase history 
         GridPane custPurchPane = new GridPane();
         custPurchPane.setAlignment(Pos.CENTER);
@@ -271,7 +364,8 @@ public class MainApp extends Application {
         createPane.add(btnCreateItem,1,1);
         createPane.add(btnVendor,1,2);
         createPane.add(btnCreateSale,1,3);
-        createPane.add(btnExitCreate,1,4);
+        createPane.add(btnCreateContractor,1,4);
+        createPane.add(btnExitCreate,1,5);
         btnExitCreate.setOnAction(e ->{
             createStage.close();
         });
@@ -282,32 +376,32 @@ public class MainApp extends Application {
         GridPane vendorPane = new GridPane();
         vendorPane.setAlignment(Pos.CENTER);
         Stage vendorStage = new Stage();
-        Scene vendorScene = new Scene(vendorPane, 800,500);
+        Scene vendorScene = new Scene(vendorPane, 660,600);
         vendorStage.setTitle("Create Vendor");
         vendorStage.setScene(vendorScene);
-        vendorPane.add(btnVendorExit,1,7);
         Label lblNewT = new Label("Creating a New Vendor");
-        vendorPane.add(lblNewT,0,7);
-        vendorPane.add(lblFName,0,0);
-        vendorPane.add(lblLName,0,1);
-        vendorPane.add(lblStreet,0,2);
-        vendorPane.add(lblCity,0,3);
-        vendorPane.add(lblState,0,4);
-        vendorPane.add(lblZip,0,5);
-        vendorPane.add(lblNotes,0,6);
-        vendorPane.add(txtFName,1,0);
-        vendorPane.add(txtLName,1,1);
-        vendorPane.add(txtStreet,1,2);
-        vendorPane.add(txtCity,1,3);
-        vendorPane.add(cmboStates,1,4);
-        vendorPane.add(txtZip,1,5);
-        vendorPane.add(notesScrollPane,1,6);
+        vendorPane.add(lblNewT,0,0);
+        vendorPane.add(lblVendorName,0,1);
+        vendorPane.add(lblVendorStreet,0,2);
+        vendorPane.add(lblVendorCity,0,3);
+        vendorPane.add(lblVendorState,0,4);
+        vendorPane.add(lblVendorZip,0,5);
+        vendorPane.add(txtVendorName,1,1);
+        vendorPane.add(txtVendorStreet,1,2);
+        vendorPane.add(txtVendorCity,1,3);
+        vendorPane.add(cmboVStates,1,4);
+        vendorPane.add(txtVendorZip,1,5);
+        vendorPane.add(btnVendorSave,1,7);
+        vendorPane.add(btnVendorExit, 0, 7);
         btnVendor.setOnAction(e ->{
             vendorStage.show();
         }); 
          btnVendorExit.setOnAction(e ->{
             vendorStage.close();
         });
+         btnVendorSave.setOnAction(e ->{
+             
+         });
         vendorPane.setHgap(20);
         vendorPane.setVgap(20);   
         
@@ -318,12 +412,12 @@ public class MainApp extends Application {
         Scene saleScene = new Scene(salePane,500,400);
         saleStage.setTitle("Create New Sale");
         saleStage.setScene(saleScene);
-        salePane.add(lblItem,0,0);
-        salePane.add(lblSellingPrice,0,1);
+        salePane.add(lblSaleItem,0,0);
+        salePane.add(lblSalePrice,0,1);
         salePane.add(lblQuantity, 0,2); 
         salePane.add(lblCustomerName,0,3);
-        salePane.add(txtItem, 1,0);
-        salePane.add(txtSellingPrice,1,1);
+        salePane.add(txtSaleItem, 1,0);
+        salePane.add(txtSalePrice,1,1);
         salePane.add(txtQuantity,1,2);
         salePane.add(txtCustomerName,1,3);
         salePane.add(btnSaleExit,1,4);
@@ -352,6 +446,7 @@ public class MainApp extends Application {
         createItemPane.add(txtWeight,1,1);
         createItemPane.add(txtDescription,1,2);
         createItemPane.add(txtPurchasePrice,1,3);
+        createItemPane.add(btnSaveInventory,0,5);
         createItemPane.add(txtSellingPrice,1,4);
  //Setting button on action 
         btnCreateItem.setOnAction(e ->{
@@ -502,520 +597,5 @@ public class MainApp extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    public static void customerPurchaseHistory(Customer[] customerArray, Item[] 
-        itemArray, Sale[] saleArray)
-{
-    boolean bought = false;
-    customerList(customerArray);
-    Scanner in = new Scanner (System.in);
-    int selection = in.nextInt();
-    System.out.printf("%-12s" + " %-16s" + " %-16s" + " %-20s" 
-    + " %-12s" + " %-12s\n", "Item ID", "Item Name", "Item Weight", 
-    "Description", "Cost", "Sold For"); 
     
-    String testName = customerArray[selection - 1000].firstName +  " " + customerArray[selection - 1000].lastName;
-            for (int i=0; i < saleArray.length; i++)
-            {
-                if(testName.equalsIgnoreCase(saleArray[i].customer))
-                {
-                    System.out.printf(itemArray[i].toString());
-                    System.out.println();
-                    bought = true;
-                }
-            }
-            if (!bought)
-            {
-                System.out.println("===============  NO ITEMS TO SHOW  ===============");
-            }
-}
-//method for creating a customer
-    public static Customer addCustomer()
-    { 
-        Scanner scan = new Scanner(System.in);
-        System.out.print("First Name: ");
-        String firstName = scan.nextLine();
-        if (firstName.length()==0)
-        {
-            System.out.println("Please Enter a valid input");
-            System.out.print("First Name: ");
-            firstName = scan.nextLine();
-        }
-        
-        System.out.print("Last Name: ");
-         String lastName = scan.nextLine();
-        if (lastName.length()==0)
-        {
-            System.out.println("Please Enter a valid input");
-            System.out.print("Last Name: ");
-            lastName = scan.nextLine();
-        }
-        System.out.print("Street: ");
-         String street = scan.nextLine(); 
-        if (street.length()==0)
-        {
-            System.out.println("Please Enter a valid input");
-            System.out.print("Street: ");
-            street = scan.nextLine();
-        }
-        System.out.print("City: ");
-         String city = scan.nextLine();
-        if (city.length() ==0)
-        {
-            System.out.println("Please Enter a valid input");
-            System.out.print("City: ");
-            city = scan.nextLine();
-        }
-        
-        System.out.print("State: ");
-         String state = scan.nextLine();
-        if (state.length()==0)
-        {
-            System.out.println("Please Enter a valid input");
-            System.out.print("State: ");
-            state = scan.nextLine();
-        }
-        System.out.print("Zip Code: ");
-         int zip = scan.nextInt();
-      
-        System.out.print("Phone Number: #");
-        long phoneNumber = scan.nextLong();
-        if (String.valueOf(phoneNumber).length() <10 || String.valueOf(phoneNumber)
-                .length()>10)
-        {
-            System.out.println("Enter a valid phone number. 10 numbers long");
-            System.out.println("Phone Number: ");
-            phoneNumber = scan.nextLong(); 
-        }
-        Customer newC = new Customer(firstName, lastName, city, state, 
-                street, zip, phoneNumber);
-        return newC;
-    }
-    
-//method for editing a customer
-public static void editCustomer(Customer c1)
-    {
-        boolean run = true;
-        while(run)
-        {
-            Scanner scan = new Scanner(System.in);
-            System.out.println("Please select from the following: \n==========="
-              + "============= \n1. First Name: \n2. Last Name: \n3. Location: "
-              + "\n4. Phone Number: \n5. Exit \n Enter Your Choice: #");
-        
-            int menu = scan.nextInt();
-            String scanString = "";
-            int scanInt = 0;
-            long scanLong = 0;
-            switch(menu)
-            {
-                case 1:
-                {
-                    System.out.print("Enter the new First Name:");
-                    scan.nextLine();
-                    scanString = scan.nextLine();
-                    c1.setFirstName(scanString);
-                    break;
-                }
-                case 2:
-                {
-                    System.out.print("Enter the new Last Name:");
-                    scan.nextLine();
-                    scanString = scan.nextLine();
-                    c1.setLastName(scanString);
-                    break;
-                }
-                case 3:
-                {
-                   System.out.print("Enter the street: ");
-                    scan.nextLine();
-                    scanString = scan.nextLine();
-                    c1.setStreet(scanString); 
-                    
-                    // resets city value
-                    System.out.print("Enter the new City:"); 
-                    // to accept the <enter> from the previous scan
-                    scan.nextLine(); 
-                    scanString = scan.nextLine();
-                    c1.setCity(scanString);    
-                
-                    // resets state value
-                    System.out.print("Enter the new State:"); 
-                    scanString = scan.nextLine();
-                    c1.setState(scanString);
-                    
-                    //resets zip value 
-                    System.out.print("Enter the new Zip Code:"); 
-                    scanInt = scan.nextInt();
-                    c1.setZip(scanInt);
-                    break;
-                }
-                case 4:
-                {
-                    System.out.print("Enter the new Phone Number:");
-                    scanLong = scan.nextLong();
-                    c1.setPhoneNumber(scanInt);
-                    break;
-                }
-                case 5:
-                {
-                    run = false;
-                    break;
-                }
-                default:
-                {
-                    run = false;
-                    break;
-                }
-            }
-        }
-    }
- 
- //method to edit inventory item
- public static void editInventory(Item i1)
- {
-     Scanner scan = new Scanner(System.in);
-        boolean run = true;
-        while (run)
-        {
-          System.out.println("Select From the Following:\n---------------------"
-          + "------\n1. Edit the Name:\n2. Edit the Weight:\n3. Edit the Descripti"
-          + "on:\n4. Edit the Purchase Price:"
-          + "\n5. Edit the quantity" + "\n7. Exit"
-          + "Enter Your Choice: ");
-     
-            int menu = scan.nextInt();
-            switch(menu)
-            {
-                case 1:
-                {
-                    System.out.print("Enter the new name:");
-                    scan.nextLine();
-                    String newName = scan.nextLine();
-                    i1.setName(newName);
-                    break;
-                }
-                case 2:
-                {
-                    System.out.print("Enter the new weight:");
-                    double newWeight = scan.nextDouble();
-                    i1.setWeight(newWeight);
-                    break;
-                }
-                case 3:
-                {
-                    System.out.print("Enter the new Description:");
-                    String newDescription = scan.nextLine();
-                    i1.setDescription(newDescription);
-                   break;
-                    }
-                case 4: 
-                {
-                    System.out.print("Enter the new purchase price: $");
-                    double newPPrice = scan.nextDouble();
-                   i1.setpurchasePrice(newPPrice);
-                   break;
-                }
-
-                case 5:
-                {
-                    System.out.print("Enter the new quantity: ");
-                    double newQuantity = scan.nextDouble();
-                    i1.setQuantity(newQuantity);
-                }
-                case 6:
-                {
-                    run = false;
-                    break;
-                }
-                default:
-                {
-                    run = false;
-                    break;
-                }
-            }
-        }       
- }
-    
-//method for adding a sale    
-public static Sale addSale()
-{
-    Scanner scan = new Scanner(System.in);
-    
-    
-    System.out.println("Item Name: ");
-    String itemName = scan.nextLine();
-    if(itemName.length()==0)
-    {
-        System.out.println("Enter a valid Item Name:");
-        itemName = scan.nextLine();
-    }
-    System.out.println("Selling Price: ");
-    double sellingPrice = scan.nextDouble();
-    if(sellingPrice==0)
-    {
-        System.out.println("Enter a valid selling price:");
-        sellingPrice=scan.nextDouble();
-    }
-    System.out.println("Quantity: ");
-    int quantity = scan.nextInt();
-    if(quantity==0)
-    {
-        System.out.println("Enter a valid Quantity:");
-        quantity=scan.nextInt();
-    }
-    System.out.println("Customer name: ");
-    String customer = scan.nextLine();
-    if(customer.length()==0)
-    {
-        System.out.println("Enter a valid Customer Name:");
-        customer=scan.nextLine();
-    }
-    System.out.println("Date of Sale: ");
-    String date = scan.nextLine();
-    Sale newS = new Sale(itemName, sellingPrice, quantity, customer, date);
-    return newS;
-}    
-        
-//method for adding a vendor
-public static Vendor addVendor()
-    {
-        Scanner scan = new Scanner(System.in);
-        System.out.print("Business Name: ");
-        String businessName = scan.nextLine();
-        if(businessName.length()==0)
-        {
-            System.out.println("Enter a valid Business Name:");
-            businessName=scan.nextLine(); 
-        }
-        System.out.print("Street: ");
-        String street = scan.nextLine(); 
-        if(street.length() ==0)
-        {
-            System.out.println("Enter a Valid Street: ");
-            street =scan.nextLine();
-        }
-        System.out.print("City: ");
-        String city = scan.nextLine();
-        if(city.length()==0)
-        {
-            System.out.println("Enter a valid City: ");
-            city = scan.nextLine();
-        }
-        System.out.print("State: ");
-        String state = scan.nextLine();
-        
-        System.out.print("Enter Zip: ");
-        int zip = scan.nextInt(); 
-    
-        System.out.print("Phone Number: ");
-        long phoneNumber = scan.nextLong();
-        if (String.valueOf(phoneNumber).length() <10 || String.valueOf(phoneNumber)
-                .length()>10)
-        {
-            System.out.println("Enter a valid phone number. 10 numbers long");
-            System.out.println("Phone Number: ");
-            phoneNumber = scan.nextLong(); 
-        }
-        Vendor v = new Vendor(businessName, street, city, state, zip, 
-                phoneNumber);
-        return v;
-    }
-//method for editing a vendor
-public static void editVendor(Vendor v1)
-    {
-        Scanner scan = new Scanner(System.in);
-        boolean run = true;
-        while (run)
-        {
-            System.out.println("Please select from the following: \n==========="
-             + "============\n1. Business Name: \n2. Business Address: "
-             + "\n3. Phone Number: \n4. Exit: \nEnter Your Choice: #");
-            
-            int menu = scan.nextInt();
-            switch(menu)
-            {
-                case 1:
-                {
-                    System.out.print("Enter the new name:");
-                    scan.nextLine();
-                    String newName = scan.nextLine();
-                    v1.setBusinessName(newName);
-                    break;
-                }
-                case 2:
-                {
-                    System.out.print("Enter the new street address:");
-                    scan.nextLine();
-                    String newStreet = scan.nextLine();
-                    v1.setStreet(newStreet);
-                    
-                    System.out.print("Enter the new city");
-                    //scan.nextLine();
-                    String newCity = scan.nextLine();
-                    v1.setCity(newCity);
-                    
-                    System.out.print("Enter the new state");
-                    //scan.nextLine();
-                    String newState = scan.nextLine();
-                    v1.setState(newState);
-                }
-                case 3:
-                {
-                    System.out.print("Enter the new phone number:");
-                    scan.nextLine();
-                    long newPhone = scan.nextLong();
-                    v1.setPhoneNumber(newPhone);
-                }
-                case 4:
-                {
-                    run = false;
-                    break;
-                }
-                default:
-                {
-                    run = false;
-                    break;
-                }
-            }
-        }
-    }
-  
- //method to print current inventory levels
-    public static void printCurrInventory(Item [] itemArray)
-    {
-        System.out.println("\n========== Current Items in Inventory ========="
-        + "\n--------------------------------------------------------------");
-        System.out.printf("%-12s" + " %-16s" + " %-16s\n", "Item ID", "Item Name", "Quantity");
-            for (int i=0; i<itemArray.length; i++)
-            {
-                 System.out.println(itemArray[i]);
-            }
-            System.out.println("");
-    }
- //method to create an item
- public static Item addItem()
-    {
-        Scanner scan = new Scanner(System.in);
-        System.out.print("Enter the Item Name: ");
-        String itemName = scan.nextLine();
-        if(itemName.length()==0)
-        {
-            System.out.println("Enter a valid Item Name:");
-            itemName=scan.nextLine();
-        }
-        System.out.print("Enter the item weight: ");
-        double itemWeight = scan.nextDouble();
-        if(itemWeight==0.0)
-        {
-            System.out.println("Enter a valid weight:");
-            itemWeight=scan.nextDouble();
-        }
-        System.out.print("Enter the item description: ");
-        String itemDescription = scan.nextLine();
-        if(itemDescription.length()==0)
-        {
-            System.out.println("Enter a Valid Description:");
-            itemDescription=scan.nextLine();
-        }
-        System.out.print("Enter the purchase price: ");
-        double pPrice = scan.nextDouble();
-        if(pPrice ==0.0)
-        {
-            System.out.println("Enter a valid purchase price: $");
-            pPrice =scan.nextDouble(); 
-        }
-        System.out.print("Enter the Selling price: ");
-        double sellingPrice = scan.nextDouble(); 
-        if (sellingPrice ==0.0)
-        {
-            System.out.println("Enter a valid Selling Price: $");
-            sellingPrice = scan.nextDouble();
-        }
-        System.out.print("Enter the item quantity: ");
-        double quantity = scan.nextDouble();
-        if (quantity == 0.0)
-        {
-            System.out.println("Enter a valid quantity: ");
-            quantity = scan.nextDouble();
-        }
-        
-        Item returnItem = new Item(itemName, itemWeight,itemDescription,
-                pPrice, quantity);
-        return returnItem;
-    }
- 
-  //Method for item purchase history
- public static void itemPurchaseHistory(Item[] itemArray, Sale[] saleArray)
- {
-    boolean sold = false;
-    Scanner in = new Scanner (System.in); 
-    int historyID=0; 
-    printCurrInventory(itemArray); 
-    System.out.print("Enter the ID to View the Item's Purchase History: #");
-    historyID=in.nextInt(); 
-    System.out.println("\tPurchase History for Item #" + historyID +"\n--------"
-    + "--------------------------------------------");
-    System.out.printf("%-12s" + " %-20s" + " %-12s" + " %-10s" 
-        + " %-20s" + " %-12s\n", "ID", "Item", "Sold for", "Quantity", "Customer", "Date");
-    
-    for(int i = 0; i < saleArray.length; i++)
-    {
-        if(saleArray[i].itemName.toUpperCase().equals(itemArray[historyID - 4000].itemName.toUpperCase()))
-        {
-            System.out.println(saleArray[i].toString());
-            sold = true;
-        }
-    }
-    if (!sold)
-    {
-        System.out.println("===============  NO ITEMS TO SHOW  ===============");
-    }
-  
- }
- //Method to print out the full list of customers
- public static void customerList(Customer[] customerArray)
-    {
-        System.out.println("\tPlease Enter a Customer Number \n--------"
-        + "------------------------------------------");
-        for (int i=0; i<customerArray.length; i++)
-            {
-                 System.out.println(customerArray[i].toString());
-            }
-            System.out.println("");
-    }
- 
- //Method to print out the full list of vendors to then edit
- public static void vendorList (Vendor [] vendorArray)
- {
-         System.out.println("\tPlease Enter a Vendor Number to Edit \n---------"
-        + "------------------------------------------");
-          for(int i=0; i<vendorArray.length; i++)
-         {
-          System.out.println(vendorArray[i]);
-         }
-        System.out.println("");
- }
- 
- //Method to print out items in inventory
- public static void itemList (Item [] itemArray)
- {
-      System.out.println("\tPlease Enter an Item Number to Edit \n---------"
-        + "------------------------------------------");
-          for(int i=0; i<itemArray.length;i++)
-         {
-            System.out.println(itemArray[i]);
-         }
-         System.out.println("");
- }
- 
-    //method for printing sales
- public static void salesList (Sale [] saleArray)
- {
-     System.out.println("\tPrinting Sales Receipts \nListing All Sales: # \n---------------------------");
-     for (int i=0; i<saleArray.length; i++)
-     {
-         System.out.println(saleArray[i]);
-     }
-     System.out.print("\nEnter Sales ID #");
- }
 }
