@@ -3,7 +3,7 @@ CIS 331 Section 2
 Group Project Part 1.
 Authors: Zach Beatty, Eric Carter, Mercy Clemente, Michael Corcoran & Troy Goddard
  */
-package group.project;
+package GroupProject331;
 
 public class Contractor extends Customer 
 {
@@ -16,9 +16,9 @@ public class Contractor extends Customer
     
 public Contractor (String firstName, String lastName, String city, String street, 
         String state, int zip, String contractorName, long contractorNumber, 
-        String contractorAddress)
+        String contractorAddress, String description)
     {
-        super(firstName, lastName, city, state, street, zip, contractorNumber);
+        super(firstName, lastName, city, state, street, zip, contractorNumber, description);
         this.contractorName = contractorName;
         this.contractorNumber = contractorNumber;
         this.contractorAddress = contractorAddress; 
