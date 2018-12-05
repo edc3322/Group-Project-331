@@ -1,10 +1,9 @@
 /*
-CIS 331 Section 2 
-Group Project Part 2.
-Authors: Zach Beatty, Eric Carter, Mercy Clemente, Michael Corcoran & Troy Goddard
-*/
-package GroupProject331;
-
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Project331;
 import java.util.Scanner;
 import java.util.Arrays;
 import java.util.ArrayList;
