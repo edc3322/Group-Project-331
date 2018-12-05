@@ -1,9 +1,10 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Project331;
+CIS 331 Section 2 
+Group Project Part 2.
+Authors: Zach Beatty, Eric Carter, Mercy Clemente, Michael Corcoran & Troy Goddard
+*/
+package GroupProject331;
+
 import java.util.Scanner;
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -687,22 +688,10 @@ public class MainApp extends Application {
         Scene editCustomerScene = new Scene(editCustomer, 660, 600);
         editCustomerStage.setTitle("Edit a Customer");
         editCustomerStage.setScene(editCustomerScene);
-        editCustomer.add(lblFName, 0, 0);
-        editCustomer.add(lblLName,0,2);
-        editCustomer.add(lblStreet,0,3);
-        editCustomer.add(lblCity,0,4);
-        editCustomer.add(lblZip,0,5);
-        editCustomer.add(lblState,0,6);
-        editCustomer.add(lblPhone,0,7);
-        editCustomer.add(lblNotes,0,8);
-        editCustomer.add(txtFName, 1,1);
-        editCustomer.add(txtLName, 1,2);
-        editCustomer.add(txtStreet, 1,3);
-        editCustomer.add(txtCity, 1,4);
-        editCustomer.add(txtZip,1,5);
-        editCustomer.add(cmboStates,1,6);
-        editCustomer.add(txtPhone,1,7);
-        editCustomer.add(notesScrollPane,1,8);
+        //add all items to the pane
+
+        
+        
         
         btnEditCustomer.setOnAction(e -> {
           editCustomerStage.show();  
@@ -721,6 +710,14 @@ public class MainApp extends Application {
         editItemStage.setScene(editItemScene);
         
         
+
+        
+        btnEditItem.setOnAction(e -> {
+          editItemStage.show();  
+        });
+        
+        editItem.setHgap(20);
+        editItem.setVgap(20);
         
     //Editing a Sale
         GridPane editSale = new GridPane();
