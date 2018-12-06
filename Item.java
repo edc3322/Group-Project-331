@@ -3,7 +3,9 @@ CIS 331 Section 2
 Group Project Part 1.
 Authors: Zach Beatty, Eric Carter, Mercy Clemente, Michael Corcoran & Troy Goddard
  */
-package group.project;
+
+
+package GroupProject331;
 
 public class Item 
 {
@@ -99,4 +101,5 @@ public String shortString()
     String returnString = String.format("%-8d %-12s", this.itemID, this.itemName);
     return returnString;
 }
+	
 }
