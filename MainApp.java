@@ -64,8 +64,7 @@ public class MainApp extends Application {
     saleArray[0] = new Sale("Side lamp", 20.00, 3, "Tina Jones", "11/2/17");
     saleArray[1] = new Sale("Bed", 500.50, 1, "Ryan Guess", "5/12/18");
     
-    contractorArray[0] = new Contractor("Tim", "Corven", "5543 South Bend Plaza", "Fairfax", 
-            "VA", 98734, "Baker Booking", 4563728473L);
+    //contractorArray[0] = new Contractor("Tim", "Corven", "5543 South Bend Plaza", "Fairfax", "VA", 98734, "Baker Booking", 4563728473L, "");
     
       for (int i = 0; i < customerArray.length; i++)
         {
@@ -178,7 +177,6 @@ public class MainApp extends Application {
     Label lblWeight = new Label("Item Weight: ");
     Label lblDescription = new Label ("Item Description: ");
     Label lblPurchasePrice = new Label ("Item Purchase Price:");
-    Label lblSellingPrice = new Label ("Item Selling Price:"); 
     Label lblFName = new Label ("First Name:");
     Label lblLName = new Label ("Last Name:");
     Label lblStreet = new Label ("Street:");
@@ -620,7 +618,7 @@ public class MainApp extends Application {
         createItemPane.add(lblWeight,0,1);
         createItemPane.add(lblDescription,0,2);
         createItemPane.add(lblQuantity, 0,4);
-        createItemPane.add(lblSellingPrice,0,3);
+        createItemPane.add(lblPurchasePrice,0,3);
         createItemPane.add(txtItem, 1,0);
         createItemPane.add(txtWeight,1,1);
         createItemPane.add(txtDescription,1,2);
@@ -632,7 +630,7 @@ public class MainApp extends Application {
             itemArray = Arrays.copyOf(itemArray, 
             itemArray.length + 1); // resizes itemArray
             itemArray[itemCount] = new Item(txtItem.getText(), Double.parseDouble(txtWeight.getText()), txtDescription.getText(),
-            Double.parseDouble(txtSellingPrice.getText()), Double.parseDouble(txtQuantity.getText()));
+            Double.parseDouble(txtSellingPrice.getText()), Integer.parseInt(txtQuantity.getText()));
             itemCount++;
         });
         btnCreateItem.setOnAction(e ->{
@@ -720,7 +718,7 @@ public class MainApp extends Application {
             txtZip.clear();
             txtCity.clear();
             txtPhone.clear();
-            
+            System.out.println(customerArray[customerCount-1].toString());
         });
     
     //Setting create new customer button on action 
@@ -753,7 +751,7 @@ public class MainApp extends Application {
         editPane.setVgap(20);
         
     //Editing a Customer
-                ObservableList ecStates = FXCollections.observableArrayList();
+        ObservableList ecStates = FXCollections.observableArrayList();
         ComboBox cmboEditCust = new ComboBox();
         ecStates.add("AL - Alabama");
         ecStates.add("AK - Alaska");
@@ -805,8 +803,7 @@ public class MainApp extends Application {
         ecStates.add("WV - West Virginia");
         ecStates.add("WI - Wisconsin");
         ecStates.add("WY - Wyoming");
-        for (int i = 0; i < customerArray.length; i++)
-            cmboEditCust.getItems().add(customerArray[i].shortString());
+
         
         GridPane editCustomer = new GridPane();
         editCustomer.setAlignment(Pos.CENTER);
@@ -905,6 +902,9 @@ public class MainApp extends Application {
         
         btnEditCustomer.setOnAction(e -> {
           editCustomerStage.show();  
+          for (int i = 0; i < customerArray.length; i++)
+            cmboEditCust.getItems().add(customerArray[i].shortString());
+        
         });
         
         editCustomer.setHgap(20);
@@ -912,16 +912,138 @@ public class MainApp extends Application {
         
         
     //Editing an Item
+        ObservableList eiStates = FXCollections.observableArrayList();
+        ComboBox cmboEditItem = new ComboBox();
+        eiStates.add("AL - Alabama");
+        eiStates.add("AK - Alaska");
+        eiStates.add("AZ - Arizona");
+        eiStates.add("AR - Arkansas");
+        eiStates.add("CA - California");
+        eiStates.add("CO - Colorado");
+        eiStates.add("CT - Connecticut");
+        eiStates.add("DE - Deleware");
+        eiStates.add("FL - Florida");
+        eiStates.add("GA - Georgia");
+        eiStates.add("HI - Hawaii");
+        eiStates.add("ID - Idaho");
+        eiStates.add("IL - Illinois");
+        eiStates.add("IN - Indiana");
+        eiStates.add("IA - Iowa");
+        eiStates.add("KS - Kansas");
+        eiStates.add("KY - Kentucky");
+        eiStates.add("LA - Louisiana");
+        eiStates.add("ME - Maine");
+        eiStates.add("MD - Maryland");
+        eiStates.add("MA - Massachusetts");
+        eiStates.add("MI - Michigan");
+        eiStates.add("MN - Minnesota");
+        eiStates.add("MS - Mississippi");
+        eiStates.add("MO - Missouri");
+        eiStates.add("MT - Montana");
+        eiStates.add("NE - Nebraska");
+        eiStates.add("NV - Nevada");
+        eiStates.add("NH - New Hampshire");
+        eiStates.add("NJ - New Jersey");
+        eiStates.add("NM - New Mexico");
+        eiStates.add("NY - New York");
+        eiStates.add("NC - North Carolina");
+        eiStates.add("ND - North Dakota");
+        eiStates.add("OH - Ohio");
+        eiStates.add("OK - Oklahoma");
+        eiStates.add("OR - Oregon");
+        eiStates.add("PA - Pennsylvania");
+        eiStates.add("RI - Rhode Island");
+        eiStates.add("SC - South Carolina");
+        eiStates.add("SD - South Dakota");
+        eiStates.add("TN - Tennessee");
+        eiStates.add("TX - Texas");
+        eiStates.add("UT - Utah");
+        eiStates.add("VT - Vermont");
+        eiStates.add("VA - Virginia");
+        eiStates.add("WA - Washington");
+        eiStates.add("WV - West Virginia");
+        eiStates.add("WI - Wisconsin");
+        eiStates.add("WY - Wyoming");
+
+        
         GridPane editItem = new GridPane();
         editItem.setAlignment(Pos.CENTER);
         Stage editItemStage = new Stage();
         Scene editItemScene = new Scene(editItem, 500, 400);
         editItemStage.setTitle("Edit an Item");
         editItemStage.setScene(editItemScene);
-
         
+        Button EbtnItemExit = new Button("Exit");
+        Label lblItemID = new Label("Select an Item");
+        Label ElblItem = new Label("Item");
+        Label ElblWeight = new Label("Weight");
+        Label ElblDescription = new Label("Description");
+        Label ElblQuantity = new Label("Quantity");
+        Label ElblSellingPrice = new Label("Selling Price");
+        TextField EtxtItem = new TextField();
+        TextField EtxtWeight = new TextField();
+        TextField EtxtDescription = new TextField();
+        TextField EtxtPurchasePrice = new TextField();
+        TextField EtxtQuantity = new TextField();
+        Button EbtnSaveInventory = new Button("Save");
+        Button selectItem = new Button("Select");
+        
+        editItem.add(EbtnItemExit,1, 6);
+        editItem.add(ElblItem, 0,1);
+        editItem.add(ElblWeight,0,2);
+        editItem.add(ElblDescription,0,3);
+        editItem.add(ElblQuantity, 0,5);
+        editItem.add(ElblSellingPrice,0,4);
+        editItem.add(EtxtItem, 1,1);
+        editItem.add(EtxtWeight,1,2);
+        editItem.add(EtxtDescription,1,3);
+        editItem.add(EbtnSaveInventory,0,6);
+        editItem.add(EtxtPurchasePrice,1,4);
+        editItem.add(EtxtQuantity, 1, 5);
+        editItem.add(selectItem,2,0);
+        editItem.add(lblItemID, 0,0);
+        editItem.add(cmboEditItem, 1,0);
+        
+        selectItem.setOnAction(e -> {
+            int itemID=0;
+            for(int i = 0; i < itemArray.length; i++)
+            {
+                if(itemArray[i].shortString().equals(cmboEditItem.getSelectionModel().getSelectedItem().toString()))
+                    itemID = itemArray[i].getItemID();
+            }
+            EtxtItem.setText(itemArray[itemID - 4000].itemName);
+            EtxtWeight.setText(String.valueOf(itemArray[itemID - 4000].getWeight()));
+            EtxtDescription.setText(itemArray[itemID - 4000].description);
+            EtxtPurchasePrice.setText(String.valueOf(itemArray[itemID - 4000].getpurchasePrice()));
+            EtxtQuantity.setText(String.valueOf(itemArray[itemID - 4000].getQuantity()));
+        });
+        
+        EbtnSaveInventory.setOnAction(e -> {
+            int itemID = 0;
+            for(int i = 0; i < itemArray.length; i++)
+            {
+                if(itemArray[i].shortString().equals(cmboEditItem.getSelectionModel().getSelectedItem().toString()))
+                    itemID = itemArray[i].getItemID();
+            }
+            cmboEditItem.getItems().remove(0, itemArray.length);
+            itemArray[itemID - 4000].setName(EtxtItem.getText());
+            itemArray[itemID - 4000].setWeight(Double.parseDouble(EtxtWeight.getText()));
+            itemArray[itemID - 4000].setDescription(EtxtDescription.getText());
+            itemArray[itemID - 4000].setpurchasePrice(Double.parseDouble(EtxtPurchasePrice.getText()));
+            //itemArray[itemID - 4000].setQuantity(Integer.parseInt(EtxtQuantity.getText()));
+            for(int i = 0; i < itemArray.length; i++)
+            {
+                cmboEditItem.getItems().add(itemArray[i].shortString());
+            }
+        });
+        EbtnItemExit.setOnAction(e -> {
+          editItemStage.close();  
+        });
         btnEditItem.setOnAction(e -> {
-          editItemStage.show();  
+            editItemStage.show();
+            for (int i = 0; i < itemArray.length; i++)
+            cmboEditItem.getItems().add(itemArray[i].shortString());
+              
         });
         editItem.setHgap(20);
         editItem.setVgap(20);
