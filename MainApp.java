@@ -3,7 +3,7 @@ CIS 331 Section 2
 Group Project Part 2.
 Authors: Zach Beatty, Eric Carter, Mercy Clemente, Michael Corcoran & Troy Goddard
 */
-package Project331;
+package GroupProject331;
 
 import java.util.Scanner;
 import java.util.Arrays;
@@ -28,11 +28,15 @@ public class MainApp extends Application {
    
     //creating variables
     Customer[] customerArray = new Customer[5];
+    Contractor [] contractorArray = new Contractor[7]; 
     ObservableList<Customer> olCustomers = FXCollections.observableArrayList(customerArray);
-    ComboBox cmboEditCust = new ComboBox();
+    ComboBox cmboEditCustomers = new ComboBox();
     ComboBox cmboCustPurchase = new ComboBox(); 
-    ComboBox cmboItemPurchase = new ComboBox();
+    ComboBox cmboEditVendor = new ComboBox();
+    ComboBox cmboEditSales = new ComboBox();
+    ComboBox cmboEditContractor = new ComboBox();
     ComboBox cmboCustReceipt = new ComboBox();
+    ComboBox cmboItemPurchase = new ComboBox();
     //ObservableList <Customer> olCustomerPurchase = FXCollections.observableArrayList(customerArray);
     Vendor[] vendorArray = new Vendor[3];
     Sale[] saleArray = new Sale[5];
@@ -46,15 +50,26 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) {
     
-    //Prepopulating customers
-    customerArray[0] = new Customer("Tom", "Jones", "Harrisonburg", "VA", "800 S. Main St.", 22807, 5408994545L,"");  
-    customerArray[1] = new Customer("Evan", "Thompson", "Fairfax", "VA", "1932 Prince William", 22726, 7056785968L,"");
-    customerArray[2] = new Customer ("Jim", "Smith", "Arlington", "VA", "775 Edward St", 07675, 2015647857L,""); 
-    customerArray[3] = new Customer("Kate", "Andrews","Springfield","VA", "1032 Rustic St", 22676, 2745638976L,"");
-    customerArray[4] = new Customer("Rob", "Sousa", "Fairfax", "VA", "45 Market Blvd", 89867, 3345789084L,"");
-    for (int i = 0; i < customerArray.length; i++)
+    //Prepopulating arrays
+    customerArray[0] = new Customer("Tom", "Jones", "Harrisonburg", "VA", "800 S. Main St.", 22807, 5408994545L);  
+    customerArray[1] = new Customer("Evan", "Thompson", "Fairfax", "VA", "1932 Prince William", 22726, 7056785968L);
+    customerArray[2] = new Customer ("Jim", "Smith", "Arlington", "VA", "775 Edward St", 07675, 2015647857L); 
+    customerArray[3] = new Customer("Kate", "Andrews","Springfield","VA", "1032 Rustic St", 22676, 2745638976L);
+    customerArray[4] = new Customer("Rob", "Sousa", "Fairfax", "VA", "45 Market Blvd", 89867, 3345789084L);
+    
+    vendorArray[0]= new Vendor("Universal Construction", "12 South Main St. ", "Rockingham", "VA",22801, 4759067589L);
+    vendorArray[1]= new Vendor("Cat Building", "45 Annendale Blvd.", "Springfield", "VA", 22738, 7034563782L);
+    vendorArray[2] = new Vendor("Booking", "11 George Place.", "Culver City", "CA", 74683, 3134538948L);
+    
+    saleArray[0] = new Sale("Side lamp", 20.00, 3, "Tina Jones", "11/2/17");
+    saleArray[1] = new Sale("Bed", 500.50, 1, "Ryan Guess", "5/12/18");
+    
+    contractorArray[0] = new Contractor("Tim", "Corven", "5543 South Bend Plaza", "Fairfax", 
+            "VA", 98734, "Baker Booking", 4563728473L);
+    
+      for (int i = 0; i < customerArray.length; i++)
         {
-            cmboEditCust.getItems().add(customerArray[i].shortString());
+            cmboEditCustomers.getItems().add(customerArray[i].shortString());
         }
     for (int i = 0; i < customerArray.length; i++)
         {
@@ -64,8 +79,7 @@ public class MainApp extends Application {
         {
             cmboCustReceipt.getItems().add(customerArray[i].shortString());
         }
-    
-    //prepopulation items
+      //prepopulation items
     itemArray[0] = new Item("Lamp", 1.5, "Gold lamp", 9.99, 10);
     itemArray[1] = new Item("Table", 15, "Side table", 13.50, 5);
     itemArray[2] = new Item("Sofa", 100, "Grey sofa", 200, 3);
@@ -79,7 +93,15 @@ public class MainApp extends Application {
     for(int i = 0; i < itemArray.length; i++)
     {
     cmboItemPurchase.getItems().add(itemArray[i].shortString());
-    }
+    };
+    
+    cmboEditCustomers.getItems().addAll(customerArray);
+    cmboCustPurchase.getItems().addAll(customerArray);
+    cmboEditVendor.getItems().addAll(vendorArray);
+    cmboEditSales.getItems().addAll(saleArray);
+    cmboEditContractor.getItems().addAll(contractorArray);
+    cmboItemPurchase.getItems().addAll(itemArray);
+    cmboCustReceipt.getItems().addAll(customerArray); 
        
   // Declaring neccessary fields, labels, etc.
     TextField txtFName = new TextField();
@@ -257,8 +279,11 @@ public class MainApp extends Application {
     
     cmboStates.setPrefSize(200,10);
     cmboVStates.setPrefSize(200,10);
-    cmboEditCust.setPrefSize(250,10);
+    cmboEditCustomers.setPrefSize(250,10);
     cmboCustPurchase.setPrefSize(250,10);
+    cmboEditContractor.setPrefSize(250,10);
+    cmboEditSales.setPrefSize(250, 10);
+    cmboEditVendor.setPrefSize(250,10);
 
     ObservableList olCState = FXCollections.observableArrayList();
     ComboBox cmboCState = new ComboBox(olCState);
@@ -425,13 +450,15 @@ public class MainApp extends Application {
         Scene custPurchScene = new Scene(custPurchPane, 600,400);
         custPurchStage.setTitle("Customer Purchase History");
         Label lblCustT = new Label("Viewing Customer Purchase History");
+        Button btnViewCustPurch = new Button("View Customer's Purchase History");
         custPurchStage.setScene(custPurchScene);
         custPurchPane.add(lblCustT,0,0);
-        custPurchPane.add(cmboCustPurchase,0,1);
-        custPurchPane.add(btnCustPurchExit,0,2);
+        custPurchPane.add(cmboCustPurchase,0,1,1,3);
+        custPurchPane.add(btnViewCustPurch,0,4);
+        custPurchPane.add(btnCustPurchExit,1,4);
         btnCustPurchase.setOnAction(e ->{
             custPurchStage.show(); 
-          //taCustPurchHistory.appendText(customerArray[0].toString());
+          //  taCustPurchHistory.appendText(customerArray[0].toString());
         });
         btnCustPurchExit.setOnAction(e -> {
             custPurchStage.close();
@@ -439,7 +466,7 @@ public class MainApp extends Application {
         custPurchPane.setVgap(20);
         custPurchPane.setHgap(20);
         
-  //Creating the pane, stage, and scene for item purchase history
+//Creating the pane, stage, and scene for item purchase history
         GridPane itemPurchPane = new GridPane();
         itemPurchPane.setAlignment(Pos.CENTER);
         Stage itemPurchStage = new Stage();
@@ -457,6 +484,7 @@ public class MainApp extends Application {
         });
         itemPurchPane.setVgap(20);
         itemPurchPane.setHgap(20);
+        
         
   //Creating the current inventory 
         GridPane currentInvPane = new GridPane();
@@ -596,7 +624,6 @@ public class MainApp extends Application {
         createItemPane.add(txtItem, 1,0);
         createItemPane.add(txtWeight,1,1);
         createItemPane.add(txtDescription,1,2);
-        
         createItemPane.add(btnSaveInventory,0,5);
         createItemPane.add(txtSellingPrice,1,3);
         createItemPane.add(txtQuantity, 1, 4);
@@ -684,7 +711,7 @@ public class MainApp extends Application {
             
             customerArray[customerCount] = new Customer(txtFName.getText(), txtLName.getText(), txtCity.getText(), 
                 cmboStates.getSelectionModel().getSelectedItem().toString(), txtStreet.getText(), 
-                Integer.parseInt(txtZip.getText()), Long.parseLong(txtPhone.getText()), txtDescription.getText());
+                Integer.parseInt(txtZip.getText()), Long.parseLong(txtPhone.getText()));
             customerCount++;
             txtFName.clear();
             txtLName.clear();
@@ -725,19 +752,13 @@ public class MainApp extends Application {
         editPane.setVgap(20);
         
     //Editing a Customer
-        ComboBox cmboEditCust = new ComboBox();
-        for (int i = 0; i < customerArray.length; i++)
-        {
-            cmboEditCust.getItems().add(customerArray[i].shortString());
-        }
-    
-    GridPane editCustomerPane = new GridPane();
+        GridPane editCustomerPane = new GridPane();
         editCustomerPane.setAlignment(Pos.CENTER);
         Stage editCustomerStage = new Stage();
         Scene editCustomerScene = new Scene(editCustomerPane, 660, 600);
         editCustomerStage.setTitle("Edit a Customer");
         editCustomerStage.setScene(editCustomerScene);
-        editCustomerPane.add(cmboEditCust,0,0);
+        editCustomerPane.add(cmboEditCustomers,0,0);
         editCustomerPane.add(btnContinue,0,1); 
         //add all items to the pane
 
@@ -745,7 +766,6 @@ public class MainApp extends Application {
         btnEditCustomer.setOnAction(e -> {
           editCustomerStage.show();  
         });
-        
         editCustomerPane.setHgap(20);
         editCustomerPane.setVgap(20);
         
@@ -762,19 +782,20 @@ public class MainApp extends Application {
         btnEditItem.setOnAction(e -> {
           editItemStage.show();  
         });
-        
         editItem.setHgap(20);
         editItem.setVgap(20);
         
     //Editing a Sale
-        GridPane editSale = new GridPane();
-        editSale.setAlignment(Pos.CENTER);
+        GridPane editSalePane = new GridPane();
+        editSalePane.setAlignment(Pos.CENTER);
         Stage editSaleStage = new Stage();
-        Scene editSaleScene = new Scene(editSale, 500, 400);
+        Scene editSaleScene = new Scene(editSalePane, 500, 400);
         editSaleStage.setTitle("Edit a Sale");
         editSaleStage.setScene(editSaleScene);
-        
-        
+        editSalePane.add(cmboEditSales,0,0);
+         btnEditSale.setOnAction(e ->{
+             editSaleStage.show();
+         });    
         
     //Editing a Vendor
         GridPane editVendor = new GridPane();
@@ -783,8 +804,10 @@ public class MainApp extends Application {
         Scene editVendorScene = new Scene(editVendor,660,600);
         editVendorStage.setTitle("Edit a Vendor");
         editVendorStage.setScene(editVendorScene);
-        
-        
+        editVendor.add(cmboEditVendor,0,0);
+        btnEditVendor.setOnAction(e ->{
+            editVendorStage.show();
+        });
         
     //Editing a Contractor
         GridPane editContractor = new GridPane();
@@ -793,10 +816,13 @@ public class MainApp extends Application {
         Scene editContractorScene = new Scene(editContractor,660,600);
         editContractorStage.setTitle("Edit a Contractor");
         editContractorStage.setScene(editContractorScene);
+        editContractor.add(cmboEditContractor,0,0);
+        btnEditContractor.setOnAction(e ->{
+            editContractorStage.show();
+        });
+            
         
-        
-        
-  //Creating print receipt option
+ //Creating print receipt option
         GridPane printReceiptPane = new GridPane();
         printReceiptPane.setAlignment(Pos.CENTER);
         Stage printReceiptStage = new Stage();
@@ -816,6 +842,7 @@ public class MainApp extends Application {
         });
         printReceiptPane.setVgap(20);
         printReceiptPane.setHgap(20);
+
 
   //Main Menu 
         Label lblMain = new Label (" Valley Depot's Main Menu"); 
