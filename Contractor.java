@@ -3,43 +3,35 @@ CIS 331 Section 2
 Group Project Part 1.
 Authors: Zach Beatty, Eric Carter, Mercy Clemente, Michael Corcoran & Troy Goddard
  */
+
+
 package GroupProject331;
 
 public class Contractor extends Customer 
 {
     private static int contractorCount = 6000;
     private int contractorID;
-    public String contractorName; 
+    public String contractingName; 
     public long contractorNumber; 
     public String contractorAddress; 
     Customer firstName; 
     
-public Contractor (String firstName, String lastName, String city, String street, 
-        String state, int zip, String contractorName, long contractorNumber, 
-        String contractorAddress, String description)
+public Contractor (String firstName, String lastName, String street, String city, 
+        String state, int zip, String contractingName, long contractorNumber)
     {
-        super(firstName, lastName, city, state, street, zip, contractorNumber, description);
-        this.contractorName = contractorName;
+        super(firstName, lastName, street, city, state, zip, contractorNumber);
+        this.contractingName = contractingName;
         this.contractorNumber = contractorNumber;
-        this.contractorAddress = contractorAddress; 
         this.contractorID = contractorCount;
         contractorCount++;
     }
     
     //setting the contractor company name
-    public void setContractorName (String contractorName) 
+    public void setContractorName (String contractingName) 
     {
-       this.contractorName = contractorName; 
+       this.contractingName = contractingName; 
     }
-    public String setContractorAddress( String contractingAddress)
-    {
-        contractingAddress ="";
-        contractingAddress += this.street + ", "; 
-        contractingAddress += this.city + ", ";
-        contractingAddress += this.state + ", ";
-        contractingAddress += this.zip;
-        return contractingAddress; 
-    }
+ 
     
     //setting contractor company number
     public void setContractorNumber (long contractorNumber) 
