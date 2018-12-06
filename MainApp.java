@@ -3,7 +3,7 @@ CIS 331 Section 2
 Group Project Part 2.
 Authors: Zach Beatty, Eric Carter, Mercy Clemente, Michael Corcoran & Troy Goddard
 */
-package GroupProject331;
+package Project331;
 
 import java.util.Scanner;
 import java.util.Arrays;
@@ -28,6 +28,9 @@ public class MainApp extends Application {
    
     //creating variables
     Customer[] customerArray = new Customer[5];
+    ArrayList<Customer> customerList = new ArrayList<>(Arrays.asList(customerArray));
+    ObservableList<Customer> olCustomers = FXCollections.observableArrayList(customerList);
+    ComboBox cmboCustomers = new ComboBox(olCustomers);
     Vendor[] vendorArray = new Vendor[3];
     Sale[] saleArray = new Sale[5];
     Item[] itemArray = new Item[10];
@@ -214,6 +217,7 @@ public class MainApp extends Application {
     btnSaleExit.setPrefSize(200,10);
     btnVendorExit.setPrefSize(200,10);
     btnExitInventory.setPrefSize(200,10);
+    btnEditContractor.setPrefSize(250,10);
     btnCreateCust.setPrefSize(250,10);
     btnCreateItem.setPrefSize(250,10);
     btnVendor.setPrefSize(250,10);
@@ -225,7 +229,7 @@ public class MainApp extends Application {
     
     cmboStates.setPrefSize(200,10);
     cmboVStates.setPrefSize(200,10);
-    
+
     ObservableList olCState = FXCollections.observableArrayList();
     ComboBox cmboCState = new ComboBox(olCState);
     olCState.add("AL - Alabama");
@@ -652,6 +656,7 @@ public class MainApp extends Application {
                 Integer.parseInt(txtZip.getText()), Long.parseLong(txtPhone.getText()), txtDescription.getText());
             customerCount++;
         });
+    
     //Setting create new customer button on action 
         btnCreateCust.setOnAction(e ->{
             createCustStage.show();
@@ -669,6 +674,7 @@ public class MainApp extends Application {
         editPane.add(btnEditCustomer,0,0);
         editPane.add(btnEditItem, 0,1);
         editPane.add(btnEditSale,0,2);
+        editPane.add(cmboCustomers,1,4);
         editPane.add(btnEditVendor,0,3);
         editPane.add(btnEditContractor, 0, 4);
         editPane.add(btnEditExit,0,5);
