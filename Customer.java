@@ -12,10 +12,10 @@ public class Customer
   private int cId;
   public int zip;
   public long phoneNumber;
-  public String firstName, lastName, city, state, street, description;
+  public String firstName, lastName, city, state, street;
     
 public Customer(String firstName, String lastName, String city, String state, 
-         String street, int zip, long phoneNumber, String description)
+         String street, int zip, long phoneNumber)
     {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -25,7 +25,6 @@ public Customer(String firstName, String lastName, String city, String state,
         this.zip = zip;
         this.phoneNumber = phoneNumber;
         this.cId = customerCount;
-        this.description = description;
         customerCount++;
     }
     
@@ -64,17 +63,11 @@ public Customer(String firstName, String lastName, String city, String state,
         this.phoneNumber = newNumber;
     }
     
-    public void setDescription(String description)
-    {
-        this.description = description;
-    }
-    
     public int getId()
     {
         return this.cId;
     }
                 
-    
     @Override
     public String toString()
     {
@@ -88,5 +81,5 @@ public Customer(String firstName, String lastName, String city, String state,
         String returnString = String.format("%-8d %-12s %-12s", this.cId, this.firstName, this.lastName);
         return returnString;
     }
-  
+    
 }
