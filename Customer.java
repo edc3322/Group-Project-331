@@ -83,5 +83,10 @@ public Customer(String firstName, String lastName, String city, String state,
       this.lastName, this.city, this.street, this.state, this.zip, this.phoneNumber);
         return  returnString;
     }
-    
+    public String shortString()
+    {
+        String returnString = String.format("%-8d %-12s %-12s", this.cId, this.firstName, this.lastName);
+        return returnString;
+    }
+  
 }
