@@ -13,7 +13,6 @@ public class Contractor extends Customer
     private int contractorID;
     public String contractingName; 
     public long contractorNumber; 
-    public String contractorAddress; 
     Customer firstName; 
     
 public Contractor (String firstName, String lastName, String street, String city, 
