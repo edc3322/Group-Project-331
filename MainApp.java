@@ -3,7 +3,7 @@ CIS 331 Section 2
 Group Project Part 2.
 Authors: Zach Beatty, Eric Carter, Mercy Clemente, Michael Corcoran & Troy Goddard
 */
-package Project331;
+package GroupProject331;
 
 import java.util.Scanner;
 import java.util.Arrays;
@@ -28,9 +28,10 @@ public class MainApp extends Application {
    
     //creating variables
     Customer[] customerArray = new Customer[5];
-    ArrayList<Customer> customerList = new ArrayList<>(Arrays.asList(customerArray));
-    ObservableList<Customer> olCustomers = FXCollections.observableArrayList(customerList);
-    ComboBox cmboCustomers = new ComboBox(olCustomers);
+    ObservableList<Customer> olCustomers = FXCollections.observableArrayList(customerArray);
+    ComboBox cmboCustomers = new ComboBox();
+    ComboBox cmboCustPurchase = new ComboBox(); 
+    ObservableList <Customer> olCustomerPurchase = FXCollections.observableArrayList(customerArray);
     Vendor[] vendorArray = new Vendor[3];
     Sale[] saleArray = new Sale[5];
     Item[] itemArray = new Item[10];
@@ -49,7 +50,8 @@ public class MainApp extends Application {
     customerArray[2] = new Customer ("Jim", "Smith", "Arlington", "VA", "775 Edward St", 07675, 2015647857L,""); 
     customerArray[3] = new Customer("Kate", "Andrews","Springfield","VA", "1032 Rustic St", 22676, 2745638976L,"");
     customerArray[4] = new Customer("Rob", "Sousa", "Fairfax", "VA", "45 Market Blvd", 89867, 3345789084L,"");
-       
+    cmboCustomers.getItems().addAll(customerArray);
+    cmboCustPurchase.getItems().addAll(customerArray);
        
   // Declaring neccessary fields, labels, etc.
     TextField txtFName = new TextField();
@@ -108,21 +110,17 @@ public class MainApp extends Application {
     txtSalePrice.setMaxWidth(200);
    TextArea taReceipt = new TextArea(); 
    TextArea taInventory = new TextArea();
-   TextArea taCustPurchHistory = new TextArea();
    TextArea taItemHistory = new TextArea();
    ScrollPane itemHistoryScrollPane = new ScrollPane(taItemHistory);
    ScrollPane receiptScrollPane = new ScrollPane (taReceipt);
    ScrollPane inventoryScrollPane = new ScrollPane(taInventory);
-   ScrollPane custPurchHistoryPane = new ScrollPane(taCustPurchHistory);
    notesScrollPane.setPrefSize(350,150);
-   custPurchHistoryPane.setPrefSize(400,250);
    inventoryScrollPane.setPrefSize(400,250);
    receiptScrollPane.setPrefSize(400,250);
    itemHistoryScrollPane.setPrefSize(400,250);
 
    taReceipt.setPrefSize(400,250);
    taInventory.setPrefSize(400,250);
-   taCustPurchHistory.setPrefSize(400,250);
    taNotes.setPrefSize(350,150);
    taItemHistory.setPrefSize(400,250);
    
@@ -191,9 +189,11 @@ public class MainApp extends Application {
     Button btnCreateContractor = new Button("Create Contractor");
     Button btnSaveContractor = new Button("Save");
     Button btnExitContractor = new Button("Exit");
+    Button btnContinue  = new Button("Continue to Edit");
     
     //Setting button dimensions 
     btnSaveContractor.setPrefSize(200,10);
+    btnContinue.setPrefSize(250,10);
     btnExitContractor.setPrefSize(200,10);
     btnCreateContractor.setPrefSize(250,10);
     btnCustPurchase.setPrefSize(250, 10);
@@ -229,6 +229,8 @@ public class MainApp extends Application {
     
     cmboStates.setPrefSize(200,10);
     cmboVStates.setPrefSize(200,10);
+    cmboCustomers.setPrefSize(250,10);
+    cmboCustPurchase.setPrefSize(250,10);
 
     ObservableList olCState = FXCollections.observableArrayList();
     ComboBox cmboCState = new ComboBox(olCState);
@@ -335,7 +337,7 @@ public class MainApp extends Application {
     olState.add("WV - West Virginia");
     olState.add("WI - Wisconsin");
     olState.add("WY - Wyoming");
-        cmboStates.setPrefSize(200,10);
+    cmboStates.setPrefSize(200,10);
   
 //Filling observable list 
     olStates.add("AL - Alabama");
@@ -397,10 +399,11 @@ public class MainApp extends Application {
         Label lblCustT = new Label("Viewing Customer Purchase History");
         custPurchStage.setScene(custPurchScene);
         custPurchPane.add(lblCustT,0,0);
-        custPurchPane.add(custPurchHistoryPane,0,1);
+        custPurchPane.add(cmboCustPurchase,0,1);
         custPurchPane.add(btnCustPurchExit,0,2);
         btnCustPurchase.setOnAction(e ->{
             custPurchStage.show(); 
+          //  taCustPurchHistory.appendText(customerArray[0].toString());
         });
         btnCustPurchExit.setOnAction(e -> {
             custPurchStage.close();
@@ -655,6 +658,13 @@ public class MainApp extends Application {
                 cmboStates.getSelectionModel().getSelectedItem().toString(), txtStreet.getText(), 
                 Integer.parseInt(txtZip.getText()), Long.parseLong(txtPhone.getText()), txtDescription.getText());
             customerCount++;
+            txtFName.clear();
+            txtLName.clear();
+            txtStreet.clear();
+            txtZip.clear();
+            txtCity.clear();
+            txtPhone.clear();
+            
         });
     
     //Setting create new customer button on action 
@@ -674,7 +684,6 @@ public class MainApp extends Application {
         editPane.add(btnEditCustomer,0,0);
         editPane.add(btnEditItem, 0,1);
         editPane.add(btnEditSale,0,2);
-        editPane.add(cmboCustomers,1,4);
         editPane.add(btnEditVendor,0,3);
         editPane.add(btnEditContractor, 0, 4);
         editPane.add(btnEditExit,0,5);
@@ -688,23 +697,23 @@ public class MainApp extends Application {
         editPane.setVgap(20);
         
     //Editing a Customer
-        GridPane editCustomer = new GridPane();
-        editCustomer.setAlignment(Pos.CENTER);
+        GridPane editCustomerPane = new GridPane();
+        editCustomerPane.setAlignment(Pos.CENTER);
         Stage editCustomerStage = new Stage();
-        Scene editCustomerScene = new Scene(editCustomer, 660, 600);
+        Scene editCustomerScene = new Scene(editCustomerPane, 660, 600);
         editCustomerStage.setTitle("Edit a Customer");
         editCustomerStage.setScene(editCustomerScene);
+        editCustomerPane.add(cmboCustomers,0,0);
+        editCustomerPane.add(btnContinue,0,1); 
         //add all items to the pane
 
-        
-        
-        
+
         btnEditCustomer.setOnAction(e -> {
           editCustomerStage.show();  
         });
         
-        editCustomer.setHgap(20);
-        editCustomer.setVgap(20);
+        editCustomerPane.setHgap(20);
+        editCustomerPane.setVgap(20);
         
         
     //Editing an Item
@@ -714,8 +723,6 @@ public class MainApp extends Application {
         Scene editItemScene = new Scene(editItem, 500, 400);
         editItemStage.setTitle("Edit an Item");
         editItemStage.setScene(editItemScene);
-        
-        
 
         
         btnEditItem.setOnAction(e -> {
@@ -795,11 +802,7 @@ public class MainApp extends Application {
         primaryPane.setVgap(20);
         primaryPane.setHgap(20);
       
-        //Setting intial buttons to open the new stages once clicked 
-       btnCustPurchase.setOnAction(e -> {
-           custPurchStage.show();
-        });
-     
+
         btnCreateMenu.setOnAction(e -> {
           createStage.show(); 
         });
