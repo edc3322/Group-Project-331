@@ -718,7 +718,7 @@ public class MainApp extends Application {
             txtZip.clear();
             txtCity.clear();
             txtPhone.clear();
-            System.out.println(customerArray[customerCount-1].toString());
+            
         });
     
     //Setting create new customer button on action 
