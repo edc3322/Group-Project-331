@@ -673,6 +673,7 @@ public class MainApp extends Application {
      });
      contractorPane.setVgap(20);
      contractorPane.setHgap(20);
+       
 //Creating the new customer 
         GridPane createCustPane = new GridPane();
         createCustPane.setAlignment(Pos.CENTER);
@@ -752,22 +753,162 @@ public class MainApp extends Application {
         editPane.setVgap(20);
         
     //Editing a Customer
-        GridPane editCustomerPane = new GridPane();
-        editCustomerPane.setAlignment(Pos.CENTER);
+                ObservableList ecStates = FXCollections.observableArrayList();
+        ComboBox cmboEditCust = new ComboBox();
+        ecStates.add("AL - Alabama");
+        ecStates.add("AK - Alaska");
+        ecStates.add("AZ - Arizona");
+        ecStates.add("AR - Arkansas");
+        ecStates.add("CA - California");
+        ecStates.add("CO - Colorado");
+        ecStates.add("CT - Connecticut");
+        ecStates.add("DE - Deleware");
+        ecStates.add("FL - Florida");
+        ecStates.add("GA - Georgia");
+        ecStates.add("HI - Hawaii");
+        ecStates.add("ID - Idaho");
+        ecStates.add("IL - Illinois");
+        ecStates.add("IN - Indiana");
+        ecStates.add("IA - Iowa");
+        ecStates.add("KS - Kansas");
+        ecStates.add("KY - Kentucky");
+        ecStates.add("LA - Louisiana");
+        ecStates.add("ME - Maine");
+        ecStates.add("MD - Maryland");
+        ecStates.add("MA - Massachusetts");
+        ecStates.add("MI - Michigan");
+        ecStates.add("MN - Minnesota");
+        ecStates.add("MS - Mississippi");
+        ecStates.add("MO - Missouri");
+        ecStates.add("MT - Montana");
+        ecStates.add("NE - Nebraska");
+        ecStates.add("NV - Nevada");
+        ecStates.add("NH - New Hampshire");
+        ecStates.add("NJ - New Jersey");
+        ecStates.add("NM - New Mexico");
+        ecStates.add("NY - New York");
+        ecStates.add("NC - North Carolina");
+        ecStates.add("ND - North Dakota");
+        ecStates.add("OH - Ohio");
+        ecStates.add("OK - Oklahoma");
+        ecStates.add("OR - Oregon");
+        ecStates.add("PA - Pennsylvania");
+        ecStates.add("RI - Rhode Island");
+        ecStates.add("SC - South Carolina");
+        ecStates.add("SD - South Dakota");
+        ecStates.add("TN - Tennessee");
+        ecStates.add("TX - Texas");
+        ecStates.add("UT - Utah");
+        ecStates.add("VT - Vermont");
+        ecStates.add("VA - Virginia");
+        ecStates.add("WA - Washington");
+        ecStates.add("WV - West Virginia");
+        ecStates.add("WI - Wisconsin");
+        ecStates.add("WY - Wyoming");
+        for (int i = 0; i < customerArray.length; i++)
+            cmboEditCust.getItems().add(customerArray[i].shortString());
+        
+        GridPane editCustomer = new GridPane();
+        editCustomer.setAlignment(Pos.CENTER);
         Stage editCustomerStage = new Stage();
-        Scene editCustomerScene = new Scene(editCustomerPane, 660, 600);
+        Scene editCustomerScene = new Scene(editCustomer, 660, 600);
         editCustomerStage.setTitle("Edit a Customer");
         editCustomerStage.setScene(editCustomerScene);
-        editCustomerPane.add(cmboEditCustomers,0,0);
-        editCustomerPane.add(btnContinue,0,1); 
-        //add all items to the pane
+        //create all the items
+        Label lblEdit = new Label("Edit an Existing Customer");
+        Label ElblFName = new Label("First Name");
+        Label ElblLName = new Label("Last Name");
+        Label ElblStreet = new Label("Street");
+        Label ElblCity = new Label("City");
+        Label ElblZip = new Label("Zip Code");
+        Label ElblState = new Label("State");
+        Label ElblPhone = new Label("Phone Number");
+        Label ElblNotes = new Label("Notes");
+        TextField EtxtFName = new TextField();
+        TextField EtxtLName = new TextField();
+        TextField EtxtStreet = new TextField();
+        TextField EtxtCity = new TextField();
+        TextField EtxtZip = new TextField();
+        TextField EtxtPhone = new TextField();
+        TextField EtxtCID = new TextField();
+        ScrollPane EnotesScrollPane = new ScrollPane();
+        ComboBox EcmboStates = new ComboBox(ecStates);
+        Button EbtnExitCust = new Button("Exit");
+        Button EbtnSaveCustInfo = new Button("Save");
+        Button btnSelect = new Button("Select");
+        Label lblCustID = new Label("Customer ID");
+        
+        
+        editCustomer.add(lblEdit,0,0);
+        editCustomer.add(ElblFName,0,2);
+        editCustomer.add(ElblLName,0,3);
+        editCustomer.add(ElblStreet,0,4);
+        editCustomer.add(ElblCity,0,5);
+        editCustomer.add(ElblZip,0,6);
+        editCustomer.add(ElblState,0,7);
+        editCustomer.add(ElblPhone,0,8);
+        editCustomer.add(ElblNotes,0,9);
+        editCustomer.add(EtxtFName, 1,2);
+        editCustomer.add(EtxtLName, 1,3);
+        editCustomer.add(EtxtStreet, 1,4);
+        editCustomer.add(EtxtCity, 1,5);
+        editCustomer.add(EtxtZip,1,6);
+        editCustomer.add(EcmboStates,1,7);
+        editCustomer.add(EtxtPhone,1,8);
+        editCustomer.add(EnotesScrollPane,1,9);
+        editCustomer.add(EbtnExitCust,1,10);
+        editCustomer.add(EbtnSaveCustInfo,0,10);
+        editCustomer.add(cmboEditCust,1,1);
+        editCustomer.add(lblCustID,0,1);
+        editCustomer.add(btnSelect,2,1);
+        
+        btnSelect.setOnAction(e -> {
+            int customerID=0;
+            for(int i = 0; i < customerArray.length; i++)
+            {
+                if(customerArray[i].shortString().equals(cmboEditCust.getSelectionModel().getSelectedItem().toString()))
+                    customerID = customerArray[i].getId();
+            }
+            EtxtFName.setText(customerArray[customerID - 1000].firstName);
+            EtxtLName.setText(customerArray[customerID - 1000].lastName);
+            EtxtStreet.setText(customerArray[customerID - 1000].street);
+            EtxtCity.setText(customerArray[customerID - 1000].city);
+            EcmboStates.getSelectionModel().select(customerArray[customerID - 1000].state);
+            EtxtZip.setText(String.valueOf(customerArray[customerID - 1000].zip));
+            EtxtPhone.setText(String.valueOf(customerArray[customerID - 1000].phoneNumber));
+        });
+        
+        EbtnSaveCustInfo.setOnAction(e -> {
+            int customerID = 0;
+            for(int i = 0; i < customerArray.length; i++)
+            {
+                if(customerArray[i].shortString().equals(cmboEditCust.getSelectionModel().getSelectedItem().toString()))
+                    customerID = customerArray[i].getId();
+            }
+        cmboEditCust.getItems().remove(0, customerArray.length);
+        customerArray[customerID - 1000].firstName = EtxtFName.getText();
+        customerArray[customerID - 1000].lastName = EtxtLName.getText();
+        customerArray[customerID - 1000].city = EtxtCity.getText();
+        customerArray[customerID - 1000].state = EcmboStates.getSelectionModel().getSelectedItem().toString();
+        customerArray[customerID - 1000].street = EtxtStreet.getText();
+        customerArray[customerID - 1000].zip = Integer.parseInt(EtxtZip.getText());
+        customerArray[customerID - 1000].phoneNumber = Long.parseLong(EtxtPhone.getText());
 
+        for (int i = 0; i < customerArray.length; i++)
+            cmboEditCust.getItems().add(customerArray[i].shortString());
 
+        });
+        
+        EbtnExitCust.setOnAction(e -> {
+            editCustomerStage.close();
+        });
+        
         btnEditCustomer.setOnAction(e -> {
           editCustomerStage.show();  
         });
-        editCustomerPane.setHgap(20);
-        editCustomerPane.setVgap(20);
+        
+        editCustomer.setHgap(20);
+        editCustomer.setVgap(20);
         
         
     //Editing an Item
