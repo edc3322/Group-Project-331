@@ -3,7 +3,7 @@ CIS 331 Section 2
 Group Project Part 2.
 Authors: Zach Beatty, Eric Carter, Mercy Clemente, Michael Corcoran & Troy Goddard
 */
-package GroupProject331;
+package Project331;
 
 import java.util.Scanner;
 import java.util.Arrays;
@@ -29,9 +29,11 @@ public class MainApp extends Application {
     //creating variables
     Customer[] customerArray = new Customer[5];
     ObservableList<Customer> olCustomers = FXCollections.observableArrayList(customerArray);
-    ComboBox cmboCustomers = new ComboBox();
+    ComboBox cmboEditCust = new ComboBox();
     ComboBox cmboCustPurchase = new ComboBox(); 
-    ObservableList <Customer> olCustomerPurchase = FXCollections.observableArrayList(customerArray);
+    ComboBox cmboItemPurchase = new ComboBox();
+    ComboBox cmboCustReceipt = new ComboBox();
+    //ObservableList <Customer> olCustomerPurchase = FXCollections.observableArrayList(customerArray);
     Vendor[] vendorArray = new Vendor[3];
     Sale[] saleArray = new Sale[5];
     Item[] itemArray = new Item[10];
@@ -50,8 +52,34 @@ public class MainApp extends Application {
     customerArray[2] = new Customer ("Jim", "Smith", "Arlington", "VA", "775 Edward St", 07675, 2015647857L,""); 
     customerArray[3] = new Customer("Kate", "Andrews","Springfield","VA", "1032 Rustic St", 22676, 2745638976L,"");
     customerArray[4] = new Customer("Rob", "Sousa", "Fairfax", "VA", "45 Market Blvd", 89867, 3345789084L,"");
-    cmboCustomers.getItems().addAll(customerArray);
-    cmboCustPurchase.getItems().addAll(customerArray);
+    for (int i = 0; i < customerArray.length; i++)
+        {
+            cmboEditCust.getItems().add(customerArray[i].shortString());
+        }
+    for (int i = 0; i < customerArray.length; i++)
+        {
+            cmboCustPurchase.getItems().add(customerArray[i].shortString());
+        }
+    for (int i = 0; i < customerArray.length; i++)
+        {
+            cmboCustReceipt.getItems().add(customerArray[i].shortString());
+        }
+    
+    //prepopulation items
+    itemArray[0] = new Item("Lamp", 1.5, "Gold lamp", 9.99, 10);
+    itemArray[1] = new Item("Table", 15, "Side table", 13.50, 5);
+    itemArray[2] = new Item("Sofa", 100, "Grey sofa", 200, 3);
+    itemArray[3] = new Item("Chair", 45, "Set of 4 chairs", 80, 20);
+    itemArray[4] = new Item ("Desk", 25, "Black desk", 35.50, 4);
+    itemArray[5] = new Item("Desk Light", 3, "Gold desk lamp", 4.50, 6);
+    itemArray[6] = new Item("Dining Table", 55, "Round Dining Table", 90, 2);
+    itemArray[7] = new Item("Basket", 1, "Round basket", 10, 15);
+    itemArray[8] = new Item("Bookshelf", 35, "Black Bookshelf", 55.50, 3);
+    itemArray[9] = new Item("2 Candles", 3.5, "Set of 2 candles", 7, 10);
+    for(int i = 0; i < itemArray.length; i++)
+    {
+    cmboItemPurchase.getItems().add(itemArray[i].shortString());
+    }
        
   // Declaring neccessary fields, labels, etc.
     TextField txtFName = new TextField();
@@ -229,7 +257,7 @@ public class MainApp extends Application {
     
     cmboStates.setPrefSize(200,10);
     cmboVStates.setPrefSize(200,10);
-    cmboCustomers.setPrefSize(250,10);
+    cmboEditCust.setPrefSize(250,10);
     cmboCustPurchase.setPrefSize(250,10);
 
     ObservableList olCState = FXCollections.observableArrayList();
@@ -403,7 +431,7 @@ public class MainApp extends Application {
         custPurchPane.add(btnCustPurchExit,0,2);
         btnCustPurchase.setOnAction(e ->{
             custPurchStage.show(); 
-          //  taCustPurchHistory.appendText(customerArray[0].toString());
+          //taCustPurchHistory.appendText(customerArray[0].toString());
         });
         btnCustPurchExit.setOnAction(e -> {
             custPurchStage.close();
@@ -418,7 +446,7 @@ public class MainApp extends Application {
         Scene itemPurchScene = new Scene(itemPurchPane, 500,400);
         itemPurchStage.setTitle("Item Purchase History");
         itemPurchStage.setScene(itemPurchScene); 
-        itemPurchPane.add(itemHistoryScrollPane,0,1);
+        itemPurchPane.add(cmboItemPurchase,0,1);
         itemPurchPane.add(btnItemHistoryExit,0,2);
         itemPurchPane.add(lblItemHistory,0,0);
         btnItemPurch.setOnAction(e -> {
@@ -697,13 +725,19 @@ public class MainApp extends Application {
         editPane.setVgap(20);
         
     //Editing a Customer
-        GridPane editCustomerPane = new GridPane();
+        ComboBox cmboEditCust = new ComboBox();
+        for (int i = 0; i < customerArray.length; i++)
+        {
+            cmboEditCust.getItems().add(customerArray[i].shortString());
+        }
+    
+    GridPane editCustomerPane = new GridPane();
         editCustomerPane.setAlignment(Pos.CENTER);
         Stage editCustomerStage = new Stage();
         Scene editCustomerScene = new Scene(editCustomerPane, 660, 600);
         editCustomerStage.setTitle("Edit a Customer");
         editCustomerStage.setScene(editCustomerScene);
-        editCustomerPane.add(cmboCustomers,0,0);
+        editCustomerPane.add(cmboEditCust,0,0);
         editCustomerPane.add(btnContinue,0,1); 
         //add all items to the pane
 
@@ -772,7 +806,7 @@ public class MainApp extends Application {
         taReceipt.setWrapText(true);
         Label lblTitle = new Label ("Printing Receipt");
         printReceiptPane.add(lblTitle,0,0);
-        printReceiptPane.add(receiptScrollPane,0,1);
+        printReceiptPane.add(cmboCustReceipt,0,1);
         printReceiptPane.add(btnPrintExit,0,2);
         btnPrint.setOnAction(e -> {
             printReceiptStage.show();
