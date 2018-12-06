@@ -15,10 +15,10 @@ public String itemName;
 public double weight;
 public String description;
 private double purchasePrice;
-public double quantity;
+public int quantity;
 
 public Item(String itemName, double weight, String description, 
-        double purchasePrice,  double quantity)
+        double purchasePrice,  int quantity)
 {
 	this.itemName = itemName;
 	this.weight = weight;
@@ -79,7 +79,7 @@ public double getWeight()
     return this.weight;
 }
 
-public void setQuantity(double quantity)
+public void setQuantity(int quantity)
 {
      this.quantity = quantity;
 }	
