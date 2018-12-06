@@ -94,4 +94,9 @@ public String toString()
     return returnString;
 }
 	
+public String shortString()
+{
+    String returnString = String.format("%-8d %-12s", this.itemID, this.itemName);
+    return returnString;
+}
 }
