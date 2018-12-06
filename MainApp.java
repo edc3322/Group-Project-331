@@ -51,11 +51,11 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
     
     //Prepopulating arrays
-    customerArray[0] = new Customer("Tom", "Jones", "Harrisonburg", "VA", "800 S. Main St.", 22807, 5408994545L);  
-    customerArray[1] = new Customer("Evan", "Thompson", "Fairfax", "VA", "1932 Prince William", 22726, 7056785968L);
-    customerArray[2] = new Customer ("Jim", "Smith", "Arlington", "VA", "775 Edward St", 07675, 2015647857L); 
-    customerArray[3] = new Customer("Kate", "Andrews","Springfield","VA", "1032 Rustic St", 22676, 2745638976L);
-    customerArray[4] = new Customer("Rob", "Sousa", "Fairfax", "VA", "45 Market Blvd", 89867, 3345789084L);
+    customerArray[0] = new Customer("Tom", "Jones", "Harrisonburg", "VA", "800 S. Main St.", 22807, 5408994545L,"");  
+    customerArray[1] = new Customer("Evan", "Thompson", "Fairfax", "VA", "1932 Prince William", 22726, 7056785968L,"");
+    customerArray[2] = new Customer ("Jim", "Smith", "Arlington", "VA", "775 Edward St", 07675, 2015647857L,""); 
+    customerArray[3] = new Customer("Kate", "Andrews","Springfield","VA", "1032 Rustic St", 22676, 2745638976L,"");
+    customerArray[4] = new Customer("Rob", "Sousa", "Fairfax", "VA", "45 Market Blvd", 89867, 3345789084L,"");
     
     vendorArray[0]= new Vendor("Universal Construction", "12 South Main St. ", "Rockingham", "VA",22801, 4759067589L);
     vendorArray[1]= new Vendor("Cat Building", "45 Annendale Blvd.", "Springfield", "VA", 22738, 7034563782L);
@@ -710,7 +710,7 @@ public class MainApp extends Application {
             
             customerArray[customerCount] = new Customer(txtFName.getText(), txtLName.getText(), txtCity.getText(), 
                 cmboStates.getSelectionModel().getSelectedItem().toString(), txtStreet.getText(), 
-                Integer.parseInt(txtZip.getText()), Long.parseLong(txtPhone.getText()));
+                Integer.parseInt(txtZip.getText()), Long.parseLong(txtPhone.getText()), notesScrollPane.getContent().toString());
             customerCount++;
             txtFName.clear();
             txtLName.clear();
