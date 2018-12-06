@@ -1086,16 +1086,18 @@ public class MainApp extends Application {
             
         
  //Creating print receipt option
-        GridPane printReceiptPane = new GridPane();
+  GridPane printReceiptPane = new GridPane();
         printReceiptPane.setAlignment(Pos.CENTER);
         Stage printReceiptStage = new Stage();
-        Scene printReceiptScene = new Scene(printReceiptPane, 550,400);
+        Scene printReceiptScene = new Scene(printReceiptPane, 600,450);
         printReceiptStage.setTitle("Print Receipt");
         printReceiptStage.setScene(printReceiptScene); 
         taReceipt.setWrapText(true);
+        Button btnSelectReceipt = new Button ("Select");
         Label lblTitle = new Label ("Printing Receipt");
         printReceiptPane.add(lblTitle,0,0);
         printReceiptPane.add(cmboCustReceipt,0,1);
+        printReceiptPane.add(btnSelectReceipt,1,1);
         printReceiptPane.add(btnPrintExit,0,2);
         btnPrint.setOnAction(e -> {
             printReceiptStage.show();
@@ -1103,9 +1105,22 @@ public class MainApp extends Application {
         btnPrintExit.setOnAction(e ->{
             printReceiptStage.close();
         });
+        btnSelectReceipt.setOnAction(e-> {        
+            taReceipt.setText(cmboCustReceipt.getSelectionModel().getSelectedItem().toString()); 
+            printReceiptPane.add(taReceipt,0,3);
+        });
         printReceiptPane.setVgap(20);
         printReceiptPane.setHgap(20);
-
+        cmboCustReceipt.setPrefSize(250,10);
+        btnSelectReceipt.setPrefSize(150,10);
+        btnPrintExit.setPrefSize(200,10);
+        printReceiptPane.setVgap(20);
+        printReceiptPane.setHgap(20);
+        cmboCustReceipt.setPrefSize(250,10);
+        btnSelectReceipt.setPrefSize(150,10);
+        btnPrintExit.setPrefSize(200,10);
+        printReceiptPane.setVgap(20);
+        printReceiptPane.setHgap(20);
 
   //Main Menu 
         Label lblMain = new Label (" Valley Depot's Main Menu"); 
