@@ -84,7 +84,7 @@ public void setQuantity(int quantity)
      this.quantity = quantity;
 }	
 	
-public double getQuantity()
+public int getQuantity()
 {
 	return this.quantity;
 }
