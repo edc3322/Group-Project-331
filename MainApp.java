@@ -25,7 +25,7 @@ public class MainApp extends Application {
    
     //creating variables
     Customer[] customerArray = new Customer[5];
-    Contractor [] contractorArray = new Contractor[7]; 
+    Contractor [] contractorArray = new Contractor[1]; 
     ObservableList<Customer> olCustomers = FXCollections.observableArrayList(customerArray);
     ComboBox cmboEditCustomers = new ComboBox();
     ComboBox cmboCustPurchase = new ComboBox();
@@ -42,7 +42,7 @@ public class MainApp extends Application {
     int vendorCount = 3;
     int saleCount = 5;
     int itemCount = 10;
-    int contractorCount = 0;
+    int contractorCount = 1;
 
    
     @Override
@@ -62,7 +62,7 @@ public class MainApp extends Application {
     saleArray[0] = new Sale("Side lamp", 20.00, 3, "Tina Jones", "11/2/17");
     saleArray[1] = new Sale("Bed", 500.50, 1, "Ryan Guess", "5/12/18");
     
-    contractorArray[0] = new Contractor("Harrisonburg", "Harrisonburg", "VA - Virginia", "980 North Main St.", 22801, 5403435465L,"");
+    contractorArray[0] = new Contractor("Harrisonburg Decorators", "Harrisonburg", "VA - Virginia", "980 North Main St.", 22801, 5403435465L,"");
         
       for (int i = 0; i < customerArray.length; i++)
         {
@@ -610,6 +610,7 @@ public class MainApp extends Application {
         Button btnSaveSale = new Button("Save");
         TextField txtQuantitySold = new TextField();
         Label lblQuantitySold = new Label("Quantity:");
+        CheckBox chkContractor = new CheckBox("Contractor");
         salePane.add(lblSaleItem,0,0);
         salePane.add(lblSalePrice,0,1);
         salePane.add(lblQuantitySold, 0,2); 
@@ -622,6 +623,23 @@ public class MainApp extends Application {
         salePane.add(txtSaleDate,1,4);
         salePane.add(btnSaleExit,1,5);
         salePane.add(btnSaveSale,0,5);
+        salePane.add(chkContractor,2,3);
+        
+        chkContractor.setOnAction(e ->{
+            if(chkContractor.isSelected())
+            {
+                cmboCustomers.getItems().remove(0, customerArray.length);
+                for (int i = 0; i < contractorArray.length; i++)
+                    cmboCustomers.getItems().add(contractorArray[i].shortString());
+            }
+            else
+            {
+                cmboCustomers.getItems().remove(0, contractorArray.length);
+                for (int i = 0; i < customerArray.length; i++)
+                    cmboCustomers.getItems().add(customerArray[i].shortString());
+            }
+        });
+        
         
         
         btnSaveSale.setOnAction(e ->{
@@ -636,15 +654,33 @@ public class MainApp extends Application {
                     itemID = itemArray[i].getItemID();
             }
             int customerID=0;
-            for(int i = 0; i < customerArray.length; i++)
+            
+            
+            
+            if(!chkContractor.isSelected())
             {
-                if(customerArray[i].shortString().equals(cmboCustomers.getSelectionModel().getSelectedItem().toString()))
-                    customerID = customerArray[i].getId();
-            }
-            saleArray[saleCount] =  new Sale(itemArray[itemID - 4000].itemName, Double.parseDouble(txtSalePrice.getText()), 
+                for(int i = 0; i < customerArray.length; i++)
+                {
+                    if(customerArray[i].shortString().equals(cmboCustomers.getSelectionModel().getSelectedItem().toString()))
+                        customerID = customerArray[i].getId();
+                }
+                saleArray[saleCount] =  new Sale(itemArray[itemID - 4000].itemName, Double.parseDouble(txtSalePrice.getText()), 
                     Integer.parseInt(txtQuantitySold.getText()), 
                     customerArray[customerID - 1000].firstName + " " + customerArray[customerID - 1000].lastName, txtSaleDate.getText());
-            saleCount++;
+                saleCount++;
+            }
+            else
+            {
+                for(int i = 0; i < contractorArray.length; i++)
+                {
+                    if ((contractorArray[i].shortString()).equals(cmboCustomers.getSelectionModel().getSelectedItem().toString()))
+                        customerID = contractorArray[i].getContractorID();
+                }
+                saleArray[saleCount] =  new Sale(itemArray[itemID - 4000].itemName, Double.parseDouble(txtSalePrice.getText()), 
+                        Integer.parseInt(txtQuantitySold.getText()),  
+                    contractorArray[customerID - 6000].contractorName, txtSaleDate.getText());
+                saleCount++;
+            }
         });
         
         btnCreateSale.setOnAction(e ->{
@@ -653,6 +689,7 @@ public class MainApp extends Application {
                 cmboItems.getItems().add(itemArray[i].shortString());
             for (int i = 0; i < customerArray.length; i++)
                 cmboCustomers.getItems().add(customerArray[i].shortString());
+            
         });
         btnSaleExit.setOnAction(e ->{
             saleStage.close();
