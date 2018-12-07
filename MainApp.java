@@ -28,8 +28,6 @@ public class MainApp extends Application {
     ObservableList olStates = FXCollections.observableArrayList();
     ComboBox cmboVStates = new ComboBox(olStates);
 
-
-
     //creating variables
     Customer[] customerArray = new Customer[5];
     Contractor[] contractorArray = new Contractor[1];
@@ -41,7 +39,6 @@ public class MainApp extends Application {
     ComboBox cmboEditCont = new ComboBox();
     ComboBox cmboCustReceipt = new ComboBox();
     ComboBox cmboItemPurchase = new ComboBox();
-    //ObservableList <Customer> olCustomerPurchase = FXCollections.observableArrayList(customerArray);
     Vendor[] vendorArray = new Vendor[3];
     Sale[] saleArray = new Sale[2];
     Item[] itemArray = new Item[10];
@@ -91,8 +88,8 @@ public class MainApp extends Application {
         itemArray[4] = new Item("Desk", 25, "Black desk", 35.50, 4);
         itemArray[5] = new Item("Desk Light", 3, "Gold desk lamp", 4.50, 6);
         itemArray[6] = new Item("Dining Table", 55, "Round Dining Table", 90, 2);
-        itemArray[7] = new Item("Basket", 1, "Round basket", 10, 15);
-        itemArray[8] = new Item("Bookshelf", 35, "Black Bookshelf", 55.50, 3);
+        itemArray[7] = new Item("Basket", 1, "Round basket", 10.00, 15);
+        itemArray[8] = new Item("Bookshelf", 35, "Black Bookshelf", 55.00, 3);
         itemArray[9] = new Item("2 Candles", 3.5, "Set of 2 candles", 7, 10);
         for (int i = 0; i < itemArray.length; i++) {
             cmboItemPurchase.getItems().add(itemArray[i].shortString());
@@ -101,7 +98,6 @@ public class MainApp extends Application {
         cmboEditCustomers.getItems().addAll(customerArray);
         cmboEditVendor.getItems().addAll(vendorArray);
         cmboEditSales.getItems().addAll(saleArray);
-        cmboItemPurchase.getItems().addAll(itemArray);
 
         // Declaring neccessary fields, labels, etc.
         TextField txtFName = new TextField();
@@ -238,8 +234,10 @@ public class MainApp extends Application {
         Button btnExitContractor = new Button("Exit");
         Button btnContinue = new Button("Continue to Edit");
         Button btnViewCPH = new Button("Select");
+        Button btnItemSelect = new Button("Select");
 
         //Setting button dimensions 
+        btnItemSelect.setPrefSize(200,10);
         btnSaveContractor.setPrefSize(200, 10);
         btnContinue.setPrefSize(250, 10);
         btnExitContractor.setPrefSize(200, 10);
@@ -280,6 +278,7 @@ public class MainApp extends Application {
         cmboEditCont.setPrefSize(250, 10);
         cmboEditSales.setPrefSize(250, 10);
         cmboEditVendor.setPrefSize(250, 10);
+        cmboItemPurchase.setPrefSize(200,10);
 
         ObservableList olCState = FXCollections.observableArrayList();
         ComboBox cmboCState = new ComboBox(olCState);
@@ -450,7 +449,7 @@ public class MainApp extends Application {
         TextArea taCPH = new TextArea();
         taCPH.setStyle("-fx-text-fill: black");
         custPurchStage.setScene(custPurchScene);
-        String cphText = "Sale ID: \tItem Name: \tPurchase Price: \tQuantity: \tCustomer Name: \tDate: \n";
+        String cphText = "Sale ID: \tItem Name: \tPurchase Price: \tQuantity: \tCustomer Name: \tDate:";
         Label lblText = new Label(cphText);
         custPurchPane.add(cmboCustPurchase, 0, 2);
         custPurchPane.add(btnViewCPH, 0, 3);
@@ -508,12 +507,47 @@ public class MainApp extends Application {
         GridPane itemPurchPane = new GridPane();
         itemPurchPane.setAlignment(Pos.CENTER);
         Stage itemPurchStage = new Stage();
-        Scene itemPurchScene = new Scene(itemPurchPane, 500, 400);
+        Scene itemPurchScene = new Scene(itemPurchPane, 680,450);
         itemPurchStage.setTitle("Item Purchase History");
-        itemPurchStage.setScene(itemPurchScene);
-        itemPurchPane.add(cmboItemPurchase, 0, 1);
-        itemPurchPane.add(btnItemHistoryExit, 0, 2);
-        itemPurchPane.add(lblItemHistory, 0, 0);
+        itemPurchStage.setScene(itemPurchScene); 
+        TextArea taIPH = new TextArea();
+        taIPH.setEditable(false);
+        itemPurchPane.add(cmboItemPurchase,0,1);
+        itemPurchPane.add(btnItemHistoryExit,0,2);
+        itemPurchPane.add(lblItemHistory,0,0);
+        itemPurchPane.add(btnItemSelect, 1, 1);
+    //CREATING TO ACTUALLY VIEW IPH
+        GridPane viewIPHPane = new GridPane();
+        viewIPHPane.setAlignment(Pos.CENTER);
+        Stage viewIPHStage = new Stage();
+        Scene viewIPHScene = new Scene(viewIPHPane,500,400);
+        viewIPHStage.setTitle("View Item Purchase History ");
+        viewIPHStage.setScene(viewIPHScene);
+        Label lblIPH = new Label("Sale ID:\tPrice: \tQuantity: \tCustomerName: \tDate:");
+        Button btnVIPHExit = new Button("Exit");
+        viewIPHPane.add(lblIPH,0,0);
+        viewIPHPane.add(taIPH,0,1);
+        viewIPHPane.add(btnVIPHExit,0,2);
+        
+        btnVIPHExit.setOnAction(E->{
+            viewIPHStage.close();
+        });
+    
+        btnItemSelect.setOnAction(e -> {
+            viewIPHStage.show();
+            int itemID = 0;
+            taIPH.setText("Sale ID:/t Price; \t Quantity: \t Customer Name: \t Date of Purchase:");
+            taIPH.setText(cmboItemPurchase.getSelectionModel().getSelectedItem().toString());
+            for (int i = 0; i < saleArray.length; i++)
+            {
+                if (saleArray[i].itemName.equals(itemArray[i].itemName))
+                {
+                    taIPH.setText(saleArray[i].toString());
+                }  
+            }
+        cmboItemPurchase.getSelectionModel().clearSelection();
+        });       
+        
         btnItemPurch.setOnAction(e -> {
             itemPurchStage.show();
         });
@@ -522,6 +556,12 @@ public class MainApp extends Application {
         });
         itemPurchPane.setVgap(20);
         itemPurchPane.setHgap(20);
+        taIPH.setPrefSize(300,150);
+        viewIPHPane.setVgap(20);
+        viewIPHPane.setHgap(20);
+        btnVIPHExit.setPrefSize(200,10);
+        btnItemSelect.setPrefSize(200,10);
+        btnItemHistoryExit.setPrefSize(200,10);
 
         //Creating the current inventory 
         GridPane currentInvPane = new GridPane();
@@ -544,7 +584,6 @@ public class MainApp extends Application {
                 inventoryText += itemArray[i].getItemName() + " \t\t\t";
                 inventoryText += itemArray[i].getQuantity() + " \n";
             }
-
         }
         taInventory.setText(inventoryText);
         taInventory.setEditable(false);
@@ -1603,10 +1642,6 @@ public class MainApp extends Application {
         btnCreateMenu.setOnAction(e -> {
             createStage.show();
         });
-        btnItemPurch.setOnAction(e -> {
-            itemPurchStage.show();
-        });
-
         btnCurrentInv.setOnAction(e -> {
             currentInvStage.show();
         });
