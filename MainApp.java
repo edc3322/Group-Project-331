@@ -643,7 +643,7 @@ public class MainApp extends Application {
             }
             saleArray[saleCount] =  new Sale(itemArray[itemID - 4000].itemName, Double.parseDouble(txtSalePrice.getText()), 
                     Integer.parseInt(txtQuantitySold.getText()), 
-                    customerArray[customerID - 1000].firstName, txtSaleDate.getText());
+                    customerArray[customerID - 1000].firstName + " " + customerArray[customerID - 1000].lastName, txtSaleDate.getText());
             saleCount++;
         });
         
