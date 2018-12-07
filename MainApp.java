@@ -40,11 +40,11 @@ public class MainApp extends Application {
     ComboBox cmboCustReceipt = new ComboBox();
     ComboBox cmboItemPurchase = new ComboBox();
     Vendor[] vendorArray = new Vendor[3];
-    Sale[] saleArray = new Sale[2];
+    Sale[] saleArray = new Sale[5];
     Item[] itemArray = new Item[10];
     int customerCount = 5;
     int vendorCount = 3;
-    int saleCount = 2;
+    int saleCount = 5;
     int itemCount = 10;
     int contractorCount = 1;
 
@@ -67,8 +67,11 @@ public class MainApp extends Application {
         vendorArray[1] = new Vendor("Cat Building", "45 Annendale Blvd.", "Springfield", "VA", 22738, 7034563782L);
         vendorArray[2] = new Vendor("Booking", "11 George Place.", "Culver City", "CA", 74683, 3134538948L);
 
-        saleArray[0] = new Sale("Side lamp", 20.00, 3, "Tom Jones", "11/2/17");
-        saleArray[1] = new Sale("Bed", 500.50, 1, "Evan Thompson", "5/12/18");
+        saleArray[0] = new Sale("Bed", 500.50, 1, customerArray[1].firstName + " " + customerArray[1].lastName, "5/12/18");
+        saleArray[1] = new Sale ("chair", 300.00, 1, customerArray[3].firstName + " " + customerArray[3].lastName, "8/23/2017");
+        saleArray[2] = new Sale ("bookshelf", 110, 2, customerArray[4].firstName + " " + customerArray[4].lastName, "11/1/2018");
+        saleArray[3] = new Sale("sofa", 599, 2, customerArray[2].firstName + " " + customerArray[2].lastName, "9/30/2018");
+        saleArray[4] = new Sale("desk", 89.90, 1, customerArray[1].firstName + " " + customerArray[1].lastName, "9/1/2018");
         contractorArray[0] = new Contractor("Harrisonburg Decorators", "Harrisonburg", "VA - Virginia", "980 North Main St.", 22801, 5403435465L, "");
 
         for (int i = 0; i < customerArray.length; i++) {
@@ -455,11 +458,10 @@ public class MainApp extends Application {
         custPurchPane.add(btnViewCPH, 0, 3);
         custPurchPane.add(btnCustPurchExit, 0, 4);
         
-//CREATING THE ACTUAL VIEW OF THE CPH
-        GridPane viewCPHPane = new GridPane();
+GridPane viewCPHPane = new GridPane();
         viewCPHPane.setAlignment(Pos.CENTER);
         Stage viewCPHStage = new Stage();
-        Scene viewCPHScene = new Scene(viewCPHPane,550,400);
+        Scene viewCPHScene = new Scene(viewCPHPane,650,500);
         viewCPHStage.setScene(viewCPHScene);
         viewCPHStage.setTitle("Viewing Customer Purchase History");
         viewCPHPane.add(taCPH,0,1);
@@ -468,13 +470,13 @@ public class MainApp extends Application {
         viewCPHPane.add(btnExitVCPH,0,5);
         btnExitVCPH.setOnAction(e->{
             viewCPHStage.close();
-            cmboCustPurchase.getSelectionModel().clearSelection();
         });
         
         btnCustPurchase.setOnAction(e -> {
             custPurchStage.show();
         });
         btnViewCPH.setOnAction(e -> {
+            taCPH.clear();
             viewCPHStage.show();
             int customerID = 0;
             for (int i = 0; i < customerArray.length; i++) {
@@ -482,16 +484,22 @@ public class MainApp extends Application {
                     customerID = customerArray[i].getId();
                 }
             }
-            
-            for (int i = 0; i < saleArray.length; i++) {
+            boolean filled = false;
+            for (int i = 0; i < saleArray.length; i++) {//search the sale array for objects that match the customer name
                 if (saleArray[i].getCustomer().equals(customerArray[customerID - 1000].firstName + " " + customerArray[customerID - 1000].lastName)) 
                 {
-                    taCPH.setText(saleArray[i].toString());
+                    taCPH.appendText(saleArray[i] + "\n");
+                    filled = true;
                 }
+                
+            }
+            if (!filled)
+            {
+                taCPH.appendText("No Sales for this Customer");
             }
             taCPH.setEditable(false);
+            
         });
-
         btnCustPurchExit.setOnAction(e -> {
             cmboCustPurchase.getSelectionModel().clearSelection();
             custPurchStage.close();
@@ -502,7 +510,6 @@ public class MainApp extends Application {
         custPurchPane.setHgap(20);
         cmboCustPurchase.setPrefSize(200, 10);
         taCPH.setPrefSize(510, 140);
-
 //Creating the pane, stage, and scene for item purchase history
         GridPane itemPurchPane = new GridPane();
         itemPurchPane.setAlignment(Pos.CENTER);
