@@ -442,36 +442,44 @@ public class MainApp extends Application {
     olStates.add("WI - Wisconsin");
     olStates.add("WY - Wyoming");
 
-  //Creating the pane stage and scene for customer purchase history 
+    //Creating the pane stage and scene for customer purchase history 
         GridPane custPurchPane = new GridPane();
         custPurchPane.setAlignment(Pos.CENTER);
         Stage custPurchStage = new Stage();
         Scene custPurchScene = new Scene(custPurchPane, 680,450);
         custPurchStage.setTitle("Customer Purchase History");
         TextArea taCPH = new TextArea();
-        Button btnViewCustPurch = new Button("Select");
-        //taCPH.setWrapText(true);
         custPurchStage.setScene(custPurchScene);
         custPurchPane.add(cmboCustPurchase,0,0);
-        custPurchPane.add(btnViewCustPurch,1,0);
+        custPurchPane.add(btnViewCPH,1,0);
         custPurchPane.add(btnCustPurchExit,0,2);
         btnCustPurchase.setOnAction(e ->{
             custPurchStage.show();   
         });
-        btnViewCustPurch.setOnAction(e->{
+        btnViewCPH.setOnAction(e->{
+            int customerID =0; 
             custPurchPane.add(taCPH,0,1);
-            taCPH.setText(cmboCustPurchase.getSelectionModel().getSelectedItem().toString()); 
+            //taCPH.setText(cmboCustPurchase.getSelectionModel().getSelectedItem().toString()); 
+            //cmboCustPurchase.getSelectionModel().clearSelection();
+            for(int i =0; i<saleArray.length; i++)
+            {
+                if (saleArray[i].equals(customerID))
+                {
+                    taCPH.setText(saleArray[i].toString());
+                }
+            }
         });
         btnCustPurchExit.setOnAction(e -> {
             custPurchStage.close();
             taCPH.clear();
             taCPH.setVisible(false);
-            cmboCustPurchase.getSelectionModel().clearSelection();
+           
         }); 
         custPurchPane.setVgap(20);
         custPurchPane.setHgap(20);
         cmboCustPurchase.setPrefSize(250,10);
         taCPH.setPrefSize(500,140);
+          
           
 //Creating the pane, stage, and scene for item purchase history
         GridPane itemPurchPane = new GridPane();
