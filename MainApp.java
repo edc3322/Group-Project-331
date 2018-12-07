@@ -5,12 +5,14 @@ Authors: Zach Beatty, Eric Carter, Mercy Clemente, Michael Corcoran & Troy Godda
  */
 package GroupProject331;
 
+
 import java.util.Arrays;
 import javafx.application.Application;
 import javafx.collections.*;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
@@ -25,6 +27,8 @@ public class MainApp extends Application {
     ComboBox cmboStates = new ComboBox(olState);
     ObservableList olStates = FXCollections.observableArrayList();
     ComboBox cmboVStates = new ComboBox(olStates);
+
+
 
     //creating variables
     Customer[] customerArray = new Customer[5];
@@ -50,6 +54,11 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) {
 
+        // creating the dialog box that shows when an invalid number is entered
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Invalid Input Error");
+        alert.setHeaderText("Invalid Input");
+        alert.setContentText("You have entered an invalid character in a number field, or you have not entered any value");
         //Prepopulating arrays
         customerArray[0] = new Customer("Tom", "Jones", "Harrisonburg", "VA - Virginia", "800 S. Main St.", 22807, 5408994545L, "");
         customerArray[1] = new Customer("Evan", "Thompson", "Fairfax", "VA - Virginia", "1932 Prince William", 22726, 7056785968L, "");
@@ -431,18 +440,20 @@ public class MainApp extends Application {
         olStates.add("WI - Wisconsin");
         olStates.add("WY - Wyoming");
 
-     //Creating the pane stage and scene for customer purchase history 
+        //Creating the pane stage and scene for customer purchase history 
         GridPane custPurchPane = new GridPane();
         custPurchPane.setAlignment(Pos.CENTER);
         Stage custPurchStage = new Stage();
-        Scene custPurchScene = new Scene(custPurchPane, 650, 500);
+        Scene custPurchScene = new Scene(custPurchPane, 900, 750);
         custPurchStage.setTitle("Customer Purchase History");
         TextArea taCPH = new TextArea();
         taCPH.setStyle("-fx-text-fill: black");
         taCPH.setFont(Font.font("Times", 12));
         custPurchStage.setScene(custPurchScene);
-        String cphText = "Sale ID: \t\tItem Name: \t\tPurchase Price: \t  Quantity: \tCustomer ID: \tDate: \n";
-        Label lblText =  new Label(cphText); 
+        //String cphText = "Sale ID: \t\tItem Name: \t\tPurchase Price: \t  Quantity: \tCustomer ID: \tDate: \n";
+//        String temp = cphText;
+//        temp += saleArray.toString();
+//        taCPH.setText(temp);
         custPurchPane.add(cmboCustPurchase, 0, 2);
         custPurchPane.add(btnViewCPH, 0, 3);
         custPurchPane.add(btnCustPurchExit, 0, 4);
@@ -467,22 +478,22 @@ public class MainApp extends Application {
                     taCPH.setText(saleArray[i].toString());
                 }
             }
+
             taCPH.setEditable(false);
-            custPurchPane.add(lblText,0,0);
+
         });
-            
         btnCustPurchExit.setOnAction(e -> {
             cmboCustPurchase.getSelectionModel().clearSelection();
             custPurchStage.close();
             taCPH.clear();
             taCPH.setVisible(false);
-            lblText.setVisible(false);
 
         });
         custPurchPane.setVgap(20);
         custPurchPane.setHgap(20);
         cmboCustPurchase.setPrefSize(200, 10);
         taCPH.setPrefSize(510, 140);
+
 //Creating the pane, stage, and scene for item purchase history
         GridPane itemPurchPane = new GridPane();
         itemPurchPane.setAlignment(Pos.CENTER);
@@ -526,6 +537,7 @@ public class MainApp extends Application {
 
         }
         taInventory.setText(inventoryText);
+        taInventory.setEditable(false);
         currentInvPane.add(btnExitInventory, 0, 2);
         btnCurrentInv.setOnAction(e -> {
             currentInvStage.show();
@@ -586,6 +598,7 @@ public class MainApp extends Application {
         });
 
         btnVendorSave.setOnAction(e -> {
+            try{
             vendorArray = Arrays.copyOf(vendorArray,
                     vendorArray.length + 1); // resizes vendorArray
 
@@ -599,6 +612,11 @@ public class MainApp extends Application {
             cmboVStates.getSelectionModel().clearSelection();
             txtVendorZip.clear();
             txtVendorPhone.clear();
+            }
+            catch(Exception x)
+            {
+                alert.showAndWait();
+            }
         });
 
         vendorPane.setHgap(20);
@@ -650,6 +668,8 @@ public class MainApp extends Application {
 
         btnSaveSale.setOnAction(e -> {
             //resize the array
+            try
+            {
             saleArray = Arrays.copyOf(saleArray,
                     saleArray.length + 1); // resizes saleArray
 
@@ -690,6 +710,11 @@ public class MainApp extends Application {
             txtSalePrice.clear();
             txtQuantitySold.clear();
             cmboItems.getSelectionModel().clearSelection();
+            }
+            catch(Exception x)
+            {
+                alert.showAndWait();
+            }
         });
 
         btnCreateSale.setOnAction(e -> {
@@ -728,6 +753,8 @@ public class MainApp extends Application {
         createItemPane.add(txtQuantity, 1, 4);
         //Setting button on action 
         btnSaveInventory.setOnAction(e -> {
+            try
+            {
             itemArray = Arrays.copyOf(itemArray,
                     itemArray.length + 1); // resizes itemArray
             itemArray[itemCount] = new Item(txtItem.getText(), Double.parseDouble(txtWeight.getText()), txtDescription.getText(),
@@ -738,6 +765,11 @@ public class MainApp extends Application {
             txtDescription.clear();
             txtSellingPrice.clear();
             txtQuantity.clear();
+            }
+            catch(Exception x)
+            {
+                alert.showAndWait();
+            }
         });
         btnCreateItem.setOnAction(e -> {
             createItemStage.show();
@@ -776,6 +808,8 @@ public class MainApp extends Application {
         contractorPane.add(txtContractorNotes, 1, 6);
 
         btnSaveContractor.setOnAction(e -> {
+            try
+            {
             contractorArray = Arrays.copyOf(contractorArray,
                     contractorArray.length + 1); // resizes the contractorArray
 
@@ -791,6 +825,11 @@ public class MainApp extends Application {
             txtContractorZip.clear();
             txtContractorNotes.clear();
             cmboCState.getSelectionModel().clearSelection();
+            }
+            catch(Exception x)
+            {
+                alert.showAndWait();
+            }
 
         });
 
@@ -834,7 +873,8 @@ public class MainApp extends Application {
             createCustStage.close();
         });
         btnSaveCustInfo.setOnAction(e -> {
-
+            try
+            {
             //resize the array
             customerArray = Arrays.copyOf(customerArray,
                     customerArray.length + 1); // resizes the customerArray
@@ -849,7 +889,12 @@ public class MainApp extends Application {
             txtZip.clear();
             txtCity.clear();
             txtPhone.clear();
-
+            cmboStates.getSelectionModel().clearSelection();
+            }
+            catch(Exception x)
+            {
+                alert.showAndWait();
+            }
         });
 
         //Setting create new customer button on action 
@@ -1004,6 +1049,8 @@ public class MainApp extends Application {
         });
 
         EbtnSaveCustInfo.setOnAction(e -> {
+            try
+            {
             int customerID = 0;
             for (int i = 0; i < customerArray.length; i++) {
                 if (customerArray[i].shortString().equals(cmboEditCust.getSelectionModel().getSelectedItem().toString())) {
@@ -1022,7 +1069,11 @@ public class MainApp extends Application {
             for (int i = 0; i < customerArray.length; i++) {
                 cmboEditCust.getItems().add(customerArray[i].shortString());
             }
-
+            }
+            catch(Exception x)
+            {
+                alert.showAndWait();
+            }
         });
 
         EbtnExitCust.setOnAction(e -> {
