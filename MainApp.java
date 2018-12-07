@@ -39,11 +39,11 @@ public class MainApp extends Application {
     ComboBox cmboItemPurchase = new ComboBox();
     //ObservableList <Customer> olCustomerPurchase = FXCollections.observableArrayList(customerArray);
     Vendor[] vendorArray = new Vendor[3];
-    Sale[] saleArray = new Sale[5];
+    Sale[] saleArray = new Sale[2];
     Item[] itemArray = new Item[10];
     int customerCount = 5;
     int vendorCount = 3;
-    int saleCount = 5;
+    int saleCount = 2;
     int itemCount = 10;
     int contractorCount = 1;
 
@@ -61,8 +61,8 @@ public class MainApp extends Application {
         vendorArray[1] = new Vendor("Cat Building", "45 Annendale Blvd.", "Springfield", "VA", 22738, 7034563782L);
         vendorArray[2] = new Vendor("Booking", "11 George Place.", "Culver City", "CA", 74683, 3134538948L);
 
-//    saleArray[0] = new Sale("Side lamp", 20.00, 3, "Tina Jones", "11/2/17");
-//    saleArray[1] = new Sale("Bed", 500.50, 1, "Ryan Guess", "5/12/18");
+        saleArray[0] = new Sale("Side lamp", 20.00, 3, "Tina Jones", "11/2/17");
+        saleArray[1] = new Sale("Bed", 500.50, 1, "Ryan Guess", "5/12/18");
         contractorArray[0] = new Contractor("Harrisonburg Decorators", "Harrisonburg", "VA - Virginia", "980 North Main St.", 22801, 5403435465L, "");
 
         for (int i = 0; i < customerArray.length; i++) {
@@ -457,6 +457,13 @@ public class MainApp extends Application {
         btnViewCPH.setOnAction(e -> {
             int customerID = 0;
             custPurchPane.add(taCPH, 0, 1);
+            for (int i = 0; i < customerArray.length; i++) 
+            {
+                if (customerArray[i].shortString().equals(cmboCustPurchase.getSelectionModel().getSelectedItem().toString())) 
+                {
+                    customerID = customerArray[i].getId();
+                }
+            }
             taCPH.setText(cmboCustPurchase.getSelectionModel().getSelectedItem().toString());
             for(int i =0; i<saleArray.length; i++)
             {
