@@ -48,5 +48,14 @@ public Contractor (String contractorName, String city, String state,
         this.contractorNumber = contractorNumber; 
     }
     
+    public int getContractorID()
+    {
+        return this.contractorID;
+    }
+    public String shortString()
+    {
+        String returnString = String.format("%-8d %-12s", this.contractorID, this.contractorName);
+        return returnString;
+    }
     
 }
