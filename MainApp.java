@@ -512,6 +512,24 @@ public class MainApp extends Application {
         Label lblInventory = new Label("Current Inventory Levels:");
         currentInvPane.add(lblInventory,0,0);
         currentInvPane.add(inventoryScrollPane,0,1);
+        String inventoryText = "Item ID: \t Item Name: \t\t Item Quantity: \n";
+        for(int i = 0; i < itemArray.length; i++)
+        {
+            if (i == 5 || i == 6 || i == 8 || i == 9)
+                {
+                    inventoryText += itemArray[i].getItemID() + " \t"; 
+                    inventoryText += itemArray[i].getItemName() + " \t\t";
+                    inventoryText += itemArray[i].getQuantity() + " \n";
+                }
+            else
+                {
+                    inventoryText += itemArray[i].getItemID() + " \t"; 
+                    inventoryText += itemArray[i].getItemName() + " \t\t\t";
+                    inventoryText += itemArray[i].getQuantity() + " \n"; 
+                }
+
+        }
+        taInventory.setText(inventoryText);
         currentInvPane.add(btnExitInventory,0,2);
         btnCurrentInv.setOnAction(e ->{
             currentInvStage.show();
