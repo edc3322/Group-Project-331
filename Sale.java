@@ -3,7 +3,9 @@ CIS 331 Section 2
 Group Project Part 1.
 Authors: Zach Beatty, Eric Carter, Mercy Clemente, Michael Corcoran & Troy Goddard
  */
-package group.project;
+package GroupProject331;
+
+
 
 public class Sale {
    private static int saleCount = 3000;
@@ -11,18 +13,18 @@ public class Sale {
    String  itemName;
    public double sellingPrice;
    public int quantity;
-   public int customerID;
+   public String customer;
    public String date;
     
    
-    public Sale (String itemName, double sellingPrice, int quantity, int customerID, String date)
+    public Sale (String itemName, double sellingPrice, int quantity, String customer, String date)
     {
         this.saleID = saleCount;
         saleCount++;
         this.itemName=itemName;
         this.sellingPrice = sellingPrice;
         this.quantity = quantity;
-        this.customerID = customerID;
+        this.customer = customer;
         this.date = date;
     }
     
@@ -49,9 +51,9 @@ public class Sale {
         this.quantity=quantity;
     }
     
-    public void setCustomerID (int customerID)
+    public void setCustomer (String customer)
     {
-        this.customerID=customerID; 
+        this.customer=customer; 
     }
     
     public void setDate(String date)
@@ -73,9 +75,9 @@ public class Sale {
         return this.quantity;
     }
     
-    public int getCustomerID()
+    public String getCustomer()
     {
-        return this.customerID;
+        return this.customer;
     }
     
     public String getDate()
@@ -97,8 +99,12 @@ public class Sale {
     {
         String returnString = String.format("%-12d" + " %-20s" + " %-12.2f" + " %-10d" 
         + " %-20s" + " %-12s", this.saleID, this.itemName, this.sellingPrice, 
-        this.quantity, this.customerID, this.date);
+        this.quantity, this.customer, this.date);
         return returnString;
     }
 
+    public int getCount()
+    {
+        return saleCount - 3000;
+    }
 }
