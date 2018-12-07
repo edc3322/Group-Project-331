@@ -645,6 +645,7 @@ public class MainApp extends Application {
         cmboItems.setMaxWidth(200);
         cmboCustomers.setMaxWidth(200);
         Button btnSaveSale = new Button("Save");
+        btnSaveSale.setPrefSize(200,10);
         TextField txtQuantitySold = new TextField();
         Label lblQuantitySold = new Label("Quantity:");
         CheckBox chkContractor = new CheckBox("Contractor");
