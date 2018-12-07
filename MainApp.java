@@ -461,7 +461,7 @@ public class MainApp extends Application {
         GridPane viewCPHPane = new GridPane();
         viewCPHPane.setAlignment(Pos.CENTER);
         Stage viewCPHStage = new Stage();
-        Scene viewCPHScene = new Scene(viewCPHPane,650,530);
+        Scene viewCPHScene = new Scene(viewCPHPane,650,500);
         viewCPHStage.setScene(viewCPHScene);
         viewCPHStage.setTitle("Viewing Customer Purchase History");
         viewCPHPane.add(taCPH,0,1);
@@ -1214,6 +1214,7 @@ public class MainApp extends Application {
         });
 
         EbtnSaveInventory.setOnAction(e -> {
+            try{
             int itemID = 0;
             for (int i = 0; i < itemArray.length; i++) {
                 if (itemArray[i].shortString().equals(cmboEditItem.getSelectionModel().getSelectedItem().toString())) {
@@ -1228,6 +1229,11 @@ public class MainApp extends Application {
             itemArray[itemID - 4000].setQuantity(Integer.parseInt(EtxtQuantity.getText()));
             for (int i = 0; i < itemArray.length; i++) {
                 cmboEditItem.getItems().add(itemArray[i].shortString());
+            }
+            }
+            catch(Exception x)
+            {
+                alert.showAndWait();
             }
         });
         EbtnItemExit.setOnAction(e -> {
@@ -1365,6 +1371,8 @@ public class MainApp extends Application {
         });
 
         EbtnVendorSave.setOnAction(e -> {
+            try
+            {
             int vendorID = 0;
             for (int i = 0; i < vendorArray.length; i++) {
                 if (vendorArray[i].businessName.equals(cmboVendor.getSelectionModel().getSelectedItem().toString())) {
@@ -1388,7 +1396,11 @@ public class MainApp extends Application {
             EcmboVStates.getSelectionModel().clearSelection();
             EtxtVendorZip.clear();
             EtxtVendorPhone.clear();
-
+            }
+            catch(Exception x)
+            {
+                alert.showAndWait();
+            }
         });
 
         EbtnVendorExit.setOnAction(e -> {
@@ -1521,6 +1533,8 @@ public class MainApp extends Application {
 
         });
         btnContSave.setOnAction(e -> {
+            try
+            {
             int contractorID = 0;
             for (int i = 0; i < contractorArray.length; i++) {
                 if (contractorArray[i].shortString().equals(cmboEditCont.getSelectionModel().getSelectedItem().toString())) {
@@ -1537,6 +1551,11 @@ public class MainApp extends Application {
             contractorArray[contractorID - 6000].notes = txtEContNotes.getText();
             for (int i = 0; i < contractorArray.length; i++) {
                 cmboEditCont.getItems().add(contractorArray[i].shortString());
+            }
+            }
+            catch(Exception x)
+            {
+                alert.showAndWait();
             }
         });
         btnContExit.setOnAction(e -> {
