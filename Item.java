@@ -92,14 +92,16 @@ public double getQuantity()
 	@Override
 public String toString()
 {
-    String returnString = String.format("%-12d" + " %-16s" + " %-16.2f", this.itemID, this.itemName, this.quantity);
+    String returnString = String.format("%-12d" + " %-16s" + " %-16d", this.itemID, this.itemName, this.quantity);
     return returnString;
 }
 	
 public String shortString()
 {
-    String returnString = String.format("%-8d %-12s", this.itemID, this.itemName);
+    String returnString = String.format("%-12d" + "%-16s" , this.itemID, this.itemName);
     return returnString;
 }
+	
+
 	
 }
