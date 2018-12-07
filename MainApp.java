@@ -68,10 +68,10 @@ public class MainApp extends Application {
         vendorArray[2] = new Vendor("Booking", "11 George Place.", "Culver City", "CA", 74683, 3134538948L);
 
         saleArray[0] = new Sale("Bed", 500.50, 1, customerArray[1].firstName + " " + customerArray[1].lastName, "5/12/18");
-        saleArray[1] = new Sale ("chair", 300.00, 1, customerArray[3].firstName + " " + customerArray[3].lastName, "8/23/2017");
-        saleArray[2] = new Sale ("bookshelf", 110, 2, customerArray[4].firstName + " " + customerArray[4].lastName, "11/1/2018");
-        saleArray[3] = new Sale("sofa", 599, 2, customerArray[2].firstName + " " + customerArray[2].lastName, "9/30/2018");
-        saleArray[4] = new Sale("desk", 89.90, 1, customerArray[1].firstName + " " + customerArray[1].lastName, "9/1/2018");
+        saleArray[1] = new Sale ("Chair", 300.00, 1, customerArray[3].firstName + " " + customerArray[3].lastName, "8/23/2017");
+        saleArray[2] = new Sale ("Bookshelf", 110, 2, customerArray[4].firstName + " " + customerArray[4].lastName, "11/1/2018");
+        saleArray[3] = new Sale("Sofa", 599, 2, customerArray[2].firstName + " " + customerArray[2].lastName, "9/30/2018");
+        saleArray[4] = new Sale("Desk", 89.90, 1, customerArray[1].firstName + " " + customerArray[1].lastName, "9/1/2018");
         contractorArray[0] = new Contractor("Harrisonburg Decorators", "Harrisonburg", "VA - Virginia", "980 North Main St.", 22801, 5403435465L, "");
 
         for (int i = 0; i < customerArray.length; i++) {
@@ -543,11 +543,17 @@ GridPane viewCPHPane = new GridPane();
         btnItemSelect.setOnAction(e -> {
             viewIPHStage.show();
             int itemID = 0;
-            taIPH.setText("Sale ID:/t Price; \t Quantity: \t Customer Name: \t Date of Purchase:");
-            taIPH.setText(cmboItemPurchase.getSelectionModel().getSelectedItem().toString());
+            //taIPH.setText("Sale ID:\t Price; \t Quantity: \t Customer Name: \t Date of Purchase:");
+            for (int i = 0; i < itemArray.length; i++) {
+                if (itemArray[i].shortString().equals(cmboItemPurchase.getSelectionModel().getSelectedItem().toString())) {
+                    itemID = itemArray[i].getItemID();
+                }
+            }
+            //taIPH.setText(cmboItemPurchase.getSelectionModel().getSelectedItem().toString());
             for (int i = 0; i < saleArray.length; i++)
             {
-                if (saleArray[i].itemName.equals(itemArray[i].itemName))
+                
+                if (saleArray[i].getItemName().equals(itemArray[itemID - 4000].itemName))
                 {
                     taIPH.setText(saleArray[i].toString());
                 }  
