@@ -63,9 +63,7 @@ public class MainApp extends Application {
     saleArray[1] = new Sale("Bed", 500.50, 1, "Ryan Guess", "5/12/18");
     
     contractorArray[0] = new Contractor("Harrisonburg", "Harrisonburg", "VA - Virginia", "980 North Main St.", 22801, 5403435465L,"");
-    
-    //contractorArray[0] = new Contractor("Tim", "Corven", "5543 South Bend Plaza", "Fairfax", "VA", 98734, "Baker Booking", 4563728473L, "");
-    
+        
       for (int i = 0; i < customerArray.length; i++)
         {
             cmboEditCustomers.getItems().add(customerArray[i].shortString());
@@ -575,8 +573,8 @@ public class MainApp extends Application {
         vendorPane.add(cmboVStates,1,4);
         vendorPane.add(txtVendorZip,1,5);
         vendorPane.add(txtVendorPhone,1,6);
-        vendorPane.add(btnVendorSave,1,8);
-        vendorPane.add(btnVendorExit, 0, 8);
+        vendorPane.add(btnVendorSave,0,8);
+        vendorPane.add(btnVendorExit, 1, 8);
         btnVendor.setOnAction(e ->{
             vendorStage.show();
         }); 
@@ -595,7 +593,8 @@ public class MainApp extends Application {
          });
          
         vendorPane.setHgap(20);
-        vendorPane.setVgap(20);   
+        vendorPane.setVgap(20);
+        lblNewT.setAlignment(Pos.CENTER);
         
 //Create new sale menu 
         GridPane salePane = new GridPane();
@@ -738,6 +737,7 @@ public class MainApp extends Application {
             txtContractorStreet.clear();
             txtContractorZip.clear();
             txtContractorNotes.clear();
+            cmboCState.getSelectionModel().clearSelection();
             
      });
      
@@ -749,6 +749,7 @@ public class MainApp extends Application {
      });
      contractorPane.setVgap(20);
      contractorPane.setHgap(20);
+     txtContractorNotes.setAlignment(Pos.TOP_LEFT);
 //Creating the new customer 
         GridPane createCustPane = new GridPane();
         createCustPane.setAlignment(Pos.CENTER);
@@ -1270,14 +1271,8 @@ public class MainApp extends Application {
                 cmboVendor.getItems().add(vendorArray[i].businessName);
         });
         editVendor.setHgap(20);
-        editVendor.setVgap(20);
-        
-        
-             //prepopulating contractor 
-//   for(int i=0; i<contractorArray.length; i++)
-//   {
-//       cmboEditCont.getItems().add(contractorArray[i].shortString());
-//   }
+        editVendor.setVgap(20);        
+
 //Editing a Contractor
         ObservableList eContStates = FXCollections.observableArrayList();
         ComboBox cmboEContStates = new ComboBox(eContStates);
@@ -1338,47 +1333,48 @@ public class MainApp extends Application {
         Scene editContractorScene = new Scene(editContractor,660,600);
         editContractorStage.setTitle("Edit a Contractor");
         editContractorStage.setScene(editContractorScene);
-        editContractor.add(cmboEditCont,0,0);
+        editContractor.add(cmboEditCont,1,0);
         Label lblEContName = new Label("Edit Name:");
         Label lblEContStreet = new Label("Street:");
         Label lblEContCity = new Label("City:");
         Label lblEContState = new Label("Select State:");
         Label lblEContZip = new Label("Zip:");
         Label lblEContNumber = new Label("Phone:");
+        Label lblEContNotes = new Label("Notes:");
         TextField txtEContName = new TextField();
         TextField txtEContStreet = new TextField();
         TextField txtEContCity = new TextField();
         TextField txtEContZip = new TextField();
         TextField txtEContNumber = new TextField(); 
-        ScrollPane eContScrollPane = new ScrollPane();
+        TextField txtEContNotes = new TextField();
         Button btnContExit = new Button("Exit");
         Button btnContSave = new Button("Save");
         Button btnContSelect = new Button("Select");
         Label lblContID = new Label("Contractor ID:");
-        
         editContractor.add(lblContID,0,0);
-        editContractor.add(btnContSelect,1,0);
+        editContractor.add(btnContSelect,2,0);
         editContractor.add(lblEContName,0,1);
         editContractor.add(lblEContStreet,0,2);
         editContractor.add(lblEContCity,0,3);
         editContractor.add(lblEContState,0,4);
         editContractor.add(lblEContZip,0,5);
         editContractor.add(lblEContNumber,0,6);
+        editContractor.add(lblEContNotes,0,7);
         editContractor.add(txtEContName,1,1);
         editContractor.add(txtEContStreet,1,2);
         editContractor.add(txtEContCity,1,3);
         editContractor.add(cmboEContStates,1,4);
         editContractor.add(txtEContZip,1,5);
         editContractor.add(txtEContNumber,1,6);
-        editContractor.add(eContScrollPane,1,7);
+        editContractor.add(txtEContNotes,1,7);
         editContractor.add(btnContExit,1,8);
         editContractor.add(btnContSave,0,8);
         btnContSelect.setOnAction(e->{
             int contractorID =0;
             for (int i=0; i<contractorArray.length; i++)
             {
-                if(contractorArray[i].shortString().equals(cmboEditCont.getSelectionModel().getSelectedItem().toString()))
-                    contractorID=contractorArray[i].getId();
+                if(contractorArray[i].equals(cmboEditCont.getSelectionModel().getSelectedItem().toString()))
+                    contractorID = contractorArray[i].getId();
             }
             txtEContName.setText(contractorArray[contractorID - 6000].contractorName);
             txtEContStreet.setText(contractorArray[contractorID - 6000].street);
@@ -1386,6 +1382,7 @@ public class MainApp extends Application {
             cmboEContStates.getSelectionModel().select(contractorArray[contractorID - 6000].state);
             txtEContZip.setText(String.valueOf(contractorArray[contractorID - 6000].zip));
             txtEContNumber.setText(String.valueOf(contractorArray[contractorID - 6000].contractorNumber));
+            txtEContNotes.setText(String.valueOf(contractorArray[contractorID - 6000].notes));
             
         });
         btnContSave.setOnAction(e-> {
@@ -1402,6 +1399,7 @@ public class MainApp extends Application {
           contractorArray[contractorID - 6000].state = cmboEContStates.getSelectionModel().getSelectedItem().toString(); 
           contractorArray[contractorID - 6000].zip = Integer.parseInt(txtEContZip.getText());
           contractorArray[contractorID - 6000].contractorNumber = Long.parseLong(txtEContNumber.getText());
+          contractorArray[contractorID - 6000].notes=txtEContNotes.getText();
           for (int i=0; i<contractorArray.length; i++)
           {
               cmboEditCont.getItems().add(contractorArray[i].shortString());
@@ -1415,13 +1413,14 @@ public class MainApp extends Application {
             editContractorStage.show();
             for(int i=0; i<contractorArray.length; i++)
             {
-                cmboEditCont.getItems().add(contractorArray[i].shortString());
+                cmboEditCont.getItems().add(contractorArray[i]);
             }
         });
         editContractor.setHgap(20);
         editContractor.setVgap(20);
-            
-     
+        txtEContNotes.setPrefSize(50,80);  
+        cmboEContStates.setPrefSize(250,10);
+        txtEContNotes.setAlignment(Pos.TOP_LEFT);
 
   //Main Menu 
         Label lblMain = new Label (" Valley Depot's Main Menu"); 
@@ -1454,7 +1453,6 @@ public class MainApp extends Application {
        btnEdit.setOnAction(e -> {
            editStage.show();
        });
-
 
        btnExit.setOnAction(e ->{
            custPurchStage.close();
