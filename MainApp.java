@@ -449,6 +449,7 @@ public class MainApp extends Application {
         Scene custPurchScene = new Scene(custPurchPane, 680,450);
         custPurchStage.setTitle("Customer Purchase History");
         TextArea taCPH = new TextArea();
+        Button btnViewCustPurch = new Button("Select");
         //taCPH.setWrapText(true);
         custPurchStage.setScene(custPurchScene);
         custPurchPane.add(cmboCustPurchase,0,0);
@@ -768,10 +769,9 @@ public class MainApp extends Application {
         editStage.setScene(editScene); 
         editPane.add(btnEditCustomer,0,0);
         editPane.add(btnEditItem, 0,1);
-        editPane.add(btnEditSale,0,2);
-        editPane.add(btnEditVendor,0,3);
-        editPane.add(btnEditContractor, 0, 4);
-        editPane.add(btnEditExit,0,5);
+        editPane.add(btnEditVendor,0,2);
+        editPane.add(btnEditContractor, 0, 3);
+        editPane.add(btnEditExit,0,4);
         btnEdit.setOnAction(e -> {
           editStage.show();  
         });
@@ -1079,18 +1079,7 @@ public class MainApp extends Application {
         editItem.setHgap(20);
         editItem.setVgap(20);
         
-    //Editing a Sale
-        GridPane editSalePane = new GridPane();
-        editSalePane.setAlignment(Pos.CENTER);
-        Stage editSaleStage = new Stage();
-        Scene editSaleScene = new Scene(editSalePane, 500, 400);
-        editSaleStage.setTitle("Edit a Sale");
-        editSaleStage.setScene(editSaleScene);
-        editSalePane.add(cmboEditSales,0,0);
-         btnEditSale.setOnAction(e ->{
-             editSaleStage.show();
-         });    
-        
+
     //Editing a Vendor
         GridPane editVendor = new GridPane();
         editVendor.setAlignment(Pos.CENTER);
