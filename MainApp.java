@@ -238,6 +238,7 @@ public class MainApp extends Application {
     Button btnSaveContractor = new Button("Save");
     Button btnExitContractor = new Button("Exit");
     Button btnContinue  = new Button("Continue to Edit");
+    Button btnViewCPH = new Button("Select");
     
     //Setting button dimensions 
     btnSaveContractor.setPrefSize(200,10);
