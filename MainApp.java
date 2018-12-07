@@ -5,9 +5,7 @@ Authors: Zach Beatty, Eric Carter, Mercy Clemente, Michael Corcoran & Troy Godda
 */
 package GroupProject331;
 
-import java.util.Scanner;
 import java.util.Arrays;
-import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.collections.*;
 import javafx.geometry.Pos;
@@ -210,10 +208,8 @@ public class MainApp extends Application {
     Button btnCurrentInv = new Button ("View Current Inventory Levels");
     Button btnCreateMenu = new Button ("Create a New ...");
     Button btnEdit = new Button ("Edit an Existing ..."); 
-    Button btnPrint = new Button("Print Receipt");
     Button btnExit = new Button ("Exit"); 
     Button btnCustPurchExit = new Button("Exit");
-    Button btnPrintExit = new Button ("Exit");
     Button btnEditExit = new Button("Exit");
     Button btnEditCustomer = new Button("Edit Customer");
     Button btnEditItem = new Button ("Edit Item");
@@ -251,10 +247,8 @@ public class MainApp extends Application {
     btnCurrentInv.setPrefSize(250,10);
     btnCreateMenu.setPrefSize(250,10);
     btnEdit.setPrefSize(250,10);
-    btnPrint.setPrefSize(250,10);
     btnExit.setPrefSize(250,10);
     btnCustPurchExit.setPrefSize(150,10);
-    btnPrintExit.setPrefSize(150,10);
     btnEditExit.setPrefSize(250,10);
     btnEditCustomer.setPrefSize(250,10);
     btnEditItem.setPrefSize(250,10);
@@ -1130,44 +1124,6 @@ public class MainApp extends Application {
         btnEditContractor.setOnAction(e ->{
             editContractorStage.show();
         });
-            
-        
- //Creating print receipt option
-  GridPane printReceiptPane = new GridPane();
-        printReceiptPane.setAlignment(Pos.CENTER);
-        Stage printReceiptStage = new Stage();
-        Scene printReceiptScene = new Scene(printReceiptPane, 600,450);
-        printReceiptStage.setTitle("Print Receipt");
-        printReceiptStage.setScene(printReceiptScene); 
-        taReceipt.setWrapText(true);
-        Button btnSelectReceipt = new Button ("Select");
-        Label lblTitle = new Label ("Printing Receipt");
-        printReceiptPane.add(lblTitle,0,0);
-        printReceiptPane.add(cmboCustReceipt,0,1);
-        printReceiptPane.add(btnSelectReceipt,1,1);
-        printReceiptPane.add(btnPrintExit,0,2);
-        btnPrint.setOnAction(e -> {
-            printReceiptStage.show();
-        });
-        btnPrintExit.setOnAction(e ->{
-            printReceiptStage.close();
-        });
-        btnSelectReceipt.setOnAction(e-> {        
-            taReceipt.setText(cmboCustReceipt.getSelectionModel().getSelectedItem().toString()); 
-            printReceiptPane.add(taReceipt,0,3);
-        });
-        printReceiptPane.setVgap(20);
-        printReceiptPane.setHgap(20);
-        cmboCustReceipt.setPrefSize(250,10);
-        btnSelectReceipt.setPrefSize(150,10);
-        btnPrintExit.setPrefSize(200,10);
-        printReceiptPane.setVgap(20);
-        printReceiptPane.setHgap(20);
-        cmboCustReceipt.setPrefSize(250,10);
-        btnSelectReceipt.setPrefSize(150,10);
-        btnPrintExit.setPrefSize(200,10);
-        printReceiptPane.setVgap(20);
-        printReceiptPane.setHgap(20);
 
   //Main Menu 
         Label lblMain = new Label (" Valley Depot's Main Menu"); 
@@ -1183,12 +1139,10 @@ public class MainApp extends Application {
         primaryPane.add(btnCurrentInv,1,3);
         primaryPane.add(btnCreateMenu,1,4);
         primaryPane.add(btnEdit,1,5);
-        primaryPane.add(btnPrint,1,6);
-        primaryPane.add(btnExit,1,7);
+        primaryPane.add(btnExit,1,6);
         primaryPane.setVgap(20);
         primaryPane.setHgap(20);
       
-
         btnCreateMenu.setOnAction(e -> {
           createStage.show(); 
         });
@@ -1203,9 +1157,6 @@ public class MainApp extends Application {
            editStage.show();
        });
 
-       btnPrint.setOnAction( e ->{
-           printReceiptStage.show();
-       });
 
        btnExit.setOnAction(e ->{
            custPurchStage.close();
@@ -1213,7 +1164,6 @@ public class MainApp extends Application {
            itemPurchStage.close();
            currentInvStage.close();
            editStage.close();
-           printReceiptStage.close();
            primaryStage.close();
        });
        btnVendor.setOnAction(e -> {
