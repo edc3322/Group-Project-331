@@ -43,17 +43,18 @@ public class MainApp extends Application {
     int vendorCount = 3;
     int saleCount = 5;
     int itemCount = 10;
+    int contractorCount = 0;
 
    
     @Override
     public void start(Stage primaryStage) {
     
     //Prepopulating arrays
-    customerArray[0] = new Customer("Tom", "Jones", "Harrisonburg", "VA", "800 S. Main St.", 22807, 5408994545L,"");  
-    customerArray[1] = new Customer("Evan", "Thompson", "Fairfax", "VA", "1932 Prince William", 22726, 7056785968L,"");
-    customerArray[2] = new Customer ("Jim", "Smith", "Arlington", "VA", "775 Edward St", 07675, 2015647857L,""); 
-    customerArray[3] = new Customer("Kate", "Andrews","Springfield","VA", "1032 Rustic St", 22676, 2745638976L,"");
-    customerArray[4] = new Customer("Rob", "Sousa", "Fairfax", "VA", "45 Market Blvd", 89867, 3345789084L,"");
+    customerArray[0] = new Customer("Tom", "Jones", "Harrisonburg", "VA - Virginia", "800 S. Main St.", 22807, 5408994545L,"");  
+    customerArray[1] = new Customer("Evan", "Thompson", "Fairfax", "VA - Virginia", "1932 Prince William", 22726, 7056785968L,"");
+    customerArray[2] = new Customer ("Jim", "Smith", "Arlington", "VA - Virginia", "775 Edward St", 07675, 2015647857L,""); 
+    customerArray[3] = new Customer("Kate", "Andrews","Springfield","VA - Virginia", "1032 Rustic St", 22676, 2745638976L,"");
+    customerArray[4] = new Customer("Rob", "Sousa", "Fairfax", "VA - Virginia", "45 Market Blvd", 89867, 3345789084L,"");
     
     vendorArray[0]= new Vendor("Universal Construction", "12 South Main St. ", "Rockingham", "VA",22801, 4759067589L);
     vendorArray[1]= new Vendor("Cat Building", "45 Annendale Blvd.", "Springfield", "VA", 22738, 7034563782L);
@@ -61,6 +62,8 @@ public class MainApp extends Application {
     
     saleArray[0] = new Sale("Side lamp", 20.00, 3, "Tina Jones", "11/2/17");
     saleArray[1] = new Sale("Bed", 500.50, 1, "Ryan Guess", "5/12/18");
+    
+    contractorArray[0] = new Contractor("Harrisonburg", "Harrisonburg", "VA - Virginia", "980 North Main St.", 22801, 5403435465L,"");
     
     //contractorArray[0] = new Contractor("Tim", "Corven", "5543 South Bend Plaza", "Fairfax", "VA", 98734, "Baker Booking", 4563728473L, "");
     
