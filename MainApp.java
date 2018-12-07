@@ -1144,7 +1144,7 @@ public class MainApp extends Application {
             itemArray[itemID - 4000].setWeight(Double.parseDouble(EtxtWeight.getText()));
             itemArray[itemID - 4000].setDescription(EtxtDescription.getText());
             itemArray[itemID - 4000].setpurchasePrice(Double.parseDouble(EtxtPurchasePrice.getText()));
-            //itemArray[itemID - 4000].setQuantity(Integer.parseInt(EtxtQuantity.getText()));
+            itemArray[itemID - 4000].setQuantity(Integer.parseInt(EtxtQuantity.getText()));
             for(int i = 0; i < itemArray.length; i++)
             {
                 cmboEditItem.getItems().add(itemArray[i].shortString());
