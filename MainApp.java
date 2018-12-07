@@ -1101,17 +1101,153 @@ public class MainApp extends Application {
         editItem.setVgap(20);
         
 
-    //Editing a Vendor
+     //Editing a Vendor
         GridPane editVendor = new GridPane();
         editVendor.setAlignment(Pos.CENTER);
         Stage editVendorStage = new Stage();
         Scene editVendorScene = new Scene(editVendor,660,600);
         editVendorStage.setTitle("Edit a Vendor");
         editVendorStage.setScene(editVendorScene);
-        editVendor.add(cmboEditVendor,0,0);
+        
+        ComboBox cmboVendor = new ComboBox();
+        
+        ObservableList olVState = FXCollections.observableArrayList();
+        ComboBox EcmboVStates = new ComboBox(olVState);
+        olVState.add("AL - Alabama");
+        olVState.add("AK - Alaska");
+        olVState.add("AZ - Arizona");
+        olVState.add("AR - Arkansas");
+        olVState.add("CA - California");
+        olVState.add("CO - Colorado");
+        olVState.add("CT - Connecticut");
+        olVState.add("DE - Deleware");
+        olVState.add("FL - Florida");
+        olVState.add("GA - Georgia");
+        olVState.add("HI - Hawaii");
+        olVState.add("ID - Idaho");
+        olVState.add("IL - Illinois");
+        olVState.add("IN - Indiana");
+        olVState.add("IA - Iowa");
+        olVState.add("KS - Kansas");
+        olVState.add("KY - Kentucky");
+        olVState.add("LA - Louisiana");
+        olVState.add("ME - Maine");
+        olVState.add("MD - Maryland");
+        olVState.add("MA - Massachusetts");
+        olVState.add("MI - Michigan");
+        olVState.add("MN - Minnesota");
+        olVState.add("MS - Mississippi");
+        olVState.add("MO - Missouri");
+        olVState.add("MT - Montana");
+        olVState.add("NE - Nebraska");
+        olVState.add("NV - Nevada");
+        olVState.add("NH - New Hampshire");
+        olVState.add("NJ - New Jersey");
+        olVState.add("NM - New Mexico");
+        olVState.add("NY - New York");
+        olVState.add("NC - North Carolina");
+        olVState.add("ND - North Dakota");
+        olVState.add("OH - Ohio");
+        olVState.add("OK - Oklahoma");
+        olVState.add("OR - Oregon");
+        olVState.add("PA - Pennsylvania");
+        olVState.add("RI - Rhode Island");
+        olVState.add("SC - South Carolina");
+        olVState.add("SD - South Dakota");
+        olVState.add("TN - Tennessee");
+        olVState.add("TX - Texas");
+        olVState.add("UT - Utah");
+        olVState.add("VT - Vermont");
+        olVState.add("VA - Virginia");
+        olVState.add("WA - Washington");
+        olVState.add("WV - West Virginia");
+        olVState.add("WI - Wisconsin");
+        olVState.add("WY - Wyoming");
+        Label lblEditVendor = new Label("Creating a New Vendor");
+        Label ElblVendorName = new Label("Business Name:");
+        Label ElblVendorSelect = new Label("Select a Vendor:");
+        Label ElblVendorStreet = new Label("Street:");
+        Label ElblVendorCity = new Label("City:");
+        Label ElblVendorState = new Label("State:");
+        Label ElblVendorZip = new Label("Zip Code:");
+        Label ElblVendorPhone = new Label("Phone Number:");
+        TextField EtxtVendorName = new TextField();
+        TextField EtxtVendorStreet = new TextField();
+        TextField EtxtVendorCity = new TextField();
+        TextField EtxtVStates = new TextField();
+        TextField EtxtVendorZip = new TextField();
+        TextField EtxtVendorPhone = new TextField();
+        Button EbtnVendorSave = new Button("Save");
+        Button EbtnVendorExit = new Button("Exit");
+        Button btnVendorSelect = new Button("Select");
+        
+        editVendor.add(lblEditVendor,0,0);
+        editVendor.add(ElblVendorSelect,0,1);
+        editVendor.add(ElblVendorName,0,2);
+        editVendor.add(ElblVendorStreet,0,3);
+        editVendor.add(ElblVendorCity,0,4);
+        editVendor.add(ElblVendorState,0,5);
+        editVendor.add(ElblVendorZip,0,6);
+        editVendor.add(ElblVendorPhone,0,7);
+        editVendor.add(cmboVendor,1,1);
+        editVendor.add(EtxtVendorName,1,2);
+        editVendor.add(EtxtVendorStreet,1,3);
+        editVendor.add(EtxtVendorCity,1,4);
+        editVendor.add(EcmboVStates,1,5);
+        editVendor.add(EtxtVendorZip,1,6);
+        editVendor.add(EtxtVendorPhone,1,7);
+        editVendor.add(EbtnVendorSave,1,8);
+        editVendor.add(EbtnVendorExit, 0, 8);
+        editVendor.add(btnVendorSelect,2,1);
+        
+        btnVendorSelect.setOnAction(e ->{
+            int vendorID=0;
+            for(int i = 0; i < vendorArray.length; i++)
+            {
+                if(vendorArray[i].businessName.equals(cmboVendor.getSelectionModel().getSelectedItem().toString()))
+                    vendorID = vendorArray[i].getVID();
+            }
+            EcmboVStates.getSelectionModel().select(vendorArray[vendorID - 5000].state);
+            EtxtVendorName.setText(vendorArray[vendorID - 5000].businessName);
+            EtxtVendorStreet.setText(vendorArray[vendorID - 5000].street);
+            EtxtVendorCity.setText(vendorArray[vendorID - 5000].city);
+            EtxtVendorZip.setText(String.valueOf(vendorArray[vendorID - 5000].zip));
+            EtxtVendorPhone.setText(String.valueOf(vendorArray[vendorID - 5000].phoneNumber));
+            
+        });
+        
+        EbtnVendorSave.setOnAction(e ->{
+            int vendorID = 0;
+            for(int i = 0; i < vendorArray.length; i++)
+            {
+                if(vendorArray[i].businessName.equals(cmboVendor.getSelectionModel().getSelectedItem().toString()))
+                    vendorID = vendorArray[i].getVID();
+            }
+            cmboVendor.getItems().remove(0, vendorArray.length);
+            vendorArray[vendorID - 5000].setBusinessName(EtxtVendorName.getText());
+            vendorArray[vendorID - 5000].setStreet(EtxtVendorStreet.getText());
+            vendorArray[vendorID - 5000].setCity(EtxtVendorCity.getText());
+            vendorArray[vendorID - 5000].setState(EcmboVStates.getSelectionModel().getSelectedItem().toString());
+            vendorArray[vendorID - 5000].setZip(Integer.parseInt(EtxtVendorZip.getText()));
+            vendorArray[vendorID - 5000].setPhoneNumber(Long.parseLong(EtxtVendorPhone.getText()));
+            
+            for(int i = 0; i < vendorArray.length; i++)
+            {
+                cmboVendor.getItems().add(vendorArray[i].businessName);
+            }
+        });
+        
+        EbtnVendorExit.setOnAction(e ->{
+            editVendorStage.close();
+        });
         btnEditVendor.setOnAction(e ->{
             editVendorStage.show();
+            for (int i = 0; i < vendorArray.length; i++)
+                cmboVendor.getItems().add(vendorArray[i].businessName);
         });
+        editVendor.setHgap(20);
+        editVendor.setVgap(20);
+        
         
     //Editing a Contractor
         GridPane editContractor = new GridPane();
