@@ -461,7 +461,7 @@ public class MainApp extends Application {
         GridPane viewCPHPane = new GridPane();
         viewCPHPane.setAlignment(Pos.CENTER);
         Stage viewCPHStage = new Stage();
-        Scene viewCPHScene = new Scene(viewCPHPane,650,500);
+        Scene viewCPHScene = new Scene(viewCPHPane,650,530);
         viewCPHStage.setScene(viewCPHScene);
         viewCPHStage.setTitle("Viewing Customer Purchase History");
         viewCPHPane.add(taCPH,0,1);
