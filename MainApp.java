@@ -4,7 +4,6 @@ Group Project Part 2.
 Authors: Zach Beatty, Eric Carter, Mercy Clemente, Michael Corcoran & Troy Goddard
 */
 package GroupProject331;
-
 import java.util.Arrays;
 import javafx.application.Application;
 import javafx.collections.*;
@@ -32,7 +31,7 @@ public class MainApp extends Application {
     ComboBox cmboCustPurchase = new ComboBox();
     ComboBox cmboEditVendor = new ComboBox();
     ComboBox cmboEditSales = new ComboBox();
-    ComboBox cmboEditContractor = new ComboBox();
+    ComboBox cmboEditCont = new ComboBox();
     ComboBox cmboCustReceipt = new ComboBox();
     ComboBox cmboItemPurchase = new ComboBox();
     //ObservableList <Customer> olCustomerPurchase = FXCollections.observableArrayList(customerArray);
@@ -102,7 +101,6 @@ public class MainApp extends Application {
     cmboEditCustomers.getItems().addAll(customerArray);
     cmboEditVendor.getItems().addAll(vendorArray);
     cmboEditSales.getItems().addAll(saleArray);
-    cmboEditContractor.getItems().addAll(contractorArray);
     cmboItemPurchase.getItems().addAll(itemArray);
        
   // Declaring neccessary fields, labels, etc.
@@ -279,7 +277,7 @@ public class MainApp extends Application {
     cmboVStates.setPrefSize(200,10);
     cmboEditCustomers.setPrefSize(250,10);
     cmboCustPurchase.setPrefSize(250,10);
-    cmboEditContractor.setPrefSize(250,10);
+    cmboEditCont.setPrefSize(250,10);
     cmboEditSales.setPrefSize(250, 10);
     cmboEditVendor.setPrefSize(250,10);
 
@@ -1275,7 +1273,7 @@ public class MainApp extends Application {
         editVendor.setVgap(20);
         
         
-  //prepopulating contractor 
+             //prepopulating contractor 
 //   for(int i=0; i<contractorArray.length; i++)
 //   {
 //       cmboEditCont.getItems().add(contractorArray[i].shortString());
@@ -1422,7 +1420,7 @@ public class MainApp extends Application {
         });
         editContractor.setHgap(20);
         editContractor.setVgap(20);
-           
+            
      
 
   //Main Menu 
