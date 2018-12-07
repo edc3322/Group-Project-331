@@ -573,16 +573,22 @@ public class MainApp extends Application {
         Scene saleScene = new Scene(salePane,500,400);
         saleStage.setTitle("Create New Sale");
         saleStage.setScene(saleScene);
+        ComboBox cmboItems = new ComboBox();
+        ComboBox cmboCustomers = new ComboBox();
+        cmboItems.setMaxWidth(200);
+        cmboCustomers.setMaxWidth(200);
         Button btnSaveSale = new Button("Save");
+        TextField txtQuantitySold = new TextField();
+        Label lblQuantitySold = new Label("Quantity:");
         salePane.add(lblSaleItem,0,0);
         salePane.add(lblSalePrice,0,1);
-        salePane.add(lblQuantity, 0,2); 
+        salePane.add(lblQuantitySold, 0,2); 
         salePane.add(lblCustomerName,0,3);
         salePane.add(lblSaleDate,0,4);
-        salePane.add(txtSaleItem, 1,0);
+        salePane.add(cmboItems, 1,0);
         salePane.add(txtSalePrice,1,1);
-        salePane.add(txtQuantity,1,2);
-        salePane.add(txtCustomerName,1,3);
+        salePane.add(txtQuantitySold,1,2);
+        salePane.add(cmboCustomers,1,3);
         salePane.add(txtSaleDate,1,4);
         salePane.add(btnSaleExit,1,5);
         salePane.add(btnSaveSale,0,5);
@@ -593,13 +599,30 @@ public class MainApp extends Application {
             saleArray = Arrays.copyOf(saleArray, 
             saleArray.length + 1); // resizes saleArray
             
-            saleArray[saleCount] =  new Sale(txtSaleItem.getText(), Double.parseDouble(txtSalePrice.getText()), Integer.parseInt(txtQuantity.getText()), 
-                    txtCustomerName.getText(), txtSaleDate.getText());
+            int itemID=0;
+            for(int i = 0; i < itemArray.length; i++)
+            {
+                if(itemArray[i].shortString().equals(cmboItems.getSelectionModel().getSelectedItem().toString()))
+                    itemID = itemArray[i].getItemID();
+            }
+            int customerID=0;
+            for(int i = 0; i < customerArray.length; i++)
+            {
+                if(customerArray[i].shortString().equals(cmboCustomers.getSelectionModel().getSelectedItem().toString()))
+                    customerID = customerArray[i].getId();
+            }
+            saleArray[saleCount] =  new Sale(itemArray[itemID - 4000].itemName, Double.parseDouble(txtSalePrice.getText()), 
+                    Integer.parseInt(txtQuantitySold.getText()), 
+                    customerArray[customerID - 1000].firstName, txtSaleDate.getText());
             saleCount++;
         });
         
         btnCreateSale.setOnAction(e ->{
             saleStage.show();
+            for (int i = 0; i < itemArray.length; i++)
+                cmboItems.getItems().add(itemArray[i].shortString());
+            for (int i = 0; i < customerArray.length; i++)
+                cmboCustomers.getItems().add(customerArray[i].shortString());
         });
         btnSaleExit.setOnAction(e ->{
             saleStage.close();
