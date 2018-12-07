@@ -36,11 +36,11 @@ public class MainApp extends Application {
     ComboBox cmboItemPurchase = new ComboBox();
     //ObservableList <Customer> olCustomerPurchase = FXCollections.observableArrayList(customerArray);
     Vendor[] vendorArray = new Vendor[3];
-    Sale[] saleArray = new Sale[5];
+    Sale[] saleArray = new Sale[2];
     Item[] itemArray = new Item[10];
     int customerCount = 5;
     int vendorCount = 3;
-    int saleCount = 5;
+    int saleCount = 2;
     int itemCount = 10;
     int contractorCount = 1;
 
@@ -453,15 +453,22 @@ public class MainApp extends Application {
             custPurchStage.show();   
         });
         btnViewCPH.setOnAction(e->{
-            int customerID =0; 
             custPurchPane.add(taCPH,0,1);
-            taCPH.setText(cmboCustPurchase.getSelectionModel().getSelectedItem().toString()); 
-            for(int i =0; i<saleArray.length; i++)
+            //taCPH.setText(cmboCustPurchase.getSelectionModel().getSelectedItem().toString()); 
+            //cmboCustPurchase.getSelectionModel().clearSelection();
+            String tempcustomerSelection = cmboCustPurchase.getSelectionModel().getSelectedItem().toString();
+            tempcustomerSelection = tempcustomerSelection.substring(0, 4);
+            int tempcustomerID = Integer.valueOf(tempcustomerSelection);
+            
+            for (int i = 0; i < saleArray.length; i++)
             {
-                if (saleArray[i].customer.equals(customerArray[customerID - 1000].firstName + " " + customerArray[customerID - 1000].lastName))
+                if (tempcustomerID == saleArray[i].getCustomerID())
                 {
-                    taCPH.setText(saleArray[i].toString());
+                    taCPH.appendText(saleArray[i].toString());
+                    break;
                 }
+                
+                
             }
         });
         btnCustPurchExit.setOnAction(e -> {
