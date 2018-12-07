@@ -11,18 +11,18 @@ public class Sale {
    String  itemName;
    public double sellingPrice;
    public int quantity;
-   public String customer;
+   public int customerID;
    public String date;
     
    
-    public Sale (String itemName, double sellingPrice, int quantity, String customer, String date)
+    public Sale (String itemName, double sellingPrice, int quantity, int customerID, String date)
     {
         this.saleID = saleCount;
         saleCount++;
         this.itemName=itemName;
         this.sellingPrice = sellingPrice;
         this.quantity = quantity;
-        this.customer = customer;
+        this.customerID = customerID;
         this.date = date;
     }
     
@@ -49,9 +49,9 @@ public class Sale {
         this.quantity=quantity;
     }
     
-    public void setCustomer (String customer)
+    public void setCustomerID (int customerID)
     {
-        this.customer=customer; 
+        this.customerID=customerID; 
     }
     
     public void setDate(String date)
@@ -73,9 +73,9 @@ public class Sale {
         return this.quantity;
     }
     
-    public String getCustomer()
+    public int getCustomerID()
     {
-        return this.customer;
+        return this.customerID;
     }
     
     public String getDate()
@@ -97,7 +97,7 @@ public class Sale {
     {
         String returnString = String.format("%-12d" + " %-20s" + " %-12.2f" + " %-10d" 
         + " %-20s" + " %-12s", this.saleID, this.itemName, this.sellingPrice, 
-        this.quantity, this.customer, this.date);
+        this.quantity, this.customerID, this.date);
         return returnString;
     }
 
