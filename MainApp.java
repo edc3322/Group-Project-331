@@ -70,8 +70,8 @@ public class MainApp extends Application {
         vendorArray[1] = new Vendor("Cat Building", "45 Annendale Blvd.", "Springfield", "VA", 22738, 7034563782L);
         vendorArray[2] = new Vendor("Booking", "11 George Place.", "Culver City", "CA", 74683, 3134538948L);
 
-        saleArray[0] = new Sale("Side lamp", 20.00, 3, "Tina Jones", "11/2/17");
-        saleArray[1] = new Sale("Bed", 500.50, 1, "Ryan Guess", "5/12/18");
+        saleArray[0] = new Sale("Side lamp", 20.00, 3, "Tom Jones", "11/2/17");
+        saleArray[1] = new Sale("Bed", 500.50, 1, "Evan Thompson", "5/12/18");
         contractorArray[0] = new Contractor("Harrisonburg Decorators", "Harrisonburg", "VA - Virginia", "980 North Main St.", 22801, 5403435465L, "");
 
         for (int i = 0; i < customerArray.length; i++) {
@@ -483,9 +483,10 @@ public class MainApp extends Application {
                     customerID = customerArray[i].getId();
                 }
             }
-            taCPH.setText(cmboCustPurchase.getSelectionModel().getSelectedItem().toString());
+            
             for (int i = 0; i < saleArray.length; i++) {
-                if (saleArray[i].customer.equals(customerArray[customerID - 1000].firstName + " " + customerArray[customerID - 1000].lastName)) {
+                if (saleArray[i].getCustomer().equals(customerArray[customerID - 1000].firstName + " " + customerArray[customerID - 1000].lastName)) 
+                {
                     taCPH.setText(saleArray[i].toString());
                 }
             }
