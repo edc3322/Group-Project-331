@@ -441,29 +441,37 @@ public class MainApp extends Application {
     olStates.add("WV - West Virginia");
     olStates.add("WI - Wisconsin");
     olStates.add("WY - Wyoming");
+
   //Creating the pane stage and scene for customer purchase history 
         GridPane custPurchPane = new GridPane();
         custPurchPane.setAlignment(Pos.CENTER);
         Stage custPurchStage = new Stage();
-        Scene custPurchScene = new Scene(custPurchPane, 600,400);
+        Scene custPurchScene = new Scene(custPurchPane, 680,450);
         custPurchStage.setTitle("Customer Purchase History");
-        Label lblCustT = new Label("Viewing Customer Purchase History");
-        Button btnViewCustPurch = new Button("View Customer's Purchase History");
+        TextArea taCPH = new TextArea();
+        //taCPH.setWrapText(true);
         custPurchStage.setScene(custPurchScene);
-        custPurchPane.add(lblCustT,0,0);
-        custPurchPane.add(cmboCustPurchase,0,1,1,3);
-        custPurchPane.add(btnViewCustPurch,0,4);
-        custPurchPane.add(btnCustPurchExit,1,4);
+        custPurchPane.add(cmboCustPurchase,0,0);
+        custPurchPane.add(btnViewCustPurch,1,0);
+        custPurchPane.add(btnCustPurchExit,0,2);
         btnCustPurchase.setOnAction(e ->{
-            custPurchStage.show(); 
-          //  taCustPurchHistory.appendText(customerArray[0].toString());
+            custPurchStage.show();   
+        });
+        btnViewCustPurch.setOnAction(e->{
+            custPurchPane.add(taCPH,0,1);
+            taCPH.setText(cmboCustPurchase.getSelectionModel().getSelectedItem().toString()); 
         });
         btnCustPurchExit.setOnAction(e -> {
             custPurchStage.close();
+            taCPH.clear();
+            taCPH.setVisible(false);
+            cmboCustPurchase.getSelectionModel().clearSelection();
         }); 
         custPurchPane.setVgap(20);
         custPurchPane.setHgap(20);
-        
+        cmboCustPurchase.setPrefSize(250,10);
+        taCPH.setPrefSize(500,140);
+          
 //Creating the pane, stage, and scene for item purchase history
         GridPane itemPurchPane = new GridPane();
         itemPurchPane.setAlignment(Pos.CENTER);
