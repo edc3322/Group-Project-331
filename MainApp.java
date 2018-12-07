@@ -590,6 +590,12 @@ public class MainApp extends Application {
                 txtVendorCity.getText(), cmboVStates.getSelectionModel().getSelectedItem().toString(), 
                 Integer.parseInt(txtVendorZip.getText()), Long.parseLong(txtVendorPhone.getText()));
             vendorCount++;
+            txtVendorName.clear();
+            txtVendorStreet.clear();
+            txtVendorCity.clear();
+            cmboVStates.getSelectionModel().clearSelection();
+            txtVendorZip.clear();
+            txtVendorPhone.clear();
          });
          
         vendorPane.setHgap(20);
@@ -600,7 +606,7 @@ public class MainApp extends Application {
         GridPane salePane = new GridPane();
         salePane.setAlignment(Pos.CENTER);
         Stage saleStage = new Stage();
-        Scene saleScene = new Scene(salePane,500,400);
+        Scene saleScene = new Scene(salePane,650,500);
         saleStage.setTitle("Create New Sale");
         saleStage.setScene(saleScene);
         ComboBox cmboItems = new ComboBox();
@@ -640,8 +646,6 @@ public class MainApp extends Application {
             }
         });
         
-        
-        
         btnSaveSale.setOnAction(e ->{
             //resize the array
             saleArray = Arrays.copyOf(saleArray, 
@@ -654,8 +658,6 @@ public class MainApp extends Application {
                     itemID = itemArray[i].getItemID();
             }
             int customerID=0;
-            
-            
             
             if(!chkContractor.isSelected())
             {
@@ -681,6 +683,11 @@ public class MainApp extends Application {
                     contractorArray[customerID - 6000].contractorName, txtSaleDate.getText());
                 saleCount++;
             }
+            cmboCustomers.getSelectionModel().clearSelection();
+            txtSaleDate.clear();
+            txtSalePrice.clear();
+            txtQuantitySold.clear();
+            cmboItems.getSelectionModel().clearSelection();
         });
         
         btnCreateSale.setOnAction(e ->{
@@ -722,6 +729,11 @@ public class MainApp extends Application {
             itemArray[itemCount] = new Item(txtItem.getText(), Double.parseDouble(txtWeight.getText()), txtDescription.getText(),
             Double.parseDouble(txtSellingPrice.getText()), Integer.parseInt(txtQuantity.getText()));
             itemCount++;
+            txtItem.clear();
+            txtWeight.clear();
+            txtDescription.clear();
+            txtSellingPrice.clear();
+            txtQuantity.clear();
         });
         btnCreateItem.setOnAction(e ->{
             createItemStage.show();
@@ -1297,6 +1309,13 @@ public class MainApp extends Application {
             {
                 cmboVendor.getItems().add(vendorArray[i].businessName);
             }
+            EtxtVendorName.clear();
+            EtxtVendorStreet.clear();
+            EtxtVendorCity.clear();
+            EcmboVStates.getSelectionModel().clearSelection(); 
+            EtxtVendorZip.clear();
+            EtxtVendorPhone.clear();
+            
         });
         
         EbtnVendorExit.setOnAction(e ->{
@@ -1310,7 +1329,7 @@ public class MainApp extends Application {
         editVendor.setHgap(20);
         editVendor.setVgap(20);        
 
-/Editing a Contractor
+//Editing a Contractor
         ObservableList eContStates = FXCollections.observableArrayList();
         ComboBox cmboEContStates = new ComboBox(eContStates);
         eContStates.add("AL - Alabama");
