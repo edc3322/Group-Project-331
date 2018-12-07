@@ -456,27 +456,25 @@ public class MainApp extends Application {
         btnViewCPH.setOnAction(e->{
             int customerID =0; 
             custPurchPane.add(taCPH,0,1);
-            //taCPH.setText(cmboCustPurchase.getSelectionModel().getSelectedItem().toString()); 
-            //cmboCustPurchase.getSelectionModel().clearSelection();
+            taCPH.setText(cmboCustPurchase.getSelectionModel().getSelectedItem().toString()); 
             for(int i =0; i<saleArray.length; i++)
             {
-                if (saleArray[i].equals(customerID))
+                if (saleArray[i].customer.equals(customerArray[customerID - 1000].firstName + " " + customerArray[customerID - 1000].lastName))
                 {
                     taCPH.setText(saleArray[i].toString());
                 }
             }
         });
         btnCustPurchExit.setOnAction(e -> {
+            cmboCustPurchase.getSelectionModel().clearSelection();
             custPurchStage.close();
             taCPH.clear();
-            taCPH.setVisible(false);
-           
+            taCPH.setVisible(false); 
         }); 
         custPurchPane.setVgap(20);
         custPurchPane.setHgap(20);
-        cmboCustPurchase.setPrefSize(250,10);
+        cmboCustPurchase.setPrefSize(200,10);
         taCPH.setPrefSize(500,140);
-          
           
 //Creating the pane, stage, and scene for item purchase history
         GridPane itemPurchPane = new GridPane();
