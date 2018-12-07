@@ -451,7 +451,7 @@ public class MainApp extends Application {
         taCPH.setStyle("-fx-text-fill: black");
         taCPH.setFont(Font.font("Times", 12));
         custPurchStage.setScene(custPurchScene);
-        String cphText = "Sale ID: \t\tItem Name: \t\tPurchase Price: \t  Quantity: \tCustomer ID: \tDate: \n";
+        String cphText = "Sale ID: \t\tItem Name: \t\tPurchase Price: \t  Quantity: \tCustomer Name: \tDate: \n";
         Label lblText = new Label(cphText);
         custPurchPane.add(cmboCustPurchase, 0, 2);
         custPurchPane.add(btnViewCPH, 0, 3);
