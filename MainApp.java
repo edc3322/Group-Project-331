@@ -88,9 +88,6 @@ public class MainApp extends Application {
         for (int i = 0; i < itemArray.length; i++) {
             cmboItemPurchase.getItems().add(itemArray[i].shortString());
         };
-        for (int i = 0; i < customerArray.length; i++) {
-            cmboCustPurchase.getItems().add(customerArray[i].shortString());
-        };
 
         cmboEditCustomers.getItems().addAll(customerArray);
         cmboEditVendor.getItems().addAll(vendorArray);
