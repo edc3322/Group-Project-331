@@ -510,7 +510,7 @@ public class MainApp extends Application {
             taIPH.setText(cmboItemPurchase.getSelectionModel().getSelectedItem().toString());
             for (int i = 0; i < saleArray.length; i++)
             {
-                if (saleArray[i].itemName.equals(saleArray[i].itemName))
+                if (saleArray[i].itemName.equals(itemArray[i].itemName))
                 {
                     taIPH.setText(saleArray[i].toString());
                 }
