@@ -28,6 +28,18 @@ public Customer(String firstName, String lastName, String city, String state,
         this.description = description;
         customerCount++;
     }
+
+public Customer(String city, String state, String street, int zip, long phoneNumber, String description)
+{
+        this.city = city;
+        this.state = state;
+        this.street = street; 
+        this.zip = zip;
+        this.phoneNumber = phoneNumber;
+        this.cId = customerCount;
+        this.description = description;
+        customerCount++;
+}
     
     // setter for firstName for editing customerss
     public void setFirstName(String newName) 
