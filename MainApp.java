@@ -445,13 +445,12 @@ public class MainApp extends Application {
         GridPane custPurchPane = new GridPane();
         custPurchPane.setAlignment(Pos.CENTER);
         Stage custPurchStage = new Stage();
-        Scene custPurchScene = new Scene(custPurchPane, 650, 500);
+        Scene custPurchScene = new Scene(custPurchPane, 400, 400);
         custPurchStage.setTitle("Customer Purchase History");
         TextArea taCPH = new TextArea();
         taCPH.setStyle("-fx-text-fill: black");
-        taCPH.setFont(Font.font("Times", 12));
         custPurchStage.setScene(custPurchScene);
-        String cphText = "Sale ID: \t\tItem Name: \t\tPurchase Price: \t  Quantity: \tCustomer Name: \tDate: \n";
+        String cphText = "Sale ID: \tItem Name: \tPurchase Price: \tQuantity: \tCustomer Name: \tDate: \n";
         Label lblText = new Label(cphText);
         custPurchPane.add(cmboCustPurchase, 0, 2);
         custPurchPane.add(btnViewCPH, 0, 3);
@@ -461,7 +460,7 @@ public class MainApp extends Application {
         GridPane viewCPHPane = new GridPane();
         viewCPHPane.setAlignment(Pos.CENTER);
         Stage viewCPHStage = new Stage();
-        Scene viewCPHScene = new Scene(viewCPHPane,650,500);
+        Scene viewCPHScene = new Scene(viewCPHPane,550,400);
         viewCPHStage.setScene(viewCPHScene);
         viewCPHStage.setTitle("Viewing Customer Purchase History");
         viewCPHPane.add(taCPH,0,1);
@@ -470,6 +469,7 @@ public class MainApp extends Application {
         viewCPHPane.add(btnExitVCPH,0,5);
         btnExitVCPH.setOnAction(e->{
             viewCPHStage.close();
+            cmboCustPurchase.getSelectionModel().clearSelection();
         });
         
         btnCustPurchase.setOnAction(e -> {
