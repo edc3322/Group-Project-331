@@ -1310,7 +1310,7 @@ public class MainApp extends Application {
         editVendor.setHgap(20);
         editVendor.setVgap(20);        
 
-//Editing a Contractor
+/Editing a Contractor
         ObservableList eContStates = FXCollections.observableArrayList();
         ComboBox cmboEContStates = new ComboBox(eContStates);
         eContStates.add("AL - Alabama");
@@ -1410,8 +1410,8 @@ public class MainApp extends Application {
             int contractorID =0;
             for (int i=0; i<contractorArray.length; i++)
             {
-                if(contractorArray[i].equals(cmboEditCont.getSelectionModel().getSelectedItem().toString()))
-                    contractorID = contractorArray[i].getId();
+                if(contractorArray[i].shortString().equals(cmboEditCont.getSelectionModel().getSelectedItem().toString()))
+                    contractorID = contractorArray[i].getContractorID();
             }
             txtEContName.setText(contractorArray[contractorID - 6000].contractorName);
             txtEContStreet.setText(contractorArray[contractorID - 6000].street);
@@ -1427,7 +1427,7 @@ public class MainApp extends Application {
           for(int i=0; i<contractorArray.length; i++)
           {
               if (contractorArray[i].shortString().equals(cmboEditCont.getSelectionModel().getSelectedItem().toString()))
-                  contractorID = contractorArray[i].getId(); 
+                  contractorID = contractorArray[i].getContractorID(); 
           }
           cmboEditCont.getItems().remove(0,contractorArray.length);
           contractorArray[contractorID - 6000].contractorName=txtEContName.getText();
@@ -1450,7 +1450,7 @@ public class MainApp extends Application {
             editContractorStage.show();
             for(int i=0; i<contractorArray.length; i++)
             {
-                cmboEditCont.getItems().add(contractorArray[i]);
+                cmboEditCont.getItems().add(contractorArray[i].shortString());
             }
         });
         editContractor.setHgap(20);
@@ -1458,7 +1458,6 @@ public class MainApp extends Application {
         txtEContNotes.setPrefSize(50,80);  
         cmboEContStates.setPrefSize(250,10);
         txtEContNotes.setAlignment(Pos.TOP_LEFT);
-
   //Main Menu 
         Label lblMain = new Label (" Valley Depot's Main Menu"); 
         GridPane primaryPane = new GridPane(); 
