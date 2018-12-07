@@ -29,7 +29,7 @@ public class MainApp extends Application {
     Contractor [] contractorArray = new Contractor[7]; 
     ObservableList<Customer> olCustomers = FXCollections.observableArrayList(customerArray);
     ComboBox cmboEditCustomers = new ComboBox();
-    ComboBox cmboCustPurchase = new ComboBox(); 
+    ComboBox cmboCustPurchase = new ComboBox();
     ComboBox cmboEditVendor = new ComboBox();
     ComboBox cmboEditSales = new ComboBox();
     ComboBox cmboEditContractor = new ComboBox();
@@ -91,14 +91,16 @@ public class MainApp extends Application {
     {
     cmboItemPurchase.getItems().add(itemArray[i].shortString());
     };
+    for(int i=0; i< customerArray.length; i++)
+    {
+        cmboCustPurchase.getItems().add(customerArray[i].shortString()); 
+    };  
     
     cmboEditCustomers.getItems().addAll(customerArray);
-    cmboCustPurchase.getItems().addAll(customerArray);
     cmboEditVendor.getItems().addAll(vendorArray);
     cmboEditSales.getItems().addAll(saleArray);
     cmboEditContractor.getItems().addAll(contractorArray);
     cmboItemPurchase.getItems().addAll(itemArray);
-    cmboCustReceipt.getItems().addAll(customerArray); 
        
   // Declaring neccessary fields, labels, etc.
     TextField txtFName = new TextField();
