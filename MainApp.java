@@ -1275,17 +1275,155 @@ public class MainApp extends Application {
         editVendor.setVgap(20);
         
         
-    //Editing a Contractor
+  //prepopulating contractor 
+//   for(int i=0; i<contractorArray.length; i++)
+//   {
+//       cmboEditCont.getItems().add(contractorArray[i].shortString());
+//   }
+//Editing a Contractor
+        ObservableList eContStates = FXCollections.observableArrayList();
+        ComboBox cmboEContStates = new ComboBox(eContStates);
+        eContStates.add("AL - Alabama");
+        eContStates.add("AK - Alaska");
+        eContStates.add("AZ - Arizona");
+        eContStates.add("AR - Arkansas");
+        eContStates.add("CA - California");
+        eContStates.add("CO - Colorado");
+        eContStates.add("CT - Connecticut");
+        eContStates.add("DE - Deleware");
+        eContStates.add("FL - Florida");
+        eContStates.add("GA - Georgia");
+        eContStates.add("HI - Hawaii");
+        eContStates.add("ID - Idaho");
+        eContStates.add("IL - Illinois");
+        eContStates.add("IN - Indiana");
+        eContStates.add("IA - Iowa");
+        eContStates.add("KS - Kansas");
+        eContStates.add("KY - Kentucky");
+        eContStates.add("LA - Louisiana");
+        eContStates.add("ME - Maine");
+        eContStates.add("MD - Maryland");
+        eContStates.add("MA - Massachusetts");
+        eContStates.add("MI - Michigan");
+        eContStates.add("MN - Minnesota");
+        eContStates.add("MS - Mississippi");
+        eContStates.add("MO - Missouri");
+        eContStates.add("MT - Montana");
+        eContStates.add("NE - Nebraska");
+        eContStates.add("NV - Nevada");
+        eContStates.add("NH - New Hampshire");
+        eContStates.add("NJ - New Jersey");
+        eContStates.add("NM - New Mexico");
+        eContStates.add("NY - New York");
+        eContStates.add("NC - North Carolina");
+        eContStates.add("ND - North Dakota");
+        eContStates.add("OH - Ohio");
+        eContStates.add("OK - Oklahoma");
+        eContStates.add("OR - Oregon");
+        eContStates.add("PA - Pennsylvania");
+        eContStates.add("RI - Rhode Island");
+        eContStates.add("SC - South Carolina");
+        eContStates.add("SD - South Dakota");
+        eContStates.add("TN - Tennessee");
+        eContStates.add("TX - Texas");
+        eContStates.add("UT - Utah");
+        eContStates.add("VT - Vermont");
+        eContStates.add("VA - Virginia");
+        eContStates.add("WA - Washington");
+        eContStates.add("WV - West Virginia");
+        eContStates.add("WI - Wisconsin");
+        eContStates.add("WY - Wyoming");
+
         GridPane editContractor = new GridPane();
         editContractor.setAlignment(Pos.CENTER);
         Stage editContractorStage = new Stage();
         Scene editContractorScene = new Scene(editContractor,660,600);
         editContractorStage.setTitle("Edit a Contractor");
         editContractorStage.setScene(editContractorScene);
-        editContractor.add(cmboEditContractor,0,0);
-        btnEditContractor.setOnAction(e ->{
-            editContractorStage.show();
+        editContractor.add(cmboEditCont,0,0);
+        Label lblEContName = new Label("Edit Name:");
+        Label lblEContStreet = new Label("Street:");
+        Label lblEContCity = new Label("City:");
+        Label lblEContState = new Label("Select State:");
+        Label lblEContZip = new Label("Zip:");
+        Label lblEContNumber = new Label("Phone:");
+        TextField txtEContName = new TextField();
+        TextField txtEContStreet = new TextField();
+        TextField txtEContCity = new TextField();
+        TextField txtEContZip = new TextField();
+        TextField txtEContNumber = new TextField(); 
+        ScrollPane eContScrollPane = new ScrollPane();
+        Button btnContExit = new Button("Exit");
+        Button btnContSave = new Button("Save");
+        Button btnContSelect = new Button("Select");
+        Label lblContID = new Label("Contractor ID:");
+        
+        editContractor.add(lblContID,0,0);
+        editContractor.add(btnContSelect,1,0);
+        editContractor.add(lblEContName,0,1);
+        editContractor.add(lblEContStreet,0,2);
+        editContractor.add(lblEContCity,0,3);
+        editContractor.add(lblEContState,0,4);
+        editContractor.add(lblEContZip,0,5);
+        editContractor.add(lblEContNumber,0,6);
+        editContractor.add(txtEContName,1,1);
+        editContractor.add(txtEContStreet,1,2);
+        editContractor.add(txtEContCity,1,3);
+        editContractor.add(cmboEContStates,1,4);
+        editContractor.add(txtEContZip,1,5);
+        editContractor.add(txtEContNumber,1,6);
+        editContractor.add(eContScrollPane,1,7);
+        editContractor.add(btnContExit,1,8);
+        editContractor.add(btnContSave,0,8);
+        btnContSelect.setOnAction(e->{
+            int contractorID =0;
+            for (int i=0; i<contractorArray.length; i++)
+            {
+                if(contractorArray[i].shortString().equals(cmboEditCont.getSelectionModel().getSelectedItem().toString()))
+                    contractorID=contractorArray[i].getId();
+            }
+            txtEContName.setText(contractorArray[contractorID - 6000].contractorName);
+            txtEContStreet.setText(contractorArray[contractorID - 6000].street);
+            txtEContCity.setText(contractorArray[contractorID - 6000].city);
+            cmboEContStates.getSelectionModel().select(contractorArray[contractorID - 6000].state);
+            txtEContZip.setText(String.valueOf(contractorArray[contractorID - 6000].zip));
+            txtEContNumber.setText(String.valueOf(contractorArray[contractorID - 6000].contractorNumber));
+            
         });
+        btnContSave.setOnAction(e-> {
+          int contractorID =0; 
+          for(int i=0; i<contractorArray.length; i++)
+          {
+              if (contractorArray[i].shortString().equals(cmboEditCont.getSelectionModel().getSelectedItem().toString()))
+                  contractorID = contractorArray[i].getId(); 
+          }
+          cmboEditCont.getItems().remove(0,contractorArray.length);
+          contractorArray[contractorID - 6000].contractorName=txtEContName.getText();
+          contractorArray[contractorID - 6000].street = txtEContStreet.getText();
+          contractorArray[contractorID - 6000].city = txtEContCity.getText();
+          contractorArray[contractorID - 6000].state = cmboEContStates.getSelectionModel().getSelectedItem().toString(); 
+          contractorArray[contractorID - 6000].zip = Integer.parseInt(txtEContZip.getText());
+          contractorArray[contractorID - 6000].contractorNumber = Long.parseLong(txtEContNumber.getText());
+          for (int i=0; i<contractorArray.length; i++)
+          {
+              cmboEditCont.getItems().add(contractorArray[i].shortString());
+          }
+        });
+        btnContExit.setOnAction(e-> {
+            editContractorStage.close();
+        });
+        
+        btnEditContractor.setOnAction(e-> {
+            editContractorStage.show();
+            for(int i=0; i<contractorArray.length; i++)
+            {
+                cmboEditCont.getItems().add(contractorArray[i].shortString());
+            }
+        });
+        editContractor.setHgap(20);
+        editContractor.setVgap(20);
+           
+     
 
   //Main Menu 
         Label lblMain = new Label (" Valley Depot's Main Menu"); 
