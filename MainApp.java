@@ -705,6 +705,9 @@ public class MainApp extends Application {
      Scene contractorScene = new Scene(contractorPane,660,600);
      contractorStage.setTitle("Create Contractor");
      contractorStage.setScene(contractorScene);
+     TextField txtContractorNotes = new TextField();
+     txtContractorNotes.setPrefSize(350,150);
+     Label lblContractorNotes = new Label("Notes:");
      contractorPane.add(lblContractorName,0,0);
      contractorPane.add(lblContractorNumber,0,1);
      contractorPane.add(lblContractorStreet,0,2);
@@ -717,8 +720,29 @@ public class MainApp extends Application {
      contractorPane.add(txtContractorCity,1,3);
      contractorPane.add(txtContractorZip,1,4);
      contractorPane.add(cmboCState,1,5);
-     contractorPane.add(btnExitContractor,1,6);
-     contractorPane.add(btnSaveContractor,0,6);
+     contractorPane.add(lblContractorNotes,0,6);
+     contractorPane.add(btnExitContractor,1,7);
+     contractorPane.add(btnSaveContractor,0,7);
+     contractorPane.add(txtContractorNotes,1,6);
+     
+     btnSaveContractor.setOnAction(e->{
+        contractorArray = Arrays.copyOf(contractorArray, 
+            contractorArray.length + 1); // resizes the contractorArray
+            
+            contractorArray[contractorCount] = new Contractor(txtContractorName.getText(),txtContractorCity.getText(), 
+                    cmboCState.getSelectionModel().getSelectedItem().toString(), 
+                    txtContractorStreet.getText(), Integer.parseInt(txtContractorZip.getText()), 
+                    Long.parseLong(txtContractorNumber.getText()), txtContractorNotes.getText());
+            contractorCount++;
+            txtContractorName.clear();
+            txtContractorCity.clear();
+            txtContractorNumber.clear();
+            txtContractorStreet.clear();
+            txtContractorZip.clear();
+            txtContractorNotes.clear();
+            
+     });
+     
      btnCreateContractor.setOnAction(e->{
          contractorStage.show();
      });
@@ -727,7 +751,6 @@ public class MainApp extends Application {
      });
      contractorPane.setVgap(20);
      contractorPane.setHgap(20);
-       
 //Creating the new customer 
         GridPane createCustPane = new GridPane();
         createCustPane.setAlignment(Pos.CENTER);
